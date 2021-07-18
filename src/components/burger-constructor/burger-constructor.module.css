@@ -1,0 +1,39 @@
+.constructor {
+    display: flex;
+    flex-direction: column;
+    /* margin-left: 40px; */
+    min-width: 628px;
+}
+
+@media (max-width: 1227px) {
+    .constructor {
+        min-width: 588px;
+    }
+  }
+
+.otherIngredients {
+    max-width: 576px;
+} 
+
+.bun, .other {
+    margin: 16px 8px 16px 24px;
+    max-width: 560px;
+} 
+
+.other {
+    margin-left: 0;
+    margin-top: 0;
+}
+
+.other:last-child {
+    margin-bottom: 0;
+}
+
+.otherIngredients {
+    max-height: 464px;
+    overflow-x: hidden;
+}
+
+.otherIngredients::-webkit-scrollbar-button:vertical:end:increment {
+    display: none;
+  }
