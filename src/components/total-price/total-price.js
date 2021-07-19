@@ -16,5 +16,5 @@ export default class TotalPrice extends React.Component {
 }
 
 TotalPrice.propTypes = {
-  totalPrice: PropTypes.number.isRequired
+  totalPrice: PropTypes.number
 }
