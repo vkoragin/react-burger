@@ -4,7 +4,7 @@ import { ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { ListIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './app-header.module.css'
 
-function AppHeader() {
+export default function AppHeader() {
     return (
         <div className={ styles.wrapper }>
           <header className={ styles.header }>
@@ -31,5 +31,3 @@ function AppHeader() {
         </div>     
     )
 }
-
-export default AppHeader

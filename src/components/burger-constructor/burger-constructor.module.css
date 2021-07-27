@@ -1,7 +1,6 @@
 .constructor {
     display: flex;
     flex-direction: column;
-    /* margin-left: 40px; */
     min-width: 628px;
 }
 
@@ -10,6 +9,10 @@
         min-width: 588px;
     }
   }
+
+.otherIngredients, .bun, .other {
+    cursor: pointer;
+}
 
 .otherIngredients {
     max-width: 576px;
@@ -33,7 +36,3 @@
     max-height: 464px;
     overflow-x: hidden;
 }
-
-.otherIngredients::-webkit-scrollbar-button:vertical:end:increment {
-    display: none;
-  }
