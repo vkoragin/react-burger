@@ -12,7 +12,12 @@ export default function App() {
 
   React.useEffect(() => {
     fetch(url)
-    .then(response => response.json())
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(res.status);
+    })
     .then(ingredients => setIngredients(ingredients.data))
     .catch(() => setError(true))
     .finally(() => setLoad(false))

@@ -3,6 +3,7 @@
     position: relative;
     text-align: center;
     margin: 32px 16px 40px 0;
+    overflow: hidden;
 }
 
 .price {
