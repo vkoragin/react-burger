@@ -1,20 +1,14 @@
-import React from 'react'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
+import PropTypes from 'prop-types'
 
-function Tabs (props) {      
-  const [current, setCurrent] = React.useState(props.ingredientsTypes[0])
-
-  function setCurrentIngredient(ingredientsType) {
-    setCurrent(ingredientsType)
-    props.setCurrentIngredient(ingredientsType)
-  }
+export default function Tabs (props) {      
+  const current = 'Булки'
 
   return (
     <div style={{ display: 'flex', paddingBottom: '40px' }}>
         {props.ingredientsTypes.map((ingredientsType, index) => (
           <Tab value={ingredientsType} 
                active={current === ingredientsType} 
-               onClick={() => setCurrentIngredient(ingredientsType)} 
                key={index}
           >{ingredientsType}
           </Tab>
@@ -23,4 +17,6 @@ function Tabs (props) {
   )
 }
 
-export default Tabs
+Tabs.propTypes = {
+  ingredientsTypes: PropTypes.arrayOf(PropTypes.string).isRequired
+}

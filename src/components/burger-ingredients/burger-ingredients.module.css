@@ -1,5 +1,11 @@
-.ingredients{
+.ingredients {
     width: 600px;
     max-height: 912px;
     overflow-x: hidden;
+    cursor: pointer;
+}
+
+.ingredients::-webkit-scrollbar-button:vertical:end:increment {
+  height: 52px;
+  background-color: #131316;
 }

@@ -51,8 +51,3 @@ ul, li {
 ::-webkit-scrollbar-button:horizontal:end:increment {
   display: none;
 }
-
-::-webkit-scrollbar-button:vertical:end:increment {
-  height: 52px;
-  background-color: #131316;
-}
