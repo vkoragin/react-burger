@@ -1,20 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import TotalPrice from '../total-price/total-price.js'
 import styles from './burger-constructor.module.css'
 import PropTypes from 'prop-types'
 import { ingredient } from '../../types.js'
+import { IngredientsContext } from '../../context/ingredientsContext.js'
 
-export default function BurgerConstructor (props) {
+export default function BurgerConstructor () {
   const [bun, setBun] = React.useState([])
   const [otherIngredients, setOtherIngredients] = React.useState([])
-  const [totalPrice, setTotalPrice] = React.useState(0)
+  const ingredients = useContext(IngredientsContext)
 
   React.useEffect(() => {
-    setBun(props.ingredients.filter(ingredient => ingredient.type === 'bun')[0])
-    setOtherIngredients(props.ingredients.filter(ingredient => ingredient.type !== 'bun'))
-    setTotalPrice(props.ingredients.reduce((totalPrice, ingredient) => totalPrice + ingredient.price, 0)) 
-  }, [props])
+    setBun(ingredients.filter(ingredient => ingredient.type === 'bun')[0])
+    setOtherIngredients(ingredients.filter(ingredient => ingredient.type !== 'bun')) 
+  }, [ingredients])
 
   return (
     <div className={styles.constructor}>
@@ -51,7 +51,7 @@ export default function BurgerConstructor (props) {
           thumbnail={bun['image_mobile']} 
           price={bun.price}/> 
       </div>
-      <TotalPrice price={totalPrice}/> 
+      <TotalPrice/>
     </div>
   )
 }

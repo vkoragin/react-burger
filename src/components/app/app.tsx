@@ -3,6 +3,7 @@ import styles from './app.module.css'
 import AppHeader from '../app-header/app-header.js'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients.js'
 import BurgerConstructor from '../burger-constructor/burger-constructor.js'
+import { IngredientsContext } from '../../context/ingredientsContext.js'
 
 export default function App() {
   const url = 'https://norma.nomoreparties.space/api/ingredients'
@@ -14,9 +15,9 @@ export default function App() {
     fetch(url)
     .then(res => {
       if (res.ok) {
-        return res.json();
+        return res.json()
       }
-      return Promise.reject(res.status);
+      return Promise.reject(res.status)
     })
     .then(ingredients => setIngredients(ingredients.data))
     .catch(() => setError(true))
@@ -39,7 +40,9 @@ export default function App() {
                   ? <p className="text text_type_main-default text_color_inactive">Ингредиенты не найдены</p>
                   : <section className={ styles.content }>
                       <BurgerIngredients ingredients={ ingredients }/>
-                      <BurgerConstructor ingredients={ ingredients }/>
+                      <IngredientsContext.Provider value={ingredients}>
+                        <BurgerConstructor/>
+                      </IngredientsContext.Provider>
                     </section>
         }
       </main>
