@@ -1,39 +1,27 @@
-import React, { useContext, useReducer  } from 'react'
+import {useEffect, useState} from 'react'
 import OrderDetails from '../order-details/order-details.js'
 import Modal from '../modal/modal.js'
-import PropTypes from 'prop-types'
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { IngredientsContext } from '../../context/ingredientsContext.js'
 import styles from './total-price.module.css'
-
-const defaultPrice = { value: 0 }
-
-function reducer(totalPrice, current) {
-  switch (current.type) {
-    case 'bun':
-      return { value: totalPrice.value + current.price * 2 }
-    case 'main':
-    case 'sauce':
-      return { value: totalPrice.value + current.price }
-    default:
-      throw new Error(`Wrong type of action: ${current.type}`)
-  }
-}
+import { useSelector } from 'react-redux'
 
 export default function TotalPrice () {
-  const [visible, setVisible] = React.useState(false)
-  const ingredients = useContext(IngredientsContext)
-  const [totalPrice, dispatch] = useReducer(reducer, defaultPrice)
+  const [visible, setVisible] = useState(false)
+  const { constructor } = useSelector(store => store.ingredients)
+  const [price, setPrice] = useState(0)
 
   const onClose = () => setVisible(false)
   const onOpen = () => setVisible(true)
 
-  React.useEffect(() => ingredients.map(ingredient => dispatch({ type: ingredient.type, price: ingredient.price })), [ingredients])
+  useEffect(() => {
+    const totalPrice = constructor.reduce((sum, current) => current.type === 'bun' ? sum + current.price * 2 : sum + current.price, 0)
+    setPrice(totalPrice)
+  }, [constructor])
 
   return (
     <>
       <div className={ styles.totalPrice }>
-        <span className='text text_type_digits-medium pr-2'>{totalPrice.value}</span>
+        <span className='text text_type_digits-medium pr-2'>{price}</span>
         <CurrencyIcon/>
         <p className='ml-10'>
           <Button onClick={onOpen} type='primary' size='medium'>Оформить заказ</Button>
@@ -42,8 +30,4 @@ export default function TotalPrice () {
       { visible && <Modal onClose={onClose}><OrderDetails /></Modal> }
     </>   
   )
-}
-
-TotalPrice.propTypes = {
-  totalPrice: PropTypes.number
 }
