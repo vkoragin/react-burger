@@ -5,7 +5,8 @@ import {
     ACTIVE_TAB,
     ADD_TO_CONSTRUCTOR,
     DEL_FROM_CONSTRUCTOR,
-    REORDER_INGREDIENTS
+    REORDER_INGREDIENTS,
+    SET_UNIQUE_KEY
 } from '../actions/actionTypes'
 
 const initialTabState = {
@@ -63,6 +64,16 @@ export const ingredientsReducer = (state = initialIngredientsState, action) => {
     case DEL_FROM_CONSTRUCTOR: {
       return { ...state, constructor: [...state.constructor].filter(ingredient => ingredient['_id'] !== action.id) }
     }
+    case SET_UNIQUE_KEY:
+      return {
+        ...state,
+        constructor: [...state.constructor.map(item => {
+          return {
+            ...item, 
+            uniqueKey: Number((Math.random() * 100).toFixed(0))
+          }
+        })]
+      }
     default: {
       return state
     }

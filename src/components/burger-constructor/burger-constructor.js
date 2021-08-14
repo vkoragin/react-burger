@@ -5,7 +5,7 @@ import NotBunIngredientsConstructor from '../not-bun-ingredients-constructor/not
 import styles from './burger-constructor.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useDrop } from 'react-dnd'
-import { ADD_TO_CONSTRUCTOR, REORDER_INGREDIENTS } from '../../services/actions/actionTypes.js'
+import { ADD_TO_CONSTRUCTOR, REORDER_INGREDIENTS, SET_UNIQUE_KEY } from '../../services/actions/actionTypes.js'
 
 export default function BurgerConstructor () {
   const [bun, setBun] = useState([])
@@ -25,6 +25,8 @@ export default function BurgerConstructor () {
         type: ADD_TO_CONSTRUCTOR,
         el: item
       })
+      dispatch({
+        type:  SET_UNIQUE_KEY, item})
     }
   })
 
@@ -41,7 +43,7 @@ export default function BurgerConstructor () {
   const renderElement = (ingredient, index) => {
     return (
       <NotBunIngredientsConstructor
-        key={ingredient['_id'] + index}
+        key={ingredient.uniqueKey ? ingredient.uniqueKey : 0.1}
         id={ingredient['_id']}
         index={index}
         moveElement={moveElement}
