@@ -11,7 +11,9 @@ export default function TotalPrice () {
   const [price, setPrice] = useState(0)
 
   const onClose = () => setVisible(false)
-  const onOpen = () => setVisible(true)
+  const onOpen = () => {
+    if (constructor.length) setVisible(true)
+  }
 
   useEffect(() => {
     const totalPrice = constructor.reduce((sum, current) => current.type === 'bun' ? sum + current.price * 2 : sum + current.price, 0)
@@ -27,7 +29,7 @@ export default function TotalPrice () {
           <Button onClick={onOpen} type='primary' size='medium'>Оформить заказ</Button>
         </p>
       </div>
-      { visible && <Modal onClose={onClose}><OrderDetails /></Modal> }
+      { visible && <Modal onClose={onClose}><OrderDetails/></Modal> }
     </>   
   )
 }

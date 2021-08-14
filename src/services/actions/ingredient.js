@@ -1,20 +1,10 @@
 import {
     ADD_INGREDIENT,
     DEL_INGREDIENT
-} from '../../constants'
+} from './actionTypes'
 
 export function setIngredient (ingredient) {
-    return function(dispatch) {
-        if (ingredient) {
-            dispatch({
-                type: ADD_INGREDIENT,
-                ingredient: ingredient
-            })
-        } else {
-            dispatch({
-                type: DEL_INGREDIENT,
-                ingredient: null
-            })
-        }
-    }
+    return ingredient
+        ? { type: ADD_INGREDIENT, ingredient: ingredient }
+        : { type: DEL_INGREDIENT, ingredient: null }
 }

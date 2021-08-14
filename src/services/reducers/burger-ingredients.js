@@ -6,7 +6,7 @@ import {
     ADD_TO_CONSTRUCTOR,
     DEL_FROM_CONSTRUCTOR,
     REORDER_INGREDIENTS
-} from '../../constants'
+} from '../actions/actionTypes'
 
 const initialTabState = {
   activeTab: 'Булки'
@@ -57,8 +57,7 @@ export const ingredientsReducer = (state = initialIngredientsState, action) => {
         ...state,
         constructor: action.el.type === 'bun'
           ? [...state.constructor.filter(item => item.type !== 'bun'), action.el]
-          : [...state.constructor, action.el]
-       
+          : [...state.constructor, action.el]  
       }
     }
     case DEL_FROM_CONSTRUCTOR: {

@@ -4,7 +4,7 @@ import styles from './not-bun-ingredients-constructor.module.css'
 import { useDispatch } from 'react-redux'
 import { useDrop, useDrag } from 'react-dnd'
 import PropTypes from 'prop-types'
-import { DEL_FROM_CONSTRUCTOR } from '../../constants.js'
+import { DEL_FROM_CONSTRUCTOR } from '../../services/actions/actionTypes.js'
 
 export default function NotBunIngredientsConstructor ({ thumbnail, text, id, index, moveElement, price }) {
     const ref = useRef(null)

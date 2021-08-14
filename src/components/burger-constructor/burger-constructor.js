@@ -5,18 +5,18 @@ import NotBunIngredientsConstructor from '../not-bun-ingredients-constructor/not
 import styles from './burger-constructor.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useDrop } from 'react-dnd'
-import { ADD_TO_CONSTRUCTOR, REORDER_INGREDIENTS } from '../../constants.js'
+import { ADD_TO_CONSTRUCTOR, REORDER_INGREDIENTS } from '../../services/actions/actionTypes.js'
 
 export default function BurgerConstructor () {
   const [bun, setBun] = useState([])
   const [otherIngredients, setOtherIngredients] = useState([])
   const { constructor } = useSelector(store => store.ingredients)
   const dispatch = useDispatch()
-
+  
   useEffect(() => {
     setBun(constructor.filter(ingredient => ingredient.type === 'bun')[0])
     setOtherIngredients(constructor.filter(ingredient => ingredient.type !== 'bun')) 
-  }, [constructor])
+  }, [constructor]) 
 
   const [, dropRef] = useDrop({
     accept: 'ingredient',
@@ -38,11 +38,11 @@ export default function BurgerConstructor () {
     }, [otherIngredients, bun, isBun, dispatch]
   )
 
-  const renderElement = (ingredient, index, id) => {
+  const renderElement = (ingredient, index) => {
     return (
       <NotBunIngredientsConstructor
-        key={index}
-        id={id}
+        key={ingredient['_id'] + index}
+        id={ingredient['_id']}
         index={index}
         moveElement={moveElement}
         text={ingredient.name}
@@ -67,7 +67,7 @@ export default function BurgerConstructor () {
         </div>
         
         <div className={styles.otherIngredients}>
-          {otherIngredients.map((ingredient, i) => renderElement(ingredient, i, ingredient['_id']))}   
+          {otherIngredients.map((ingredient, i) => renderElement(ingredient, i))}   
         </div>
 
         <div className={styles.bun}>
@@ -80,7 +80,7 @@ export default function BurgerConstructor () {
                 thumbnail={bun['image_mobile']} 
                 price={bun.price}/> 
           }         
-        </div>      
+        </div>
       <TotalPrice/>
     </div>
   )

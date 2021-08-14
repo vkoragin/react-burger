@@ -5,7 +5,8 @@ export default function IngredientDetails () {
     const { ingredient } = useSelector(store => store.ingredient)
 
     return (
-        <>
+        ingredient &&
+        <> 
             <figure className={styles.ingredient}>
                 <p><img className={styles.image} src={ingredient['image_large']} alt={ingredient.name}/></p>    
                 <figcaption className='text text_type_main-medium'>{ingredient.name}</figcaption>

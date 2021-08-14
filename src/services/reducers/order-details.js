@@ -2,7 +2,7 @@ import {
     GET_ODDER_NUMBER,
     GET_ODDER_NUMBER_FAILED,
     GET_ODDER_NUMBER_SUCCESS
-} from '../../constants'
+} from '../actions/actionTypes'
 
 const initialState = {
     number: '',

@@ -4,7 +4,7 @@ import {
     GET_INGREDIENTS_FAILED,
     GET_INGREDIENTS_SUCCESS,
     ACTIVE_TAB
-} from '../../constants'
+} from './actionTypes'
 
 export function getIngredients () {
     return function(dispatch) {
@@ -32,10 +32,8 @@ export function getIngredients () {
 }
 
 export function setActiveTab (activeTab) {
-    return function(dispatch) {
-        dispatch({
-            type: ACTIVE_TAB,
-            activeTab: activeTab
-        })
+    return {
+        type: ACTIVE_TAB,
+        activeTab
     }
 }

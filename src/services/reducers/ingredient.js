@@ -1,7 +1,7 @@
 import {
     ADD_INGREDIENT,
     DEL_INGREDIENT
-} from '../../constants'
+} from '../actions/actionTypes'
 
 const initialState = {
     ingredient: null

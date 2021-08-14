@@ -3,7 +3,7 @@ import {
     GET_ODDER_NUMBER,
     GET_ODDER_NUMBER_FAILED,
     GET_ODDER_NUMBER_SUCCESS
-} from '../../constants'
+} from './actionTypes'
 
 export function getOrderNumber (ingredientsIds) {
     return function(dispatch) {
