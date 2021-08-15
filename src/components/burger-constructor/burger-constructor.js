@@ -41,9 +41,11 @@ export default function BurgerConstructor () {
   )
 
   const renderElement = (ingredient, index) => {
+    const uniqueKey = ingredient.uniqueKey ? ingredient.uniqueKey : 0.1
     return (
       <NotBunIngredientsConstructor
-        key={ingredient.uniqueKey ? ingredient.uniqueKey : 0.1}
+        key={uniqueKey}
+        uniqueKey={uniqueKey}
         id={ingredient['_id']}
         index={index}
         moveElement={moveElement}

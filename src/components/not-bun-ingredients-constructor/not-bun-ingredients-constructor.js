@@ -6,7 +6,7 @@ import { useDrop, useDrag } from 'react-dnd'
 import PropTypes from 'prop-types'
 import { DEL_FROM_CONSTRUCTOR } from '../../services/actions/actionTypes.js'
 
-export default function NotBunIngredientsConstructor ({ thumbnail, text, id, index, moveElement, price }) {
+export default function NotBunIngredientsConstructor ({ thumbnail, text, id, index, moveElement, price, uniqueKey }) {
     const ref = useRef(null)
     const dispatch = useDispatch()
 
@@ -45,10 +45,10 @@ export default function NotBunIngredientsConstructor ({ thumbnail, text, id, ind
         })
     })    
    
-    const delIngredient = id => {
+    const delIngredient = uniqueKey => {
         dispatch({
             type: DEL_FROM_CONSTRUCTOR,
-            id: id
+            uniqueKey: uniqueKey
         })
     }
 
@@ -62,7 +62,7 @@ export default function NotBunIngredientsConstructor ({ thumbnail, text, id, ind
             <div className={styles.otherItem}>
                 <ConstructorElement
                     isLocked={false}
-                    handleClose={() => delIngredient(id)}
+                    handleClose={() => delIngredient(uniqueKey)}
                     text={text} 
                     thumbnail={thumbnail}
                     price={price}/>

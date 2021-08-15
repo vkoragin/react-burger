@@ -62,7 +62,7 @@ export const ingredientsReducer = (state = initialIngredientsState, action) => {
       }
     }
     case DEL_FROM_CONSTRUCTOR: {
-      return { ...state, constructor: [...state.constructor].filter(ingredient => ingredient['_id'] !== action.id) }
+      return { ...state, constructor: [...state.constructor].filter(ingredient => ingredient.uniqueKey !== action.uniqueKey) }
     }
     case SET_UNIQUE_KEY:
       return {
@@ -70,7 +70,7 @@ export const ingredientsReducer = (state = initialIngredientsState, action) => {
         constructor: [...state.constructor.map(item => {
           return {
             ...item, 
-            uniqueKey: Number((Math.random() * 100).toFixed(0))
+            uniqueKey: Number((Math.random() * 10000).toFixed(0))
           }
         })]
       }

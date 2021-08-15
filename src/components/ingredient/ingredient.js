@@ -7,7 +7,6 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import styles from './ingredient.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { setIngredient } from '../../services/actions/ingredient.js'
-import { ADD_TO_CONSTRUCTOR } from '../../services/actions/actionTypes.js'
 import { useDrag } from 'react-dnd'
 
 export default function Ingredient (props) {
@@ -27,13 +26,6 @@ export default function Ingredient (props) {
     setCount(count)
   }, [constructor, ingredient])
 
-   const addIngredient = () => {
-    dispatch({
-      type: ADD_TO_CONSTRUCTOR,
-      el: ingredient
-    })
-  }
-
   const onClose = e => {
     if(e) e.stopPropagation()
     dispatch(setIngredient())
@@ -42,7 +34,6 @@ export default function Ingredient (props) {
 
   const onOpen = () => {
     dispatch(setIngredient(ingredient))
-    addIngredient()
     setVisible(true)
   }
 
