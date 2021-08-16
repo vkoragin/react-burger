@@ -12,7 +12,7 @@ export default function IngredientsGroup (props) {
       <section className={ styles.ingredients }>            
         {props.ingredients.map(ingredient => <Ingredient key={ingredient['_id']} ingredient={ingredient}/>)}
       </section>
-    </section>
+    </section>   
   )
 }
 
