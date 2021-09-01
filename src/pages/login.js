@@ -1,9 +1,9 @@
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useState } from 'react'
-import { Link, useHistory, Redirect, useLocation } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import { loginUser } from '../services/actions/auth'
 import { useDispatch } from 'react-redux'
-import { getCookie, minPasswordLength, emailRegExp } from '../utils'
+import { minPasswordLength, emailRegExp } from '../utils'
 
 export function LoginPage() {
     const [email, setEmail] = useState('')
@@ -15,7 +15,6 @@ export function LoginPage() {
     const [errorPasswordText, setPasswordText] = useState('')
     const dispatch = useDispatch()
     const history = useHistory()
-    const isAuth = getCookie('accessToken')
     const location = useLocation()
 
     const changeEmail = e => {
@@ -76,16 +75,6 @@ export function LoginPage() {
         isValid ? setErrorEmail(false) : setErrorEmail(true)
         return isValid
     }
-
-    if (isAuth) {
-        return (
-          <Redirect
-            to={{
-                pathname: '/'
-            }}
-          />
-        )
-      }
 
     return (
         <form className="form" onSubmit={login}>

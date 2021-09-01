@@ -1,9 +1,9 @@
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useState } from 'react'
-import { Link, useHistory, Redirect } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { resetPassord } from '../services/actions/reset-password'
-import { useDispatch, useSelector } from 'react-redux'
-import { getCookie, minPasswordLength } from '../utils'
+import { useDispatch } from 'react-redux'
+import { minPasswordLength } from '../utils'
 
 export function ResetPasswordPage() {
     const [password, setPassword] = useState('')
@@ -15,8 +15,6 @@ export function ResetPasswordPage() {
     const errorTokenText = 'Это поле не должно быть пустым'
     const dispatch = useDispatch()
     const history = useHistory()
-    const isAuth = getCookie('accessToken')
-    const { forgotPasswordSuccess } = useSelector(store => store.forgotPassword)
 
     const changeCode = e => {
         setToken(e.target.value)
@@ -69,16 +67,6 @@ export function ResetPasswordPage() {
         const isValid = Boolean(token.length)
         isValid ? setTokenError(false) : setTokenError(true)
         return isValid
-    }
-
-    if (isAuth || !forgotPasswordSuccess) {
-        return (
-          <Redirect
-            to={{
-              pathname: '/'
-            }}
-          />
-        )
     }
 
     return (

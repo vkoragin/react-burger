@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { resetPassord } from '../services/actions/forgot-password'
-import { useHistory, Redirect } from 'react-router-dom'
-import { getCookie, emailRegExp } from '../utils'
+import { useHistory } from 'react-router-dom'
+import { emailRegExp } from '../utils'
 
 export function ForgotPasswordPage() {
     const [email, setEmail] = useState('')
@@ -12,7 +12,6 @@ export function ForgotPasswordPage() {
     const [errorEmailText, setErrorEmailText] = useState('')
     const dispatch = useDispatch()
     const history = useHistory()
-    const isAuth = getCookie('accessToken')
 
     const changeEmail = e => {
         setEmail(e.target.value)
@@ -35,17 +34,7 @@ export function ForgotPasswordPage() {
         if (!email.length) setErrorEmailText('Это поле не должно быть пустым')
         isValid ? setErrorEmail(false) : setErrorEmail(true)
         return isValid
-    }
-
-    if (isAuth) {
-        return (
-          <Redirect
-            to={{
-              pathname: '/'
-            }}
-          />
-        )
-    }
+    }    
 
     return (
         <form className="form" onSubmit={submit}>

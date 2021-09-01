@@ -1,8 +1,19 @@
+import { useState, useEffect }  from 'react'
 import styles from './ingredient-details.module.css'
 import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 
 export default function IngredientDetails () {
-    const { ingredient } = useSelector(store => store.ingredient)
+    const location = useLocation()
+    const { ingredients } = useSelector(store => store.ingredients)
+    const path = location.pathname.split('/')
+    const id = path[path.length-1]
+    const [ingredient, setIngredient] = useState(null)    
+    
+    useEffect(() => {        
+        const targetIngredient = ingredients.filter(item => item['_id'] === id)
+        setIngredient(targetIngredient)
+      }, [ingredients, id])
 
     return (
         ingredient &&

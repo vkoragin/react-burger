@@ -3,7 +3,6 @@ import { forgotPasswordUrl } from '../../url'
 import axios from 'axios'
 
 import {
-    FORGOT_PASSWORD_SUCCESS,
     SHOW_LOADER
 } from '../actions/actionTypes'
 
@@ -21,7 +20,7 @@ export function resetPassord (email) {
             }
         })
         .then(response => {
-            dispatch({type: FORGOT_PASSWORD_SUCCESS})
+            localStorage.setItem('resetPassword', 'true')
             return response.data
         })
         .catch(error => {   

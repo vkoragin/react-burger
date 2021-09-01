@@ -1,9 +1,9 @@
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useState } from 'react'
-import { Link, useHistory, Redirect } from 'react-router-dom'
+import { Link, useHistory, } from 'react-router-dom'
 import { registerUser } from '../services/actions/auth'
 import { useDispatch } from 'react-redux'
-import { getCookie, minPasswordLength, emailRegExp } from '../utils'
+import { minPasswordLength, emailRegExp } from '../utils'
 
 export function RegisterPage() {
     const [email, setEmail] = useState('')
@@ -18,7 +18,6 @@ export function RegisterPage() {
     const errorNameText = 'Это поле не должно быть пустым'
     const history = useHistory()
     const dispatch = useDispatch()
-    const isAuth = getCookie('accessToken')
 
     const changeEmail = e => {
         setEmail(e.target.value)
@@ -87,16 +86,6 @@ export function RegisterPage() {
         setPasswordError(false)
         setErrorEmail(false)
         setNameError(false)
-    }
-
-    if (isAuth) {
-        return (
-          <Redirect
-            to={{
-              pathname: '/'
-            }}
-          />
-        )
     }
 
     return (

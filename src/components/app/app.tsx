@@ -3,26 +3,32 @@ import AppHeader from '../app-header/app-header.js'
 import { BrowserRouter as Router, Switch, Route, useLocation, useHistory } from 'react-router-dom'
 import { LoginPage, RegisterPage, HomePage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, IngredientsPage, NotFound404 } from '../../pages'
 import { ProtectedRoute } from '../protected-route'
+import { ProtectedUnAuthResetRoute } from '../protected-un-auth-reset-route'
+import { ProtectedUnAuthRoute } from '../protected-un-auth-route'
 import { useDispatch, useSelector, RootStateOrAny } from 'react-redux'
 import Loader from '../loader/loader'
 import Modal from '../modal/modal.js'
 import IngredientDetails from '../ingredient-details/ingredient-details.js'
 import { setIngredient } from '../../services/actions/ingredient.js'
+import { getIngredients } from '../../services/actions/burger-ingredients.js'
+import { useEffect } from 'react'
 
 export default function App() {
   const ModalSwitch = () => {
+    
     const { loader } = useSelector((store: RootStateOrAny) => store.loader)
     const dispatch = useDispatch()
     const location = useLocation<any>()
     const history = useHistory<any>()
-    const background =
-      (history.action === 'PUSH' || history.action === 'REPLACE') && location.state && location.state.background
+    const background = (history.action === 'PUSH' || history.action === 'REPLACE') && location.state && location.state.background
     
     const onClose = (e: any) => {
       if(e) e.stopPropagation()
       dispatch(setIngredient())
       history.goBack()
     }
+
+    useEffect(() => dispatch(getIngredients()), [dispatch])
 
     return (
       <div className="App">
@@ -32,18 +38,18 @@ export default function App() {
                 <Route path={`/`} exact>
                   <HomePage />
                 </Route>
-                <Route path={`/login`} exact>
+                <ProtectedUnAuthRoute path={`/login`} exact>
                   <LoginPage />
-                </Route>
+                </ProtectedUnAuthRoute>
                 <Route path={`/register`} exact>
                   <RegisterPage />
                 </Route>
-                <Route path={`/forgot-password`} exact>
+                <ProtectedUnAuthRoute path={`/forgot-password`} exact>
                   <ForgotPasswordPage />
-                </Route>
-                <Route path={`/reset-password`} exact>
+                </ProtectedUnAuthRoute>
+                <ProtectedUnAuthResetRoute path={`/reset-password`} exact>
                   <ResetPasswordPage />
-                </Route>
+                </ProtectedUnAuthResetRoute>
                 <ProtectedRoute path={`/profile`}>                         
                   <ProfilePage />
                 </ProtectedRoute>                
