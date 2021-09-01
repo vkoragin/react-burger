@@ -24,6 +24,5 @@ export function HomePage() {
         </section>
       </>    
     )
-  }
- 
+  } 
 }
