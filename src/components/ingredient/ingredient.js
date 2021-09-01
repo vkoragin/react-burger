@@ -4,14 +4,12 @@ import { useLocation, Link } from 'react-router-dom'
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient.module.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { setIngredient } from '../../services/actions/ingredient.js'
+import { useSelector } from 'react-redux'
 import { useDrag } from 'react-dnd'
 
 export default function Ingredient (props) {
   const ingredient = props.ingredient
   const [count, setCount] = useState(0)
-  const dispatch = useDispatch()
   const { constructor } = useSelector(store => store.ingredients)
   const location = useLocation()
   const ingredientId = ingredient['_id']
@@ -26,10 +24,6 @@ export default function Ingredient (props) {
     setCount(count)
   }, [constructor, ingredient])
 
-  const onOpen = () => {
-    dispatch(setIngredient(ingredient))
-  }
-
   return (
     <Link
       key={ingredientId}
@@ -39,7 +33,7 @@ export default function Ingredient (props) {
       }}
       className={styles.link}
     >
-      <figure className={styles.ingredient} onClick={onOpen} ref={dragRef}>
+      <figure className={styles.ingredient} ref={dragRef}>
         {count > 0 && <Counter count={ingredient.type === 'bun' ? count + 1 : count} size="default"/>}
         <p><img src={ingredient.image} alt={ingredient.name}/></p>
         <p className={ styles.price }>

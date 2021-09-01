@@ -9,7 +9,6 @@ import { useDispatch, useSelector, RootStateOrAny } from 'react-redux'
 import Loader from '../loader/loader'
 import Modal from '../modal/modal.js'
 import IngredientDetails from '../ingredient-details/ingredient-details.js'
-import { setIngredient } from '../../services/actions/ingredient.js'
 import { getIngredients } from '../../services/actions/burger-ingredients.js'
 import { useEffect } from 'react'
 
@@ -24,7 +23,6 @@ export default function App() {
     
     const onClose = (e: any) => {
       if(e) e.stopPropagation()
-      dispatch(setIngredient())
       history.goBack()
     }
 
