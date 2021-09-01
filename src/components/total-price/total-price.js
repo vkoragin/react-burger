@@ -4,15 +4,23 @@ import Modal from '../modal/modal.js'
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './total-price.module.css'
 import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { getCookie } from '../../utils'
 
 export default function TotalPrice () {
   const [visible, setVisible] = useState(false)
   const { constructor } = useSelector(store => store.ingredients)
   const [price, setPrice] = useState(0)
+  const history = useHistory()
+  const isAuth = getCookie('accessToken')
 
   const onClose = () => setVisible(false)
   const onOpen = () => {
-    if (constructor.length) setVisible(true)
+    if (isAuth) {
+      if (constructor.length) setVisible(true)
+    } else {
+      history.replace({ pathname: '/login' })
+    }    
   }
 
   useEffect(() => {

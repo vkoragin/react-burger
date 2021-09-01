@@ -1,0 +1,25 @@
+.profile {
+    margin-top: 208px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+@media (max-width: 1227px) {
+    .profile {
+        justify-content: center;
+    }
+}
+
+.navList {
+    width: 320px;
+}
+
+.navItem {
+    display: flex;
+    height: 64px;
+    align-items: center;
+}
+
+.active {
+    color: white;
+}

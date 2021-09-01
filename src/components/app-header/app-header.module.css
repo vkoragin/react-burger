@@ -36,6 +36,9 @@
     margin-left: 40px;
 }
 
+.active {
+    color: white;
+}
 
 @media (max-width: 871px) {
     .header, .list {

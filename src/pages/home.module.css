@@ -1,0 +1,15 @@
+.content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 1227px) {
+  .content {
+    justify-content: center;
+  }
+
+  .header h1 {
+    text-align: center;
+  }
+}
