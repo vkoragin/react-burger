@@ -5,6 +5,7 @@ import {
     ACTIVE_TAB,
     ADD_TO_CONSTRUCTOR,
     DEL_FROM_CONSTRUCTOR,
+    CLEAR_CONSTRUCTOR,
     REORDER_INGREDIENTS,
     SET_UNIQUE_KEY
 } from '../actions/actionTypes'
@@ -59,6 +60,12 @@ export const ingredientsReducer = (state = initialIngredientsState, action) => {
         constructor: action.el.type === 'bun'
           ? [...state.constructor.filter(item => item.type !== 'bun'), action.el]
           : [...state.constructor, action.el]  
+      }
+    }
+    case CLEAR_CONSTRUCTOR: {
+      return {
+        ...state,
+        constructor: []
       }
     }
     case DEL_FROM_CONSTRUCTOR: {

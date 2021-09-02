@@ -2,7 +2,8 @@ import { getOrderNumberUrl } from '../../url.js'
 import {
     GET_ODDER_NUMBER,
     GET_ODDER_NUMBER_FAILED,
-    GET_ODDER_NUMBER_SUCCESS
+    GET_ODDER_NUMBER_SUCCESS,
+    CLEAR_CONSTRUCTOR
 } from './actionTypes'
 
 export function getOrderNumber (ingredientsIds) {
@@ -24,6 +25,9 @@ export function getOrderNumber (ingredientsIds) {
             dispatch({
                 type: GET_ODDER_NUMBER_SUCCESS,
                 number: orderData.order.number
+            })
+            dispatch({
+                type: CLEAR_CONSTRUCTOR
             })
         })
         .catch(() => {            

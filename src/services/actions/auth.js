@@ -67,6 +67,7 @@ export function logoutUser () {
         .then(response => {
             deleteCookie('accessToken')
             localStorage.removeItem('refreshToken')
+            localStorage.removeItem('resetPassword')
             return response.data
         })        
         .catch(error => {   
