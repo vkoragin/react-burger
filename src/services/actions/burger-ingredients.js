@@ -3,14 +3,14 @@ import {
     GET_INGREDIENTS,
     GET_INGREDIENTS_FAILED,
     GET_INGREDIENTS_SUCCESS,
+    SHOW_LOADER,
     ACTIVE_TAB
 } from './actionTypes'
 
 export function getIngredients () {
     return function(dispatch) {
-        dispatch({
-            type: GET_INGREDIENTS
-        })
+        dispatch({type: GET_INGREDIENTS})
+        dispatch({type: SHOW_LOADER, loader: true})
         
         fetch(getIngredientsUrl)
         .then( res  => {
@@ -28,6 +28,9 @@ export function getIngredients () {
                 type: GET_INGREDIENTS_FAILED
             })
         })
+        .finally(() => dispatch({
+            type: SHOW_LOADER, loader: false
+        }))
     }
 }
 

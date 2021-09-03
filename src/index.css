@@ -17,3 +17,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+a {
+  color: #4C4CFF;
+  text-decoration: none;
+}
+
+.form {
+  width: 480px;
+  margin: 0 auto;
+  margin-top: 288px;
+  text-align: center;    
+}
+
+.form .input {
+  width: 480px !important;
+}

@@ -8,28 +8,12 @@ ul, li {
 
 .main {    
   max-width: 1280px;
-  margin: 88px auto 40px auto; 
-}
-
-.content {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
+  margin: 88px auto 40px auto;
 }
 
 @media (max-width: 871px) {
   .main { 
     margin-top: 188px; 
-  }
-}
-
-@media (max-width: 1227px) {
-  .content {
-    justify-content: center;
-  }
-
-  .header h1 {
-    text-align: center;
   }
 }
 

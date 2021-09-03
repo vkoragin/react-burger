@@ -3,16 +3,35 @@ import OrderDetails from '../order-details/order-details.js'
 import Modal from '../modal/modal.js'
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './total-price.module.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { getCookie } from '../../utils'
+import { getOrderNumber } from '../../services/actions/order-details.js'
 
 export default function TotalPrice () {
   const [visible, setVisible] = useState(false)
   const { constructor } = useSelector(store => store.ingredients)
   const [price, setPrice] = useState(0)
+  const history = useHistory()
+  const isAuth = getCookie('accessToken')
+  const dispatch = useDispatch()
 
   const onClose = () => setVisible(false)
+
   const onOpen = () => {
-    if (constructor.length) setVisible(true)
+    if (isAuth) {
+      if (constructor.length) {
+        setVisible(true)
+        createOrder()
+      }
+    } else {
+      history.replace({ pathname: '/login' })
+    }    
+  }
+
+  const createOrder = () => {
+    const ingredientsIds = constructor.map(ingredient => ingredient['_id'])
+    dispatch(getOrderNumber(ingredientsIds))
   }
 
   useEffect(() => {

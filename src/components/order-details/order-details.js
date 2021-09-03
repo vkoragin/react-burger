@@ -1,18 +1,9 @@
-import { useEffect } from 'react'
 import styles from './order-details.module.css'
 import done from '../../images/done.png'
-import { useSelector, useDispatch } from 'react-redux'
-import { getOrderNumber } from '../../services/actions/order-details.js'
+import { useSelector } from 'react-redux'
 
 export default function OrderDetails () {
-  const { ingredients } = useSelector(store => store.ingredients)
   const { number, numberRequest, numberFailed } = useSelector(store => store.orderNumber)
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    const ingredientsIds = ingredients.map(ingredient => ingredient['_id'])
-    dispatch(getOrderNumber(ingredientsIds))
-  }, [ingredients, dispatch])
 
   if (numberFailed) return <p className="text text_type_main-default text_color_inactive">Произошла ошибка при получении данных</p>
   else if (numberRequest) return <p className="text text_type_main-default text_color_inactive">Создание заказа...</p>
