@@ -23,9 +23,11 @@ export function FeedItem(props) {
             let totalPrice = 0
             let targetIngredients = []
             order?.ingredients?.forEach(ingredient => {
-                let targetIngredient = ingredients.filter(item => item['_id'] === ingredient)[0]
-                targetIngredients.push(targetIngredient)
-                if (targetIngredient.price) totalPrice += targetIngredient.price
+                let targetIngredient = ingredients.filter(item => item['_id'] === ingredient)[0]               
+                if (targetIngredient?.price) {
+                    targetIngredients.push(targetIngredient)
+                    totalPrice += targetIngredient.price
+                }
             })
             setPrice(totalPrice)
             setOrderIngredients(targetIngredients)        
