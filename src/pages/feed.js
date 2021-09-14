@@ -48,7 +48,7 @@ export function FeedPage() {
             </header>
             <section className={ styles.content }>
                 <div className={ styles.feed }>
-                    { Boolean(orders.length) && orders.map(item => <FeedItem key={item['_id']} order={item} showStatus={false} />) }
+                    { Boolean(orders.length) && orders.map(item => item?.ingredients?.length ? <FeedItem key={item['_id']} order={item} showStatus={false} /> : false) }
                 </div>
                 
                 <div className={ styles.feedInfo }>

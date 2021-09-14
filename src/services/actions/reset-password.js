@@ -22,8 +22,8 @@ export function resetPassord (data) {
         .then(response => {
             return response.data
         })
-        .catch(error => {  
-            throw error
+        .catch(error => {   
+            console.error(error)
         })
         .finally(() => dispatch({
             type: SHOW_LOADER, loader: false

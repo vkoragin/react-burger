@@ -19,11 +19,10 @@ export function getOrder (id) {
                 order: response.data.orders[0]
             })
         })
-        .catch(error => {            
+        .catch(() => {            
             dispatch({
                 type: GET_ORDER_FAILED
             })
-            throw error
         })
     }
 }

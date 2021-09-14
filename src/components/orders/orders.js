@@ -27,7 +27,7 @@ export function Orders() {
         <div className={ styles.userFeed }>
             { 
                 Boolean(orders.length)
-                ? orders.map(item => <FeedItem key={item['_id']} order={item} showStatus={true}/>)
+                ? orders.map(item => item?.ingredients?.length ? <FeedItem key={item['_id']} order={item} showStatus={true}/> : false)
                 : <p className="text text_type_main-default text_color_inactive pt-4">У Вас еще не было заказов</p>
             }
         </div>     

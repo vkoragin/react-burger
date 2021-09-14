@@ -21,7 +21,7 @@ export function getUser () {
         })
         .then(response => response.data.user )
         .catch(error => {   
-            throw error
+            console.error(error)
         })
         .finally(() => dispatch({
             type: SHOW_LOADER, loader: false
@@ -43,8 +43,8 @@ export function updateUser (data) {
             }
         })
         .then(response => response.data.user)
-        .catch(error => {  
-            throw error
+        .catch(error => {   
+            console.error(error)
         })
         .finally(() => dispatch({
             type: SHOW_LOADER, loader: false

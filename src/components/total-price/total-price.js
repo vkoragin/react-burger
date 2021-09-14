@@ -50,7 +50,7 @@ export default function TotalPrice () {
         <span className='text text_type_digits-default pr-2'>{price}</span>
         <CurrencyIcon/>
         <p className='ml-10'>
-          <Button onClick={onOpen} type='primary' size='medium'>Оформить заказ</Button>
+          {Boolean(constructor.length) && <Button onClick={onOpen} type='primary' size='medium'>Оформить заказ</Button>}
         </p>
       </div>
       { visible && <Modal onClose={onClose}><OrderDetails/></Modal> }

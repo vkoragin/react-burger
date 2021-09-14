@@ -22,7 +22,7 @@ export function FeedItem(props) {
         if (ingredients.length) {
             let totalPrice = 0
             let targetIngredients = []
-            order.ingredients.forEach(ingredient => {
+            order?.ingredients?.forEach(ingredient => {
                 let targetIngredient = ingredients.filter(item => item['_id'] === ingredient)[0]
                 targetIngredients.push(targetIngredient)
                 totalPrice += targetIngredient.price

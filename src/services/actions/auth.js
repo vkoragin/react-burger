@@ -21,8 +21,8 @@ export function loginUser (data) {
             localStorage.setItem('refreshToken', response.data.refreshToken)
             return response.data         
         })
-        .catch(error => {  
-            throw error
+        .catch(error => {   
+            console.error(error)
         })
         .finally(() => dispatch({
             type: SHOW_LOADER, loader: false
@@ -46,7 +46,7 @@ export function registerUser (data) {
             return response.data  
         })
         .catch(error => {   
-            throw error
+            console.error(error)
         })
         .finally(() => dispatch({
             type: SHOW_LOADER, loader: false
@@ -71,7 +71,7 @@ export function logoutUser () {
             return response.data
         })        
         .catch(error => {   
-            throw error
+            console.error(error)
         })
         .finally(() => dispatch({
             type: SHOW_LOADER, loader: false
@@ -95,7 +95,7 @@ export function refreshToken () {
             return response.data
         })
         .catch(error => {   
-            throw error
+            console.error(error)
         })
         .finally(() => dispatch({
             type: SHOW_LOADER, loader: false

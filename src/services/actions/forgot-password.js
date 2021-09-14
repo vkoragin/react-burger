@@ -24,7 +24,7 @@ export function resetPassord (email) {
             return response.data
         })
         .catch(error => {   
-            throw error
+            console.error(error)
         })
         .finally(() => dispatch({
             type: SHOW_LOADER, loader: false

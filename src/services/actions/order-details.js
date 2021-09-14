@@ -34,11 +34,10 @@ export function getOrderNumber (ingredientsIds) {
                 type: CLEAR_CONSTRUCTOR
             })
         })
-        .catch(error => {            
+        .catch(() => {            
             dispatch({
                 type: GET_ODDER_NUMBER_FAILED
             })
-            throw error
         })
     }
 }

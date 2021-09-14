@@ -32,7 +32,7 @@ export default function AppHeader() {
                   </ul>
               </nav>
               <section className={ styles.logo }>
-                  <Logo /> 
+                    <NavLink exact={true} to={`/`}><Logo /></NavLink>
               </section>                               
               <section className={ styles.profile }>
                   <ProfileIcon type={ ~location.pathname.indexOf('/profile') ? 'primary' : 'secondary'}/>
