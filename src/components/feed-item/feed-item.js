@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 export function FeedItem(props) {
     const {order, showStatus} = props
     const { ingredients } = useSelector(store => store.ingredients)
-    const [orderIngredients, setOurderIngredients] = useState([])
+    const [orderIngredients, setOrderIngredients] = useState([])
     const [images, setImages] = useState([])
     const [count, setCount] = useState(0)
     const [price, setPrice] = useState(0)
@@ -28,7 +28,7 @@ export function FeedItem(props) {
                 if (targetIngredient.price) totalPrice += targetIngredient.price
             })
             setPrice(totalPrice)
-            setOurderIngredients(targetIngredients)        
+            setOrderIngredients(targetIngredients)        
         }        
     }, [ingredients, order.ingredients])
 
