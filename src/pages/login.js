@@ -101,7 +101,7 @@ export function LoginPage() {
                 placeholder={'Пароль'}/>
             </div>            
             <p className="mb-20">
-                <Button type='primary' size='medium' onClick={login}>Войти</Button>
+                <Button type='primary' size='medium'>Войти</Button>
             </p>            
             <p className="text text_type_main-default text_color_inactive">Вы - новый пользователь? <Link to='/register'>Зарегистрироваться</Link></p>
             <p className="text text_type_main-default text_color_inactive">Забыли пароль? <Link to='/forgot-password'>Восстановить пароль</Link></p>

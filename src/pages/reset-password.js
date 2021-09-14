@@ -70,7 +70,7 @@ export function ResetPasswordPage() {
     }
 
     return (
-        <form className="form" onSubmit={submit}>
+        <form className="form" onSubmit={submit} id="form">
             <p className="text text_type_main-medium mb-6">Восстановление пароля</p>
             <div className="mb-6">
                 <Input 
@@ -95,7 +95,7 @@ export function ResetPasswordPage() {
                     placeholder={'Ведите код из письма'}/>  
             </div>           
             <p className="mb-20">
-                <Button type='primary' size='medium' onClick={submit}>Сохранить</Button>
+                <Button type='primary' size='medium'>Сохранить</Button>
             </p>            
             <p className="text text_type_main-default text_color_inactive">Вспомнили пароль? <Link to='/login'>Войти</Link></p>
         </form>

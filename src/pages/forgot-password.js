@@ -49,7 +49,7 @@ export function ForgotPasswordPage() {
                     placeholder={'Укажите email'}/>
             </div>           
             <p className="mb-20">
-                <Button type='primary' size='medium' onClick={submit}>Восстановить</Button>
+                <Button type='primary' size='medium'>Восстановить</Button>
             </p>            
             <p className="text text_type_main-default text_color_inactive">Вспомнили пароль? <Link to='/login'>Войти</Link></p>
         </form>

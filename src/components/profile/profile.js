@@ -133,7 +133,7 @@ export function Profile() {
 
     return (
         <section>
-            <form className={styles.profileForm + ' form'}>
+            <form className={styles.profileForm + ' form'} onSubmit={save}>
                 <div className="mb-6">
                     <Input
                         type={'text'}
@@ -173,7 +173,7 @@ export function Profile() {
                     !isDef() && 
                     <p className="mb-20">
                     <a href="/#" className="text text_type_main-default mr-7" onClick={cancel}>Отмена</a>
-                    <Button type='primary' size='medium' onClick={save}>Сохранить</Button>
+                    <Button type='primary' size='medium'>Сохранить</Button>
                 </p> 
                 }        
             </form>
