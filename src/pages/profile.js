@@ -1,13 +1,15 @@
-import { NavLink, useHistory, useRouteMatch } from 'react-router-dom'
+import { NavLink, useHistory, useRouteMatch, useLocation } from 'react-router-dom'
 import styles from './profile.module.css'
 import { logoutUser } from '../services/actions/auth'
 import { useDispatch } from 'react-redux'
 import { Profile } from '../components/profile/profile'
 import { Orders } from '../components/orders/orders'
-import { Switch, Route } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
+import { ProtectedRoute } from '../components/protected-route'
 
 export function ProfilePage() {
     const history = useHistory()
+    const location = useLocation()
     const dispatch = useDispatch()
     const { url } = useRouteMatch()    
 
@@ -15,7 +17,7 @@ export function ProfilePage() {
         e.preventDefault()
         dispatch(logoutUser())
         .then(() => history.replace({ pathname: '/login' }))
-    } 
+    }
 
     return (
         <div className={ styles.profile }>
@@ -41,13 +43,21 @@ export function ProfilePage() {
                 </nav>
                 <footer className="mt-20">
                     <p className='text text_type_main-default text_color_inactive'>В этом разделе Вы можете</p>
-                    <p className='text text_type_main-default text_color_inactive'>изменить свои персональные данные</p>
+                    <p className='text text_type_main-default text_color_inactive'>
+                        {
+                            location.pathname === '/profile/orders' ? 'просмотреть свою историю заказов' : 'изменить свои персональные данные'
+                        }
+                    </p>
                 </footer>
             </aside>
-            <section>
+            <section className={styles.content}>
                 <Switch>
-                    <Route exact path={`${url}`} component={Profile} />
-                    <Route exact path={`${url}/orders`} component={Orders} />
+                    <ProtectedRoute exact path={`${url}`}>
+                        <Profile />
+                    </ProtectedRoute>
+                    <ProtectedRoute exact path={`${url}/orders`}>
+                        <Orders />
+                    </ProtectedRoute>
                 </Switch>
             </section>
         </div>

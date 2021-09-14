@@ -1,7 +1,7 @@
 import styles from './app.module.css'
 import AppHeader from '../app-header/app-header.js'
 import { BrowserRouter as Router, Switch, Route, useLocation, useHistory } from 'react-router-dom'
-import { LoginPage, RegisterPage, HomePage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, IngredientsPage, NotFound404 } from '../../pages'
+import { LoginPage, RegisterPage, HomePage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, FeedPage, IngredientsPage, NotFound404, OrderPage } from '../../pages'
 import { ProtectedRoute } from '../protected-route'
 import { ProtectedUnAuthResetRoute } from '../protected-un-auth-reset-route'
 import { ProtectedUnAuthRoute } from '../protected-un-auth-route'
@@ -9,12 +9,12 @@ import { useDispatch, useSelector, RootStateOrAny } from 'react-redux'
 import Loader from '../loader/loader'
 import Modal from '../modal/modal.js'
 import IngredientDetails from '../ingredient-details/ingredient-details.js'
+import Order from '../order/order'
 import { getIngredients } from '../../services/actions/burger-ingredients.js'
 import { useEffect } from 'react'
 
 export default function App() {
-  const ModalSwitch = () => {
-    
+  const ModalSwitch = () => {    
     const { loader } = useSelector((store: RootStateOrAny) => store.loader)
     const dispatch = useDispatch()
     const location = useLocation<any>()
@@ -48,6 +48,15 @@ export default function App() {
                 <ProtectedUnAuthResetRoute path={`/reset-password`} exact>
                   <ResetPasswordPage />
                 </ProtectedUnAuthResetRoute>
+                <Route path={`/feed`} exact>
+                  <FeedPage />
+                </Route>
+                <Route path={`/feed/:id`} exact>
+                  <OrderPage />
+                </Route>
+                <ProtectedRoute path={`/profile/orders/:id`} exact>
+                  <OrderPage />
+                </ProtectedRoute>
                 <ProtectedRoute path={`/profile`}>                         
                   <ProfilePage />
                 </ProtectedRoute>                
@@ -61,10 +70,32 @@ export default function App() {
 
               {background && (
                 <Route
-                  path='/ingredients/:ingredientId'
+                  path='/ingredients/:id'
                   children={
-                    <Modal onClose={onClose} header={'Детали ингредиента'}>
+                    <Modal onClose={onClose}>
                       <IngredientDetails/>
+                    </Modal>
+                  }
+                />
+              )}
+
+              {background && (
+                <Route
+                  path='/feed/:id'
+                  children={
+                    <Modal onClose={onClose}>
+                      <Order/>
+                    </Modal>
+                  }
+                />
+              )}
+
+              {background && (
+                <Route
+                  path='/profile/orders/:id'
+                  children={
+                    <Modal onClose={onClose}>
+                      <Order/>
                     </Modal>
                   }
                 />

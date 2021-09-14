@@ -1,24 +1,23 @@
 import { useState, useEffect }  from 'react'
 import styles from './ingredient-details.module.css'
 import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 export default function IngredientDetails () {
-    const location = useLocation()
     const { ingredients } = useSelector(store => store.ingredients)
-    const path = location.pathname.split('/')
-    const id = path[path.length-1]
-    const [ingredient, setIngredient] = useState(null)    
+    const { id } = useParams()
+    const [ingredient, setIngredient] = useState(null)
     
     useEffect(() => {        
         const targetIngredient = ingredients.filter(item => item['_id'] === id)[0]
         setIngredient(targetIngredient)
-      }, [ingredients, id])
+    }, [ingredients, id])
 
     return (
         ingredient 
         ?
             <> 
+                <p className="text text_type_main-large">Детали ингредиента</p>
                 <figure className={styles.ingredient}>
                     <p><img className={styles.image} src={ingredient['image_large']} alt={ingredient.name}/></p>    
                     <figcaption className='text text_type_main-medium'>{ingredient.name}</figcaption>

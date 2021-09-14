@@ -8,3 +8,7 @@ export const refrechTokenUrl = 'https://norma.nomoreparties.space/api/auth/token
 export const profileUrl = 'https://norma.nomoreparties.space/api/auth/user'
 export const forgotPasswordUrl = 'https://norma.nomoreparties.space/api/password-reset'
 export const resetPasswordUrl = 'https://norma.nomoreparties.space/api/password-reset/reset'
+
+export const feedsUrl = 'wss://norma.nomoreparties.space/orders/all'
+export const feedsUserUrl = 'wss://norma.nomoreparties.space/orders?token='
+export const orderItemUrl = 'https://norma.nomoreparties.space/api/orders/'

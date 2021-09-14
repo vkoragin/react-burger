@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getCookie } from '../../utils'
 import { getOrderNumber } from '../../services/actions/order-details.js'
+import { refreshToken } from '../../services/actions/auth'
 
 export default function TotalPrice () {
   const [visible, setVisible] = useState(false)
@@ -32,6 +33,10 @@ export default function TotalPrice () {
   const createOrder = () => {
     const ingredientsIds = constructor.map(ingredient => ingredient['_id'])
     dispatch(getOrderNumber(ingredientsIds))
+    .catch(() => {
+      dispatch(refreshToken())
+      .then(() => dispatch(getOrderNumber(ingredientsIds)))   
+    })
   }
 
   useEffect(() => {
@@ -42,7 +47,7 @@ export default function TotalPrice () {
   return (
     <>
       <div className={ styles.totalPrice }>
-        <span className='text text_type_digits-medium pr-2'>{price}</span>
+        <span className='text text_type_digits-default pr-2'>{price}</span>
         <CurrencyIcon/>
         <p className='ml-10'>
           <Button onClick={onOpen} type='primary' size='medium'>Оформить заказ</Button>

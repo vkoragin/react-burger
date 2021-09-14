@@ -1,4 +1,5 @@
 import { getOrderNumberUrl } from '../../url.js'
+import { getCookie } from '../../utils'
 import {
     GET_ODDER_NUMBER,
     GET_ODDER_NUMBER_FAILED,
@@ -12,9 +13,12 @@ export function getOrderNumber (ingredientsIds) {
             type: GET_ODDER_NUMBER
         })
 
-        fetch(getOrderNumberUrl, {
+        return fetch(getOrderNumberUrl, {
             method: 'POST', 
-            headers: {'Content-Type': 'application/json;charset=utf-8'}, 
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'authorization': getCookie('accessToken')
+            }, 
             body: JSON.stringify({ingredients: ingredientsIds})
         })
         .then( res  => {
@@ -30,10 +34,11 @@ export function getOrderNumber (ingredientsIds) {
                 type: CLEAR_CONSTRUCTOR
             })
         })
-        .catch(() => {            
+        .catch(error => {            
             dispatch({
                 type: GET_ODDER_NUMBER_FAILED
             })
+            throw error
         })
     }
 }
