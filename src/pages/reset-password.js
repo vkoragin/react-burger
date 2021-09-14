@@ -70,7 +70,7 @@ export function ResetPasswordPage() {
     }
 
     return (
-        <form className="form" onSubmit={submit} id="form">
+        <form className="form" onSubmit={submit}>
             <p className="text text_type_main-medium mb-6">Восстановление пароля</p>
             <div className="mb-6">
                 <Input 
