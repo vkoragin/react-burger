@@ -21,13 +21,15 @@ export default function TotalPrice () {
 
   const onOpen = () => {
     if (isAuth) {
-      if (constructor.length) {
-        setVisible(true)
-        createOrder()
-      }
+      setVisible(true)
+       createOrder()
     } else {
       history.replace({ pathname: '/login' })
     }    
+  }
+
+  const showButton = () => {
+    return Boolean(constructor.length && constructor.filter(item => item.type === 'bun').length)
   }
 
   const createOrder = () => {
@@ -50,7 +52,7 @@ export default function TotalPrice () {
         <span className='text text_type_digits-default pr-2'>{price}</span>
         <CurrencyIcon/>
         <p className='ml-10'>
-          {Boolean(constructor.length) && <Button onClick={onOpen} type='primary' size='medium'>Оформить заказ</Button>}
+          {showButton() && <Button onClick={onOpen} type='primary' size='medium'>Оформить заказ</Button>}
         </p>
       </div>
       { visible && <Modal onClose={onClose}><OrderDetails/></Modal> }
