@@ -1,13 +1,16 @@
 .profile {
     margin-top: 208px;
     display: flex;
-    flex-flow: row wrap;
 }
 
 @media (max-width: 1227px) {
     .profile {
         justify-content: center;
     }
+}
+
+.content {
+    width: 900px;
 }
 
 .navList {

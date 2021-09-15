@@ -123,7 +123,7 @@ export function RegisterPage() {
                     placeholder={'Введите новый пароль'}/>
             </div>            
             <p className="mb-20">
-                <Button type='primary' size='medium' onClick={register}>Зарегистрироваться</Button>
+                <Button type='primary' size='medium'>Зарегистрироваться</Button>
             </p>            
             <p className="text text_type_main-default text_color_inactive">Уже зарегистрированы? <Link to='/login'>Войти</Link></p>
         </form>

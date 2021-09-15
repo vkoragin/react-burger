@@ -95,7 +95,7 @@ export function ResetPasswordPage() {
                     placeholder={'Ведите код из письма'}/>  
             </div>           
             <p className="mb-20">
-                <Button type='primary' size='medium' onClick={submit}>Сохранить</Button>
+                <Button type='primary' size='medium'>Сохранить</Button>
             </p>            
             <p className="text text_type_main-default text_color_inactive">Вспомнили пароль? <Link to='/login'>Войти</Link></p>
         </form>

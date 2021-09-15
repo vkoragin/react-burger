@@ -22,17 +22,17 @@ export default function AppHeader() {
                             activeClassName={styles.active}>Конструктор</NavLink>
                       </li>
                       <li className={ styles.navItem }>
-                          <ListIcon type={ location.pathname === '/orders' ? 'primary' : 'secondary'}/>
+                          <ListIcon type={ location.pathname === '/feed' ? 'primary' : 'secondary'}/>
                           <NavLink
                             exact={true}
-                            to={`/orders`}
+                            to={`/feed`}
                             className='text text_type_main-default text_color_inactive pl-2'
                             activeClassName={styles.active}>Лента заказов</NavLink>
                       </li>
                   </ul>
               </nav>
               <section className={ styles.logo }>
-                  <Logo /> 
+                    <NavLink exact={true} to={`/`}><Logo /></NavLink>
               </section>                               
               <section className={ styles.profile }>
                   <ProfileIcon type={ ~location.pathname.indexOf('/profile') ? 'primary' : 'secondary'}/>

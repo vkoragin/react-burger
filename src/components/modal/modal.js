@@ -7,16 +7,13 @@ import ModalOverlay from '../modal-overlay/modal-overlay.js'
 const modalRoot = document.getElementById('modals')
 
 export default function Modal (props) {
-    const { children, header, onClose } = props
+    const { children, onClose } = props
 
     return ReactDOM.createPortal (
         (
           <>
             <div className={styles.modal}>
-                <header className={styles.header}>
-                    <p className="text text_type_main-large">{header}</p>
-                    <div className={styles.close} onClick={onClose}><CloseIcon/></div>
-                </header>
+              <div className={styles.close} onClick={onClose}><CloseIcon/></div>
                 {children}
             </div>
             <ModalOverlay onClose={onClose} />
@@ -27,7 +24,6 @@ export default function Modal (props) {
 }
 
 Modal.propTypes = {
-  header: PropTypes.string,
   onClose: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired
 }

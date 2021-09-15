@@ -16,3 +16,14 @@ export const ingredient = PropTypes.shape(
     "__v":PropTypes.number
   }
 )
+
+export const order = PropTypes.shape(
+  {
+    "ingredients": PropTypes.arrayOf(PropTypes.string).isRequired,
+    "_id": PropTypes.string.isRequired,
+    "status": PropTypes.string.isRequired,
+    "number": PropTypes.number.isRequired,
+    "createdAt": PropTypes.string.isRequired,
+    "updatedAt": PropTypes.string.isRequired
+  }
+)
