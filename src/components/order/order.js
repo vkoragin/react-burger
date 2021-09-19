@@ -15,7 +15,7 @@ export default function Order() {
     const [price, setPrice] = useState(0)
 
     useEffect(() => {      
-        dispatch(getOrder(id))    
+        dispatch(getOrder(id))
     }, [dispatch, id])
 
     useEffect(() => {
@@ -45,7 +45,7 @@ export default function Order() {
 
     const getStatusColor = status => status === 'done' ? '#00CCCC' : '#FFFFFF'
 
-    if (orderFailed) return <p className="text text_type_main-default text_color_inactive">Произошла ошибка при получении данных о заказк</p>
+    if (orderFailed) return <p className="text text_type_main-default text_color_inactive">Произошла ошибка при получении данных о заказе</p>
     else if (orderRequest) return <p className="text text_type_main-default text_color_inactive">Загрузка заказа...</p>
     else {
         return (
