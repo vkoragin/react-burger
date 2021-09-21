@@ -26,7 +26,9 @@ export function FeedItem(props) {
                 let targetIngredient = ingredients.filter(item => item['_id'] === ingredient)[0]               
                 if (targetIngredient?.price) {
                     targetIngredients.push(targetIngredient)
-                    totalPrice += targetIngredient.price
+                    targetIngredient.type === 'bun'
+                        ? totalPrice += 2 * targetIngredient.price
+                        : totalPrice += targetIngredient.price
                 }
             })
             setPrice(totalPrice)

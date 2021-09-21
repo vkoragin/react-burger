@@ -23,7 +23,9 @@ export default function Order() {
             let totalPrice = 0
             order?.ingredients?.forEach(ingredient => {
                 let targetIngredient = ingredients.filter(item => item['_id'] === ingredient)[0]
-                totalPrice += targetIngredient.price
+                targetIngredient.type === 'bun'
+                    ? totalPrice += 2 * targetIngredient.price
+                    : totalPrice += targetIngredient.price                
             })
             setPrice(totalPrice)
     
@@ -31,7 +33,11 @@ export default function Order() {
             let turgetOrderIngredients = []
             order?.ingredients?.forEach(item => orderIngredientsSet.add(item))
             orderIngredientsSet.forEach(value => turgetOrderIngredients.push(ingredients.filter(ingredient => ingredient['_id'] === value)[0]))
-            turgetOrderIngredients.forEach(item => item.count = order.ingredients.filter(ingredient => ingredient === item['_id']).length)
+            turgetOrderIngredients.forEach(item => {
+                item.type === 'bun'
+                    ? item.count = 2
+                    : item.count = order.ingredients.filter(ingredient => ingredient === item['_id']).length
+            })
             setOurderIngredients(turgetOrderIngredients)
         }       
     }, [ingredients, order])
