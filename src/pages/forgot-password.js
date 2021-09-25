@@ -2,7 +2,7 @@ import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-component
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { resetPassord } from '../services/actions/forgot-password'
+import { resetPassword } from '../services/actions/forgot-password'
 import { useHistory } from 'react-router-dom'
 import { emailRegExp } from '../utils'
 
@@ -22,7 +22,7 @@ export function ForgotPasswordPage() {
         setErrorEmail(false)
         const isValid = validateEmail()
         if (isValid) {
-            dispatch(resetPassord(email))
+            dispatch(resetPassword(email))
             .then(() => history.replace({ pathname: '/reset-password' }))
         }
     }

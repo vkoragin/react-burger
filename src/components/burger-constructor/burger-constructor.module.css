@@ -1,11 +1,11 @@
-.constructor {
+.burgerConstructor {
     display: flex;
     flex-direction: column;
     min-width: 628px;
 }
 
 @media (max-width: 1227px) {
-    .constructor {
+    .burgerConstructor {
         min-width: 588px;
     }
 }
