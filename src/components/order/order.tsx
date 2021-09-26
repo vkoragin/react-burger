@@ -13,7 +13,7 @@ export default function Order() {
     const { ingredients } = useSelector((store: ReduxStore) => store.ingredients)
     const dispatch = useDispatch()
     const { id } = useParams<{ id: string }>()
-    const [orderIngredients, setOurderIngredients] = useState<TIngredient[] | null>(null)
+    const [orderIngredients, setOrderIngredients] = useState<TIngredient[] | null>(null)
     const [price, setPrice] = useState(0)
 
     useEffect(() => {      
@@ -23,14 +23,19 @@ export default function Order() {
     useEffect(() => {
         if (ingredients.length) {
             let totalPrice = 0
+            let bun = 0   
+            if (order?.ingredients) console.log(order.ingredients)        
             order?.ingredients?.forEach(ingredient => {
                 let targetIngredient = ingredients.filter(item => item['_id'] === ingredient)[0]
-                targetIngredient.type === 'bun'
-                    ? totalPrice += 2 * targetIngredient.price
-                    : totalPrice += targetIngredient.price                
+                if (targetIngredient.type === 'bun' && !bun) {
+                    totalPrice += 2 * targetIngredient.price
+                    bun = 1
+                }
+                if ((targetIngredient.type !== 'bun'))
+                totalPrice += targetIngredient.price              
             })
             setPrice(totalPrice)
-    
+            
             let orderIngredientsSet = new Set()
             let turgetOrderIngredients: TIngredient[] = []
             order?.ingredients?.forEach(item => orderIngredientsSet.add(item))
@@ -40,8 +45,9 @@ export default function Order() {
                     ? item.count = 2
                     : item.count = order?.ingredients.filter(ingredient => ingredient === item['_id']).length
             })
-            setOurderIngredients(turgetOrderIngredients)
-        }       
+            setOrderIngredients(turgetOrderIngredients)
+        }
+         
     }, [ingredients, order])
 
     const getStatus = (status: string) => {

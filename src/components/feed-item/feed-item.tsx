@@ -21,14 +21,18 @@ export function FeedItem(props: { order: TOrder; showStatus: boolean }) {
     useEffect(() => {
         if (ingredients.length) {
             let totalPrice = 0
+            let bun = 0
             let targetIngredients: TIngredient[] = []
             order?.ingredients?.forEach((ingredient) => {
                 let targetIngredient: TIngredient = ingredients.filter(item => item['_id'] === ingredient)[0]               
                 if (targetIngredient?.price) {
                     targetIngredients.push(targetIngredient)
-                    targetIngredient.type === 'bun'
-                        ? totalPrice += 2 * targetIngredient.price
-                        : totalPrice += targetIngredient.price
+                    if (targetIngredient.type === 'bun' && !bun) {
+                        totalPrice += 2 * targetIngredient.price
+                        bun = 1
+                    }
+                    if ((targetIngredient.type !== 'bun'))
+                    totalPrice += targetIngredient.price
                 }
             })
             setPrice(totalPrice)
