@@ -23,8 +23,7 @@ export default function Order() {
     useEffect(() => {
         if (ingredients.length) {
             let totalPrice = 0
-            let bun = 0   
-            if (order?.ingredients) console.log(order.ingredients)        
+            let bun = 0  
             order?.ingredients?.forEach(ingredient => {
                 let targetIngredient = ingredients.filter(item => item['_id'] === ingredient)[0]
                 if (targetIngredient.type === 'bun' && !bun) {
