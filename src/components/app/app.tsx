@@ -1,32 +1,35 @@
 import styles from './app.module.css'
-import AppHeader from '../app-header/app-header.js'
+import AppHeader from '../app-header/app-header'
 import { BrowserRouter as Router, Switch, Route, useLocation, useHistory } from 'react-router-dom'
 import { LoginPage, RegisterPage, HomePage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, FeedPage, IngredientsPage, NotFound404, OrderPage } from '../../pages'
 import { ProtectedRoute } from '../protected-route'
 import { ProtectedUnAuthResetRoute } from '../protected-un-auth-reset-route'
 import { ProtectedUnAuthRoute } from '../protected-un-auth-route'
-import { useDispatch, useSelector, RootStateOrAny } from 'react-redux'
+import { useDispatch, useSelector } from '../../services/hooks'
 import Loader from '../loader/loader'
-import Modal from '../modal/modal.js'
-import IngredientDetails from '../ingredient-details/ingredient-details.js'
+import { Modal } from '../modal/modal'
+import IngredientDetails from '../ingredient-details/ingredient-details'
 import Order from '../order/order'
-import { getIngredients } from '../../services/actions/burger-ingredients.js'
+import { getIngredients } from '../../services/actions/burger-ingredients'
 import { useEffect } from 'react'
+import type { ReduxStore } from '../../services/store.types'
 
 export default function App() {
   const ModalSwitch = () => {    
-    const { loader } = useSelector((store: RootStateOrAny) => store.loader)
+    const { loader } = useSelector((store: ReduxStore) => store.loader)
     const dispatch = useDispatch()
     const location = useLocation<any>()
-    const history = useHistory<any>()
+    const history = useHistory<History>()
     const background = (history.action === 'PUSH' || history.action === 'REPLACE') && location.state && location.state.background
     
-    const onClose = (e: any) => {
+    const onClose = (e: Event) => {
       if(e) e.stopPropagation()
       history.goBack()
     }
 
-    useEffect(() => dispatch(getIngredients()), [dispatch])
+    useEffect(() => {
+      dispatch(getIngredients())
+    }, [dispatch])
 
     return (
       <div className="App">
