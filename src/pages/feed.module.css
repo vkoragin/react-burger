@@ -33,7 +33,7 @@
 
 @media (max-width: 1227px) {
   .feedInfo {
-      min-width: 588px;
+    min-width: 588px;
   }
 }
 
@@ -58,5 +58,5 @@
 }
 
 .done {
-  color: #00CCCC;
+  color: #00cccc;
 }

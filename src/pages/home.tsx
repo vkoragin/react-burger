@@ -1,29 +1,43 @@
-import BurgerIngredients from '../components/burger-ingredients/burger-ingredients'
-import BurgerConstructor from '../components/burger-constructor/burger-constructor'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import styles from './home.module.css'
-import { useSelector } from 'react-redux'
-import type { ReduxStore } from '../services/store.types'
+import React from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { useSelector } from 'react-redux';
+import BurgerIngredients from '../components/burger-ingredients/burger-ingredients';
+import BurgerConstructor from '../components/burger-constructor/burger-constructor';
+import styles from './home.module.css';
+import type { ReduxStore } from '../services/store.types';
 
 export function HomePage() {
-  const { ingredientsRequest, ingredientsFailed } = useSelector((store: ReduxStore) => store.ingredients)
+  const { ingredientsRequest, ingredientsFailed } = useSelector(
+    (store: ReduxStore) => store.ingredients,
+  );
 
-  if (ingredientsFailed) return <p className="text text_type_main-default text_color_inactive">Произошла ошибка при получении данных</p>
-  else if (ingredientsRequest) return <p className="text text_type_main-default text_color_inactive">Загрузка данных...</p>
-  else {
+  if (ingredientsFailed)
     return (
-      <>
-        <header className={ styles.header }>
-          <h1 className='text text_type_main-large pt-8 pb-6'>Соберите бургер</h1>
-        </header>
-        <section className={ styles.content }>
-          <DndProvider backend={ HTML5Backend }>
-              <BurgerIngredients/>
-              <BurgerConstructor/>
-          </DndProvider>
-        </section>
-      </>    
-    )
-  } 
+      <p className="text text_type_main-default text_color_inactive">
+        Произошла ошибка при получении данных
+      </p>
+    );
+  if (ingredientsRequest)
+    return (
+      <p className="text text_type_main-default text_color_inactive">
+        Загрузка данных...
+      </p>
+    );
+
+  return (
+    <>
+      <header className={styles.header}>
+        <h1 className="text text_type_main-large pt-8 pb-6">
+          Соберите бургер
+        </h1>
+      </header>
+      <section className={styles.content}>
+        <DndProvider backend={HTML5Backend}>
+          <BurgerIngredients />
+          <BurgerConstructor />
+        </DndProvider>
+      </section>
+    </>
+  );
 }

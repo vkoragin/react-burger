@@ -5,9 +5,9 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -18,7 +18,7 @@ code {
 }
 
 a {
-  color: #4C4CFF;
+  color: #4c4cff;
   text-decoration: none;
 }
 
@@ -26,7 +26,7 @@ a {
   width: 480px;
   margin: 0 auto;
   margin-top: 288px;
-  text-align: center;    
+  text-align: center;
 }
 
 .form .input {

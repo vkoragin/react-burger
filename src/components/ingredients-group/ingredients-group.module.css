@@ -1,10 +1,10 @@
 .ingredients {
-    display: flex;
-    flex-flow: wrap;
-    justify-content: space-between;
-    width: 600px;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  width: 600px;
 }
 
 .group {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }

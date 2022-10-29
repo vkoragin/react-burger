@@ -1,9 +1,13 @@
-import { Redirect, Route } from 'react-router-dom'
-import { getCookie } from '../utils'
+import React from 'react';
+import { Redirect, Route } from 'react-router-dom';
+import { getCookie } from '../utils';
 
-export const ProtectedRoute = ({ children, ...rest }: React.PropsWithChildren<{ [key: string]: any }>) => {
-  const isAuth = getCookie('accessToken')
-  
+export function ProtectedRoute({
+  children,
+  ...rest
+}: React.PropsWithChildren<{ [key: string]: any }>) {
+  const isAuth = getCookie('accessToken');
+
   return (
     <Route
       {...rest}
@@ -14,11 +18,11 @@ export const ProtectedRoute = ({ children, ...rest }: React.PropsWithChildren<{ 
           <Redirect
             to={{
               pathname: '/login',
-              state: { from: location }
+              state: { from: location },
             }}
           />
         )
       }
     />
-  )
+  );
 }

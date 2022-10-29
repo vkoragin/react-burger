@@ -1,3 +1,3 @@
 export type LoaderStore = {
-    loader: boolean
-}
+  loader: boolean;
+};

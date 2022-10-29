@@ -1,9 +1,9 @@
 .userFeed {
-    max-height: 912px;
-    overflow-x: hidden;
+  max-height: 912px;
+  overflow-x: hidden;
 }
 
 .userFeed::-webkit-scrollbar-button:vertical:end:increment {
-    height: 52px;
-    background-color: #131316;
-  }
+  height: 52px;
+  background-color: #131316;
+}

@@ -1,8 +1,6 @@
-import {
-    SHOW_LOADER
-} from './actionTypes'
+import { SHOW_LOADER } from './actionTypes';
 
 export type LoaderAction = {
-    type: typeof SHOW_LOADER
-    loader: boolean
-}
+  type: typeof SHOW_LOADER;
+  loader: boolean;
+};

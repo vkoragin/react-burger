@@ -2,28 +2,29 @@ body {
   box-sizing: border-box;
 }
 
-ul, li {
+ul,
+li {
   list-style: none;
 }
 
-.main {    
+.main {
   max-width: 1280px;
   margin: 88px auto 40px auto;
 }
 
 @media (max-width: 871px) {
-  .main { 
-    margin-top: 188px; 
+  .main {
+    margin-top: 188px;
   }
 }
 
 ::-webkit-scrollbar {
   width: 8px;
-  background: #2F2F37;
+  background: #2f2f37;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #8585AD;
+  background: #8585ad;
 }
 
 ::-webkit-scrollbar-thumb:hover {

@@ -1,21 +1,22 @@
-import React from 'react'
-import styles from './modal-overlay.module.css'
-import { FunctionComponent } from 'react'
+import React, { FunctionComponent } from 'react';
+import styles from './modal-overlay.module.css';
 
 interface IModalOverlayProps {
-    onClose: (e: any) => void
+  onClose: (e: any) => void;
 }
 
-export const ModalOverlay: FunctionComponent<IModalOverlayProps> = (props) => {
-    const onClose = props.onClose
-    const handleClose = (e: any) => { 
-        if (e.keyCode === 27) onClose(e)
-    }
+export const ModalOverlay: FunctionComponent<IModalOverlayProps> = (
+  props,
+) => {
+  const { onClose } = props;
+  const handleClose = (e: any) => {
+    if (e.keyCode === 27) onClose(e);
+  };
 
-    React.useEffect(() => {
-        window.addEventListener('keydown', handleClose)
-        return () => window.removeEventListener('keydown', handleClose)
-	})
+  React.useEffect(() => {
+    window.addEventListener('keydown', handleClose);
+    return () => window.removeEventListener('keydown', handleClose);
+  });
 
-    return (<div className={styles.overlay} onClick={onClose}></div>)
-}
+  return <div className={styles.overlay} onClick={onClose} />;
+};
