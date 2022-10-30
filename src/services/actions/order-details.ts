@@ -9,7 +9,6 @@ import {
   GET_ODDER_NUMBER_SUCCESS,
   CLEAR_CONSTRUCTOR,
 } from './actionTypes';
-import { TGetOrderNumberResponse } from './order-details.type';
 
 const getOrderNumber =
   (ingredientsIds: string[]) =>
@@ -19,7 +18,7 @@ const getOrderNumber =
     });
 
     try {
-      const response = await axios.post(
+      const { data } = await axios.post(
         getOrderNumberUrl,
         { ingredients: ingredientsIds },
         {
@@ -31,13 +30,12 @@ const getOrderNumber =
       );
       dispatch({
         type: GET_ODDER_NUMBER_SUCCESS,
-        number: response.data.order.number,
+        number: data.order.number,
       });
       dispatch({
         type: CLEAR_CONSTRUCTOR,
       });
-      const result: TGetOrderNumberResponse = response.data;
-      return result;
+      return data;
     } catch (error) {
       dispatch({ type: GET_ODDER_NUMBER_FAILED });
       const err = error as AxiosError;

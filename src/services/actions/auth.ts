@@ -11,8 +11,13 @@ import { LoaderAction } from './loader.types';
 
 import { SHOW_LOADER } from './actionTypes';
 
+type TLoginUserData = {
+  email: string;
+  password: string;
+};
+
 export const loginUser =
-  (userData: { email: string; password: string }) =>
+  (userData: TLoginUserData) =>
   async (dispatch: Dispatch<LoaderAction>) => {
     dispatch({
       type: SHOW_LOADER,
@@ -38,8 +43,14 @@ export const loginUser =
     }
   };
 
+type TRegisterUserData = {
+  email: string;
+  password: string;
+  name: string;
+};
+
 export const registerUser =
-  (userData: { email: string; password: string; name: string }) =>
+  (userData: TRegisterUserData) =>
   async (dispatch: Dispatch<LoaderAction>) => {
     dispatch({
       type: SHOW_LOADER,

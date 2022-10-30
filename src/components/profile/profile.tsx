@@ -34,15 +34,21 @@ const Profile = () => {
     setPassword(defPassword);
   };
 
-  const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeEmail = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setEmail(e.target.value);
   };
 
-  const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangePassword = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setPassword(e.target.value);
   };
 
-  const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeName = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setName(e.target.value);
   };
 
@@ -90,7 +96,7 @@ const Profile = () => {
     setNameError(false);
   };
 
-  const save = (e: any) => {
+  const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
     clearErrors();
     const isValid = validate();
@@ -104,7 +110,7 @@ const Profile = () => {
     }
   };
 
-  const cancel = (e: any) => {
+  const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     clearErrors();
     setPassword(defPassword);
@@ -112,15 +118,15 @@ const Profile = () => {
     setName(defName);
   };
 
-  const resetPassword = () => {
+  const handleResetPassword = () => {
     if (password !== defPassword) setPassword(defPassword);
   };
 
-  const resetEmail = () => {
+  const handleResetEmail = () => {
     if (email !== defEmail) setEmail(defEmail);
   };
 
-  const resetName = () => {
+  const handleResetName = () => {
     if (name !== defName) setName(defName);
   };
 
@@ -147,36 +153,36 @@ const Profile = () => {
       <section>
         <form
           className={`${styles.profileForm} form`}
-          onSubmit={save}
+          onSubmit={handleSave}
         >
           <div className="mb-6">
             <Input
               type="text"
               placeholder="Имя"
-              onChange={changeName}
+              onChange={handleChangeName}
               value={name}
               name="name"
               icon={name !== defName ? 'CloseIcon' : 'EditIcon'}
               error={errorName}
-              onIconClick={resetName}
+              onIconClick={handleResetName}
               errorText={errorNameText}
             />
           </div>
           <div className="mb-6">
             <Input
-              onChange={changeEmail}
+              onChange={handleChangeEmail}
               value={email}
               name="email"
               icon={email !== defEmail ? 'CloseIcon' : 'EditIcon'}
               error={errorEmail}
               errorText={errorEmailText}
-              onIconClick={resetEmail}
+              onIconClick={handleResetEmail}
               placeholder="Логин"
             />
           </div>
           <div className="mb-6">
             <Input
-              onChange={changePassword}
+              onChange={handleChangePassword}
               type="password"
               value={password}
               name="password"
@@ -185,7 +191,7 @@ const Profile = () => {
               }
               error={errorPassword}
               errorText={errorPasswordText}
-              onIconClick={resetPassword}
+              onIconClick={handleResetPassword}
               placeholder="Пароль"
             />
           </div>
@@ -194,7 +200,7 @@ const Profile = () => {
               <a
                 href="/#"
                 className="text text_type_main-default mr-7"
-                onClick={cancel}
+                onClick={handleCancel}
               >
                 Отмена
               </a>

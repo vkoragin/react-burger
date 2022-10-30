@@ -34,9 +34,9 @@ const FeedPage: FC = () => {
     }
   }, [messages]);
 
-  const splitArray = (arr: any, size: number) =>
+  const splitArray = (arr: TOrder[], size: number) =>
     arr.reduce(
-      (p: any, c: any) => {
+      (p: TOrder[][], c: TOrder) => {
         if (p[p.length - 1].length === size) p.push([]);
         p[p.length - 1].push(c);
         return p;

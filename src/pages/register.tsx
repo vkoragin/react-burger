@@ -24,19 +24,25 @@ const RegisterPage: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeEmail = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setEmail(e.target.value);
   };
 
-  const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangePassword = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setPassword(e.target.value);
   };
 
-  const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeName = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setName(e.target.value);
   };
 
-  const toggleText = () => {
+  const handleToggleText = () => {
     setPasswordType(
       passwordType === 'password' ? 'text' : 'password',
     );
@@ -86,7 +92,7 @@ const RegisterPage: FC = () => {
     return isPasswordValid && isEmailValid && isNameValid;
   };
 
-  const register = (e: any) => {
+  const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
     clearErrors();
     const isValid = validate();
@@ -103,13 +109,13 @@ const RegisterPage: FC = () => {
   };
 
   return (
-    <form className="form" onSubmit={register}>
+    <form className="form" onSubmit={handleRegister}>
       <p className="text text_type_main-medium mb-6">Регистрация</p>
       <div className="mb-6">
         <Input
           type="text"
           placeholder="Имя"
-          onChange={changeName}
+          onChange={handleChangeName}
           value={name}
           name="name"
           error={errorName}
@@ -118,7 +124,7 @@ const RegisterPage: FC = () => {
       </div>
       <div className="mb-6">
         <Input
-          onChange={changeEmail}
+          onChange={handleChangeEmail}
           value={email}
           name="email"
           error={errorEmail}
@@ -128,14 +134,14 @@ const RegisterPage: FC = () => {
       </div>
       <div className="mb-6">
         <Input
-          onChange={changePassword}
+          onChange={handleChangePassword}
           type={passwordType}
           value={password}
           name="password"
           icon={passwordType === 'password' ? 'ShowIcon' : 'HideIcon'}
           error={errorPassword}
           errorText={errorPasswordText}
-          onIconClick={toggleText}
+          onIconClick={handleToggleText}
           placeholder="Введите новый пароль"
         />
       </div>

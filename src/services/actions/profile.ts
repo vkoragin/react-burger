@@ -1,7 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { getCookie } from '../../utils';
 import { profileUrl } from '../../url';
-import { TProfileResponse } from './profile.types';
 import { refreshToken } from './auth';
 import type { AppDispatch, AppThunk } from '../store.types';
 
@@ -11,15 +10,21 @@ import {
   GET_USER_SUCCESS,
 } from './actionTypes';
 
+type TUpdateUserData = {
+  email: string;
+  name: string;
+  password: string;
+};
+
 export const updateUser =
-  (data: { email: string; name: string; password: string }) =>
+  (userData: TUpdateUserData) =>
   async (dispatch: AppDispatch | AppThunk) => {
     dispatch({
       type: GET_USER,
     });
 
     try {
-      const response = await axios.patch(profileUrl, data, {
+      const { data } = await axios.patch(profileUrl, userData, {
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
           authorization: getCookie('accessToken'),
@@ -27,10 +32,9 @@ export const updateUser =
       });
       dispatch({
         type: GET_USER_SUCCESS,
-        user: response.data.user,
+        user: data.user,
       });
-      const result: TProfileResponse = response.data.user;
-      return result;
+      return data;
     } catch (error) {
       dispatch({ type: GET_USER_FAILED });
       const err = error as AxiosError;
@@ -47,7 +51,7 @@ export const getUser =
     });
 
     try {
-      const response = await axios.get(profileUrl, {
+      const { data } = await axios.get(profileUrl, {
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
           authorization: getCookie('accessToken'),
@@ -55,10 +59,9 @@ export const getUser =
       });
       dispatch({
         type: GET_USER_SUCCESS,
-        user: response.data.user,
+        user: data.user,
       });
-      const result: TProfileResponse = response.data.user;
-      return result;
+      return data;
     } catch (error) {
       dispatch({ type: GET_USER_FAILED });
       const err = error as AxiosError;

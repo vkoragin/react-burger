@@ -21,15 +21,19 @@ const ResetPasswordPage: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const changeCode = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeCode = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setToken(e.target.value);
   };
 
-  const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangePassword = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setPassword(e.target.value);
   };
 
-  const toggleText = () => {
+  const handleToggleText = () => {
     setPasswordType(
       passwordType === 'password' ? 'text' : 'password',
     );
@@ -64,7 +68,7 @@ const ResetPasswordPage: FC = () => {
     return isPasswordValid && isTokenValid;
   };
 
-  const submit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     clearErrors();
     const isValid = validate();
@@ -80,26 +84,26 @@ const ResetPasswordPage: FC = () => {
   };
 
   return (
-    <form className="form" onSubmit={submit}>
+    <form className="form" onSubmit={handleSubmit}>
       <p className="text text_type_main-medium mb-6">
         Восстановление пароля
       </p>
       <div className="mb-6">
         <Input
-          onChange={changePassword}
+          onChange={handleChangePassword}
           type={passwordType}
           value={password}
           name="password"
           icon={passwordType === 'password' ? 'ShowIcon' : 'HideIcon'}
           error={errorPassword}
           errorText={errorPasswordText}
-          onIconClick={toggleText}
+          onIconClick={handleToggleText}
           placeholder="Введите новый пароль"
         />
       </div>
       <div className="mb-6">
         <Input
-          onChange={changeCode}
+          onChange={handleChangeCode}
           type="text"
           value={token}
           name="token"

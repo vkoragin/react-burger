@@ -19,7 +19,7 @@ const ProfilePage: FC = () => {
   const dispatch = useDispatch();
   const { url } = useRouteMatch();
 
-  const logout = (e: any) => {
+  const handleLogout = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     dispatch(logoutUser() as any).then(() =>
       history.replace({ pathname: '/login' }),
@@ -54,7 +54,7 @@ const ProfilePage: FC = () => {
             <li className={styles.navItem}>
               <a
                 href="/#"
-                onClick={logout}
+                onClick={handleLogout}
                 className="text text_type_main-medium text_color_inactive"
               >
                 Выход

@@ -16,7 +16,9 @@ const ForgotPasswordPage: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const changeEmail = (e: any) => {
+  const handleChangeEmail = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setEmail(e.target.value);
   };
 
@@ -31,7 +33,7 @@ const ForgotPasswordPage: FC = () => {
     return isValid;
   };
 
-  const submit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setErrorEmail(false);
     const isValid = validateEmail();
@@ -43,13 +45,13 @@ const ForgotPasswordPage: FC = () => {
   };
 
   return (
-    <form className="form" onSubmit={submit}>
+    <form className="form" onSubmit={handleSubmit}>
       <p className="text text_type_main-medium mb-6">
         Восстановление пароля
       </p>
       <div className="mb-6">
         <Input
-          onChange={changeEmail}
+          onChange={handleChangeEmail}
           value={email}
           name="email"
           error={errorEmail}

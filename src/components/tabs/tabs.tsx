@@ -12,19 +12,15 @@ const Tabs: FC<TTabsProps> = ({ ingredientsTypes }) => {
     (store: ReduxStore) => store.activeTab,
   );
 
-  const onClick = (e: any) => {
-    e.preventDefault();
-  };
-
   return (
     <div style={{ display: 'flex', paddingBottom: '40px' }}>
-      {ingredientsTypes.map((ingredientsType, index) => (
+      {ingredientsTypes.map((ingredientsType, i) => (
         <Tab
+          // eslint-disable-next-line
+          key={i}
           value={ingredientsType}
           active={activeTab === ingredientsType}
-          // eslint-disable-next-line
-          key={index}
-          onClick={onClick}
+          onClick={() => false}
         >
           {ingredientsType}
         </Tab>

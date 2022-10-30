@@ -22,23 +22,27 @@ const LoginPage: FC = () => {
   const history = useHistory();
   const location = useLocation<any>();
 
-  const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeEmail = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setEmail(e.target.value);
   };
 
-  const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangePassword = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setPassword(e.target.value);
+  };
+
+  const handleToggleText = () => {
+    setPasswordType(
+      passwordType === 'password' ? 'text' : 'password',
+    );
   };
 
   const clearErrors = () => {
     setPasswordError(false);
     setErrorEmail(false);
-  };
-
-  const toggleText = () => {
-    setPasswordType(
-      passwordType === 'password' ? 'text' : 'password',
-    );
   };
 
   const validatePassword = () => {
@@ -72,7 +76,7 @@ const LoginPage: FC = () => {
     return isPasswordValid && isEmailValid;
   };
 
-  const login = (e: any) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     clearErrors();
     const isValid = validate();
@@ -89,11 +93,11 @@ const LoginPage: FC = () => {
   };
 
   return (
-    <form className="form" onSubmit={login}>
+    <form className="form" onSubmit={handleLogin}>
       <p className="text text_type_main-medium mb-6">Вход</p>
       <div className="mb-6">
         <Input
-          onChange={changeEmail}
+          onChange={handleChangeEmail}
           value={email}
           name="email"
           error={errorEmail}
@@ -103,14 +107,14 @@ const LoginPage: FC = () => {
       </div>
       <div className="mb-6">
         <Input
-          onChange={changePassword}
+          onChange={handleChangePassword}
           type={passwordType}
           value={password}
           name="password"
           icon={passwordType === 'password' ? 'ShowIcon' : 'HideIcon'}
           error={errorPassword}
           errorText={errorPasswordText}
-          onIconClick={toggleText}
+          onIconClick={handleToggleText}
           placeholder="Пароль"
         />
       </div>
