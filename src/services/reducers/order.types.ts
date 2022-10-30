@@ -1,7 +1,7 @@
-import { TOrder } from '../../types'
+import { TOrder } from '../../types';
 
 export type OrderStore = {
-    order: TOrder | null
-    orderRequest: boolean
-    orderFailed: boolean
-}
+  order: TOrder | null;
+  orderRequest: boolean;
+  orderFailed: boolean;
+};

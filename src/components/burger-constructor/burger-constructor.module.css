@@ -1,39 +1,41 @@
 .burgerConstructor {
-    display: flex;
-    flex-direction: column;
-    min-width: 628px;
+  display: flex;
+  flex-direction: column;
+  min-width: 628px;
 }
 
 @media (max-width: 1227px) {
-    .burgerConstructor {
-        min-width: 588px;
-    }
+  .burgerConstructor {
+    min-width: 588px;
+  }
 }
 
-.bun, .otherItem {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+.bun,
+.otherItem {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .otherIngredients {
-    max-width: 576px;
-    max-height: 464px;
-    overflow-x: hidden;
-} 
+  max-width: 576px;
+  max-height: 464px;
+  overflow-x: hidden;
+}
 
-.bun, .other {
-    margin: 16px 8px 16px 24px;
-    max-width: 560px;
-} 
+.bun,
+.other {
+  margin: 16px 8px 16px 24px;
+  max-width: 560px;
+}
 
 .other {
-    display: flex;
-    align-items: center;
-    margin-left: 0;
-    margin-top: 0;
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+  margin-top: 0;
 }
 
 .other:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }

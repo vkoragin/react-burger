@@ -1,83 +1,103 @@
-import { useRef } from 'react'
-import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import styles from './not-bun-ingredients-constructor.module.css'
-import { useDispatch } from 'react-redux'
-import { useDrop, useDrag } from 'react-dnd'
-import { DEL_FROM_CONSTRUCTOR } from '../../services/actions/actionTypes'
+import React, { FC, useRef } from 'react';
+import {
+  ConstructorElement,
+  DragIcon,
+} from '@ya.praktikum/react-developer-burger-ui-components';
+import { useDispatch } from 'react-redux';
+import { useDrop, useDrag } from 'react-dnd';
+import styles from './not-bun-ingredients-constructor.module.css';
+import { DEL_FROM_CONSTRUCTOR } from '../../services/actions/actionTypes';
 
-type TNotBunIngredientsConstructorProps = {
-    moveElement: (dragIndex: number, hoverIndex: number) => void
-    thumbnail: string
-    text: string
-    id: string
-    index: number
-    price: number
-    uniqueKey: number
+interface INotBunIngredientsConstructorProps {
+  // eslint-disable-next-line
+  moveElement: (dragIndex: number, hoverIndex: number) => void;
+  thumbnail: string;
+  text: string;
+  id: string;
+  index: number;
+  price: number;
+  uniqueKey: number;
 }
 
-export default function NotBunIngredientsConstructor ({thumbnail, text, id, index, moveElement, price, uniqueKey}: TNotBunIngredientsConstructorProps) {
-    const ref = useRef<HTMLDivElement>(null)
-    const dispatch = useDispatch()
+const NotBunIngredientsConstructor: FC<
+  INotBunIngredientsConstructorProps
+> = ({
+  thumbnail,
+  text,
+  id,
+  index,
+  moveElement,
+  price,
+  uniqueKey,
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const dispatch = useDispatch();
 
-    const [, drop] = useDrop({
-        accept: 'other',
-        
-        hover(item: { index: number}, monitor) {         
-            if (!ref.current) return
+  const [, drop] = useDrop({
+    accept: 'other',
 
-            const dragIndex = item.index
-            const hoverIndex = index
+    hover(item: { index: number }, monitor) {
+      if (!ref.current) return;
 
-            if (dragIndex === hoverIndex) return
+      const dragIndex = item.index;
+      const hoverIndex = index;
 
-            const hoverBoundingRect = ref.current?.getBoundingClientRect()
-            const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
-            const clientOffset = monitor.getClientOffset()
-            
-            if(!clientOffset) return
-            
-            const hoverClientY = clientOffset.y - hoverBoundingRect.top
+      if (dragIndex === hoverIndex) return;
 
-            if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) return
-            if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) return
-            
-            moveElement(dragIndex, hoverIndex)
-            item.index = hoverIndex
-        }
-    })
+      const hoverBoundingRect = ref.current?.getBoundingClientRect();
+      const hoverMiddleY =
+        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+      const clientOffset = monitor.getClientOffset();
 
-    const [{ isDragging }, drag] = useDrag({
-        type: 'other',
-        item: () => {
-            return { id, index }
-        },
-        collect: monitor => ({
-            isDragging: monitor.isDragging()
-        })
-    })    
-   
-    const delIngredient = (uniqueKey: number) => {
-        dispatch({
-            type: DEL_FROM_CONSTRUCTOR,
-            uniqueKey: uniqueKey
-        })
-    }
+      if (!clientOffset) return;
 
-    const opacity = isDragging ? 0 : 1
+      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
-    drag(drop(ref))
+      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY)
+        return;
+      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY)
+        return;
 
-    return (
-        <div className={styles.other} style={{opacity: opacity}} ref={ref}>
-            <DragIcon type="primary"/>
-            <div className={styles.otherItem}>
-                <ConstructorElement
-                    isLocked={false}
-                    handleClose={() => delIngredient(uniqueKey)}
-                    text={text} 
-                    thumbnail={thumbnail}
-                    price={price}/>
-            </div>
-        </div>
-    )
-}
+      moveElement(dragIndex, hoverIndex);
+      item.index = hoverIndex;
+    },
+  });
+
+  const [{ isDragging }, drag] = useDrag({
+    type: 'other',
+    item: () => {
+      return { id, index };
+    },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
+
+  const delIngredient = (uniqueKeyToDEl: number) => {
+    dispatch({
+      type: DEL_FROM_CONSTRUCTOR,
+      uniqueKey: uniqueKeyToDEl,
+    });
+  };
+
+  const opacity = isDragging ? 0 : 1;
+
+  drag(drop(ref));
+
+  return (
+    <div className={styles.other} style={{ opacity }} ref={ref}>
+      <DragIcon type="primary" />
+      <div className={styles.otherItem}>
+        <ConstructorElement
+          isLocked={false}
+          handleClose={() => delIngredient(uniqueKey)}
+          text={text}
+          thumbnail={thumbnail}
+          price={price}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default NotBunIngredientsConstructor;

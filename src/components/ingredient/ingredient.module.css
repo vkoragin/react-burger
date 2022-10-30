@@ -1,14 +1,14 @@
 .ingredient {
-    color: white;
-    width: 272px;
-    position: relative;
-    text-align: center;
-    margin: 32px 16px 40px 0;
+  color: white;
+  width: 272px;
+  position: relative;
+  text-align: center;
+  margin: 32px 16px 40px 0;
 }
 
 .price {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 9px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 9px 0;
 }

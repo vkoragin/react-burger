@@ -1,0 +1,24 @@
+{
+  "printWidth": 70,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "semi": true,
+  "htmlWhitespaceSensitivity": "css",
+  "quoteProps": "as-needed",
+  "endOfLine": "auto",
+  "overrides": [
+    {
+      "files": "**/*.css",
+      "options": {
+        "parser": "css"
+      }
+    },
+    {
+      "files": "**/*.scss",
+      "options": {
+        "parser": "scss"
+      }
+    }
+  ]
+}

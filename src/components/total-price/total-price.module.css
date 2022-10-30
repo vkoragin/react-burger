@@ -1,13 +1,13 @@
 .totalPrice {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 32px;
-    margin-right: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 32px;
+  margin-right: 80px;
 }
 
 @media (max-width: 1227px) {
-    .totalPrice {
-        margin-right: 40px;
-    }  
+  .totalPrice {
+    margin-right: 40px;
+  }
 }

@@ -1,16 +1,31 @@
-import Ingredient from '../ingredient/ingredient'
-import styles from './ingredients-group.module.css'
-import type { TIngredient } from '../../types'
+import React, { FC } from 'react';
+import Ingredient from '../ingredient/ingredient';
+import styles from './ingredients-group.module.css';
+import type { TIngredient } from '../../types';
 
-export default function IngredientsGroup (props: { ingredients: TIngredient[], anchor: string, header: string }) {
-  return (
-    <section className={ styles.group }>
-      <header className={'text text_type_main-medium ' + props.anchor}>
-          {props.header}
-      </header>
-      <section className={ styles.ingredients }>            
-        {props.ingredients.map(ingredient => <Ingredient key={ingredient['_id']} ingredient={ingredient}/>)}
-      </section>
-    </section>   
-  )
+interface IIngredientsGroupProps {
+  ingredients: TIngredient[];
+  anchor: string;
+  header: string;
 }
+
+const IngredientsGroup: FC<IIngredientsGroupProps> = ({
+  ingredients,
+  anchor,
+  header,
+}) => {
+  return (
+    <section className={styles.group}>
+      <header className={`text text_type_main-medium ${anchor}`}>
+        {header}
+      </header>
+      <section className={styles.ingredients}>
+        {ingredients.map((ingredient) => (
+          <Ingredient key={ingredient._id} ingredient={ingredient} />
+        ))}
+      </section>
+    </section>
+  );
+};
+
+export default IngredientsGroup;
