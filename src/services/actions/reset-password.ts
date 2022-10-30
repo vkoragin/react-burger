@@ -11,11 +11,9 @@ export type TResetPasswordResponse = {
   message: string;
 } & Response;
 
-export function resetPassword(authData: {
-  password: string;
-  token: string;
-}) {
-  return async function (dispatch: Dispatch<LoaderAction>) {
+export const resetPassword =
+  (authData: { password: string; token: string }) =>
+  async (dispatch: Dispatch<LoaderAction>) => {
     dispatch({
       type: SHOW_LOADER,
       loader: true,
@@ -32,10 +30,9 @@ export function resetPassword(authData: {
     } catch (error) {
       return false;
     } finally {
-      return dispatch({
+      dispatch({
         type: SHOW_LOADER,
         loader: false,
       });
     }
   };
-}

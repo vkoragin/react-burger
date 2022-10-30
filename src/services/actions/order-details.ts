@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { getOrderNumberUrl } from '../../url';
 import { getCookie } from '../../utils';
 import type { AppDispatch, AppThunk } from '../store.types';
@@ -11,14 +11,15 @@ import {
 } from './actionTypes';
 import { TGetOrderNumberResponse } from './order-details.type';
 
-export function getOrderNumber(ingredientsIds: string[]) {
-  return function (dispatch: AppDispatch | AppThunk) {
+const getOrderNumber =
+  (ingredientsIds: string[]) =>
+  async (dispatch: AppDispatch | AppThunk) => {
     dispatch({
       type: GET_ODDER_NUMBER,
     });
 
-    return axios
-      .post(
+    try {
+      const response = await axios.post(
         getOrderNumberUrl,
         { ingredients: ingredientsIds },
         {
@@ -27,21 +28,23 @@ export function getOrderNumber(ingredientsIds: string[]) {
             authorization: getCookie('accessToken'),
           },
         },
-      )
-      .then<TGetOrderNumberResponse>((response: AxiosResponse) => {
-        dispatch({
-          type: GET_ODDER_NUMBER_SUCCESS,
-          number: response.data.order.number,
-        });
-        dispatch({
-          type: CLEAR_CONSTRUCTOR,
-        });
-        return response.data;
-      })
-      .catch((error) => {
-        dispatch({ type: GET_ODDER_NUMBER_FAILED });
-        if (error.response.status === 403)
-          dispatch(refreshToken(getOrderNumber));
+      );
+      dispatch({
+        type: GET_ODDER_NUMBER_SUCCESS,
+        number: response.data.order.number,
       });
+      dispatch({
+        type: CLEAR_CONSTRUCTOR,
+      });
+      const result: TGetOrderNumberResponse = response.data;
+      return result;
+    } catch (error) {
+      dispatch({ type: GET_ODDER_NUMBER_FAILED });
+      const err = error as AxiosError;
+      if (err.response?.status === 403)
+        dispatch(refreshToken(getOrderNumber));
+      return false;
+    }
   };
-}
+
+export default getOrderNumber;

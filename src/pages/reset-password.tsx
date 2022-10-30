@@ -30,9 +30,38 @@ const ResetPasswordPage: FC = () => {
   };
 
   const toggleText = () => {
-    passwordType === 'password'
-      ? setPasswordType('text')
-      : setPasswordType('password');
+    setPasswordType(
+      passwordType === 'password' ? 'text' : 'password',
+    );
+  };
+
+  const clearErrors = () => {
+    setPasswordError(false);
+    setTokenError(false);
+  };
+
+  const validatePassword = () => {
+    const isValid = Boolean(
+      password.length && password.length >= minPasswordLength,
+    );
+    if (password.length && password.length < minPasswordLength)
+      setPasswordText('Пароль должен быть не менее шести символов');
+    if (!password.length)
+      setPasswordText('Это поле не должно быть пустым');
+    setPasswordError(!isValid);
+    return isValid;
+  };
+
+  const validateToken = () => {
+    const isValid = Boolean(token.length);
+    setTokenError(!isValid);
+    return isValid;
+  };
+
+  const validate = () => {
+    const isPasswordValid = validatePassword();
+    const isTokenValid = validateToken();
+    return isPasswordValid && isTokenValid;
   };
 
   const submit = (e: any) => {
@@ -48,35 +77,6 @@ const ResetPasswordPage: FC = () => {
         history.replace({ pathname: '/login' }),
       );
     }
-  };
-
-  const clearErrors = () => {
-    setPasswordError(false);
-    setTokenError(false);
-  };
-
-  const validate = () => {
-    const isPasswordValid = validatePassword();
-    const isTokenValid = validateToken();
-    return isPasswordValid && isTokenValid;
-  };
-
-  const validatePassword = () => {
-    const isValid = Boolean(
-      password.length && password.length >= minPasswordLength,
-    );
-    if (password.length && password.length < minPasswordLength)
-      setPasswordText('Пароль должен быть не менее шести символов');
-    if (!password.length)
-      setPasswordText('Это поле не должно быть пустым');
-    isValid ? setPasswordError(false) : setPasswordError(true);
-    return isValid;
-  };
-
-  const validateToken = () => {
-    const isValid = Boolean(token.length);
-    isValid ? setTokenError(false) : setTokenError(true);
-    return isValid;
   };
 
   return (

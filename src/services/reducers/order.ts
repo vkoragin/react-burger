@@ -13,10 +13,7 @@ const initialOrderState: OrderStore = {
   orderFailed: false,
 };
 
-export const orderReducer = (
-  state = initialOrderState,
-  action: Actions,
-) => {
+const orderReducer = (state = initialOrderState, action: Actions) => {
   switch (action.type) {
     case GET_ORDER: {
       return {
@@ -50,3 +47,5 @@ export const orderReducer = (
     }
   }
 };
+
+export default orderReducer;

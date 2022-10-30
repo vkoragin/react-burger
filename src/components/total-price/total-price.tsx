@@ -9,7 +9,7 @@ import OrderDetails from '../order-details/order-details';
 import Modal from '../modal/modal';
 import styles from './total-price.module.css';
 import { getCookie } from '../../utils';
-import { getOrderNumber } from '../../services/actions/order-details';
+import getOrderNumber from '../../services/actions/order-details';
 import type { ReduxStore } from '../../services/store.types';
 
 const TotalPrice: FC = () => {
@@ -74,7 +74,7 @@ const TotalPrice: FC = () => {
         </p>
       </div>
       {visible && (
-        <Modal onClose={onClose}>
+        <Modal onCloseByClick={onClose} onCloseByKeyDown={onClose}>
           <OrderDetails />
         </Modal>
       )}

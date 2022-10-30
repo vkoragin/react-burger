@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { getCookie } from '../../utils';
 import { profileUrl } from '../../url';
 import { TProfileResponse } from './profile.types';
@@ -11,39 +11,9 @@ import {
   GET_USER_SUCCESS,
 } from './actionTypes';
 
-export function getUser() {
-  return async function (dispatch: AppDispatch | AppThunk) {
-    dispatch({
-      type: GET_USER,
-    });
-
-    try {
-      const response = await axios.get(profileUrl, {
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          authorization: getCookie('accessToken'),
-        },
-      });
-      dispatch({
-        type: GET_USER_SUCCESS,
-        user: response.data.user,
-      });
-      const result: TProfileResponse = response.data.user;
-      return result;
-    } catch (error) {
-      dispatch({ type: GET_USER_FAILED });
-      if (error.response.status === 403)
-        dispatch(refreshToken(updateUser));
-    }
-  };
-}
-
-export function updateUser(data: {
-  email: string;
-  name: string;
-  password: string;
-}) {
-  return async function (dispatch: AppDispatch | AppThunk) {
+export const updateUser =
+  (data: { email: string; name: string; password: string }) =>
+  async (dispatch: AppDispatch | AppThunk) => {
     dispatch({
       type: GET_USER,
     });
@@ -63,8 +33,37 @@ export function updateUser(data: {
       return result;
     } catch (error) {
       dispatch({ type: GET_USER_FAILED });
-      if (error.response.status === 403)
+      const err = error as AxiosError;
+      if (err.response?.status === 403)
         dispatch(refreshToken(updateUser));
+      return false;
     }
   };
-}
+
+export const getUser =
+  () => async (dispatch: AppDispatch | AppThunk) => {
+    dispatch({
+      type: GET_USER,
+    });
+
+    try {
+      const response = await axios.get(profileUrl, {
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: getCookie('accessToken'),
+        },
+      });
+      dispatch({
+        type: GET_USER_SUCCESS,
+        user: response.data.user,
+      });
+      const result: TProfileResponse = response.data.user;
+      return result;
+    } catch (error) {
+      dispatch({ type: GET_USER_FAILED });
+      const err = error as AxiosError;
+      if (err.response?.status === 403)
+        dispatch(refreshToken(updateUser));
+      return false;
+    }
+  };

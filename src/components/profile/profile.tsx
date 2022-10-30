@@ -26,21 +26,11 @@ const Profile = () => {
   const errorNameText = 'Это поле не должно быть пустым';
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (user) {
-      setUserData(user);
-    }
-  }, [user]);
-
-  const setUserData = (user: TUser) => {
-    setDefEmail(user.email);
-    setDefName(user.name);
-    setEmail(user.email);
-    setName(user.name);
+  const setUserData = (userData: TUser) => {
+    setDefEmail(userData.email);
+    setDefName(userData.name);
+    setEmail(userData.email);
+    setName(userData.name);
     setPassword(defPassword);
   };
 
@@ -141,6 +131,16 @@ const Profile = () => {
       name === defName
     );
   };
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user) {
+      setUserData(user);
+    }
+  }, [user]);
 
   return (
     user && (

@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { socketMiddleware } from './middleware/socketMiddleware';
-import { rootReducer } from './reducers';
+import socketMiddleware from './middleware/socketMiddleware';
+import rootReducer from './reducers';
 
 declare global {
   interface Window {
@@ -15,5 +15,8 @@ const enhancer = composeEnhancers(
   applyMiddleware(socketMiddleware()),
 );
 
-export const initStore = (initialState = {}) =>
+function initStore(initialState = {}) {
   createStore(rootReducer, initialState, enhancer);
+}
+
+export default initStore;

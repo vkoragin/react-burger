@@ -12,7 +12,7 @@ const initialState: OrderNumberStore = {
   numberFailed: false,
 };
 
-export const orderNumberReducer = (
+const orderNumberReducer = (
   state = initialState,
   action: Actions,
 ) => {
@@ -43,3 +43,5 @@ export const orderNumberReducer = (
     }
   }
 };
+
+export default orderNumberReducer;

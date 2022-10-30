@@ -32,8 +32,8 @@ export type TIngredient = {
   calories: number;
   price: number;
   image: string;
-  image_mobile: string;
-  image_large: string;
+  image_mobile: string; // eslint-disable-line
+  image_large: string; // eslint-disable-line
   __v: number;
   uniqueKey?: number;
   count?: number;
@@ -56,3 +56,10 @@ export type TOrder = {
   };
   __v: number;
 };
+
+export interface WebSocketEventMap {
+  close: CloseEvent;
+  error: Event;
+  message: MessageEvent;
+  open: Event;
+}

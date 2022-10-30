@@ -17,9 +17,9 @@ const Orders: FC = () => {
     (store: ReduxStore) => store.messages,
   );
   const [orders, setOrders] = useState<TOrder[]>([]);
-  const accessToken = getCookie('accessToken');
+  const accessToken = getCookie('accessToken')?.split(' ');
   let token = '';
-  if (accessToken) token = accessToken.split(' ')[1];
+  if (accessToken) [token] = accessToken;
 
   useEffect(() => {
     dispatch({

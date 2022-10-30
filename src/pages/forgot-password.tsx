@@ -27,7 +27,7 @@ const ForgotPasswordPage: FC = () => {
       setErrorEmailText('Не валидный email');
     if (!email.length)
       setErrorEmailText('Это поле не должно быть пустым');
-    isValid ? setErrorEmail(false) : setErrorEmail(true);
+    setErrorEmail(!isValid);
     return isValid;
   };
 

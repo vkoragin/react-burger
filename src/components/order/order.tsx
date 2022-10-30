@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { getOrder } from '../../services/actions/order';
+import getOrder from '../../services/actions/order';
 import styles from './order.module.css';
 import { formatDate } from '../../utils';
 import type { ReduxStore } from '../../services/store.types';
@@ -55,12 +55,14 @@ const Order: FC = () => {
           )[0],
         ),
       );
-      turgetOrderIngredients.forEach((item) => {
-        item.type === 'bun'
-          ? (item.count = 2)
-          : (item.count = order?.ingredients.filter(
-              (ingredient) => ingredient === item._id,
-            ).length);
+      turgetOrderIngredients.forEach((turgetOrderIngredient) => {
+        if (turgetOrderIngredient.type === 'bun') {
+          turgetOrderIngredient.count = 2;
+        } else {
+          turgetOrderIngredient.count = order?.ingredients.filter(
+            (ingredient) => ingredient === turgetOrderIngredient._id,
+          ).length;
+        }
       });
       setOrderIngredients(turgetOrderIngredients);
     }
@@ -110,6 +112,7 @@ const Order: FC = () => {
           {Boolean(orderIngredients) &&
             orderIngredients?.map((ingredient, i) => {
               return (
+                // eslint-disable-next-line
                 <div key={i} className={`${styles.order} mt-4 pb-2`}>
                   <div className={styles.info}>
                     <div className={`${styles.imageWrapper} mr-4`}>

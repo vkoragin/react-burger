@@ -9,6 +9,7 @@ import styles from './not-bun-ingredients-constructor.module.css';
 import { DEL_FROM_CONSTRUCTOR } from '../../services/actions/actionTypes';
 
 interface INotBunIngredientsConstructorProps {
+  // eslint-disable-next-line
   moveElement: (dragIndex: number, hoverIndex: number) => void;
   thumbnail: string;
   text: string;
@@ -72,10 +73,10 @@ const NotBunIngredientsConstructor: FC<
     }),
   });
 
-  const delIngredient = (uniqueKey: number) => {
+  const delIngredient = (uniqueKeyToDEl: number) => {
     dispatch({
       type: DEL_FROM_CONSTRUCTOR,
-      uniqueKey,
+      uniqueKey: uniqueKeyToDEl,
     });
   };
 

@@ -30,15 +30,46 @@ const LoginPage: FC = () => {
     setPassword(e.target.value);
   };
 
+  const clearErrors = () => {
+    setPasswordError(false);
+    setErrorEmail(false);
+  };
+
+  const toggleText = () => {
+    setPasswordType(
+      passwordType === 'password' ? 'text' : 'password',
+    );
+  };
+
+  const validatePassword = () => {
+    const isValid = Boolean(
+      password.length && password.length >= minPasswordLength,
+    );
+    if (password.length && password.length < minPasswordLength)
+      setPasswordText(
+        `Пароль должен быть не менее ${minPasswordLength} символов`,
+      );
+    if (!password.length)
+      setPasswordText('Это поле не должно быть пустым');
+    setPasswordError(isValid);
+    return isValid;
+  };
+
+  const validateEmail = () => {
+    const validEmail = emailRegExp.test(String(email).toLowerCase());
+    const isValid = Boolean(email.length && validEmail);
+    if (email.length && !validEmail)
+      setErrorEmailText('Не валидный email');
+    if (!email.length)
+      setErrorEmailText('Это поле не должно быть пустым');
+    setErrorEmail(!isValid);
+    return isValid;
+  };
+
   const validate = () => {
     const isPasswordValid = validatePassword();
     const isEmailValid = validateEmail();
     return isPasswordValid && isEmailValid;
-  };
-
-  const clearErrors = () => {
-    setPasswordError(false);
-    setErrorEmail(false);
   };
 
   const login = (e: any) => {
@@ -55,37 +86,6 @@ const LoginPage: FC = () => {
         history.replace({ pathname: pathName });
       });
     }
-  };
-
-  const toggleText = () => {
-    passwordType === 'password'
-      ? setPasswordType('text')
-      : setPasswordType('password');
-  };
-
-  const validatePassword = () => {
-    const isValid = Boolean(
-      password.length && password.length >= minPasswordLength,
-    );
-    if (password.length && password.length < minPasswordLength)
-      setPasswordText(
-        `Пароль должен быть не менее ${minPasswordLength} символов`,
-      );
-    if (!password.length)
-      setPasswordText('Это поле не должно быть пустым');
-    isValid ? setPasswordError(false) : setPasswordError(true);
-    return isValid;
-  };
-
-  const validateEmail = () => {
-    const validEmail = emailRegExp.test(String(email).toLowerCase());
-    const isValid = Boolean(email.length && validEmail);
-    if (email.length && !validEmail)
-      setErrorEmailText('Не валидный email');
-    if (!email.length)
-      setErrorEmailText('Это поле не должно быть пустым');
-    isValid ? setErrorEmail(false) : setErrorEmail(true);
-    return isValid;
   };
 
   return (

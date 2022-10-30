@@ -115,7 +115,7 @@ const FeedItem: FC<IFeedItemProps> = ({ order, showStatus }) => {
               if (i <= showCount - 1)
                 return (
                   <div
-                    key={String(i + 1)}
+                    key={i} // eslint-disable-line
                     className={styles.imageWrapper}
                     style={{ left, zIndex: 100 - i }}
                   >
@@ -129,7 +129,7 @@ const FeedItem: FC<IFeedItemProps> = ({ order, showStatus }) => {
               if (i === showCount)
                 return (
                   <div
-                    key={String(i + 1)}
+                    key={i} // eslint-disable-line
                     className={styles.imageWrapper}
                     style={{ left, zIndex: 100 - i }}
                   >

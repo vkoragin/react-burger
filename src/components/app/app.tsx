@@ -41,7 +41,7 @@ const ModalSwitch = () => {
     location.state &&
     location.state.background;
 
-  const onClose = (e: Event) => {
+  const onClose = (e?: React.MouseEvent | KeyboardEvent) => {
     if (e) e.stopPropagation();
     history.goBack();
   };
@@ -92,7 +92,10 @@ const ModalSwitch = () => {
 
         {background && (
           <Route path="/ingredients/:id">
-            <Modal onClose={onClose}>
+            <Modal
+              onCloseByClick={onClose}
+              onCloseByKeyDown={onClose}
+            >
               <IngredientDetails />
             </Modal>
           </Route>
@@ -100,7 +103,10 @@ const ModalSwitch = () => {
 
         {background && (
           <Route path="/feed/:id">
-            <Modal onClose={onClose}>
+            <Modal
+              onCloseByClick={onClose}
+              onCloseByKeyDown={onClose}
+            >
               <Order />
             </Modal>
           </Route>
@@ -108,7 +114,10 @@ const ModalSwitch = () => {
 
         {background && (
           <Route path="/profile/orders/:id">
-            <Modal onClose={onClose}>
+            <Modal
+              onCloseByClick={onClose}
+              onCloseByKeyDown={onClose}
+            >
               <Order />
             </Modal>
           </Route>

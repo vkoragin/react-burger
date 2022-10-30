@@ -7,20 +7,34 @@ import ModalOverlay from '../modal-overlay/modal-overlay';
 const modalRoot = document.getElementById('modals') as HTMLElement;
 
 interface IModalProps {
-  onClose: (e: any) => void;
+  // eslint-disable-next-line
+  onCloseByClick: (e?: React.MouseEvent) => void;
+  // eslint-disable-next-line
+  onCloseByKeyDown: (e?: KeyboardEvent) => void;
   children: React.ReactNode;
 }
 
-const Modal: FC<IModalProps> = ({ onClose, children }) => {
+const Modal: FC<IModalProps> = ({
+  onCloseByClick,
+  onCloseByKeyDown,
+  children,
+}) => {
   return ReactDOM.createPortal(
     <>
       <div className={styles.modal}>
-        <div className={styles.close} onClick={onClose}>
+        <div
+          className={styles.close}
+          onClick={onCloseByClick}
+          aria-hidden="true"
+        >
           <CloseIcon type="primary" />
         </div>
         {children}
       </div>
-      <ModalOverlay onClose={onClose} />
+      <ModalOverlay
+        onCloseByClick={onCloseByClick}
+        onCloseByKeyDown={onCloseByKeyDown}
+      />
     </>,
     modalRoot,
   );

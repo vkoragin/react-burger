@@ -87,6 +87,7 @@ const FeedPage: FC = () => {
               <div className={styles.statusesColumns}>
                 {doneNumbers.length && doneNumbers[0].length ? (
                   doneNumbers.map((doneNumbersColumn, i) => (
+                    // eslint-disable-next-line
                     <div key={i} className={styles.statusesColumn}>
                       {doneNumbersColumn.map((item) => (
                         <span
@@ -112,6 +113,7 @@ const FeedPage: FC = () => {
               <div className={styles.statusesColumns}>
                 {createdNumbers.length && createdNumbers[0].length ? (
                   createdNumbers.map((createdNumbersColumn, i) => (
+                    // eslint-disable-next-line
                     <div key={i} className={styles.statusesColumn}>
                       {createdNumbersColumn.map((item) => (
                         <span

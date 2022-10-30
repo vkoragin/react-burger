@@ -3,13 +3,13 @@ import {
   ingredientsReducer,
   activeTabReducer,
 } from './burger-ingredients';
-import { orderNumberReducer } from './order-details';
-import { loaderReducer } from './loader';
-import { wsReducer } from './wsReducer';
-import { orderReducer } from './order';
-import { userReducer } from './profile';
+import orderNumberReducer from './order-details';
+import loaderReducer from './loader';
+import wsReducer from './wsReducer';
+import orderReducer from './order';
+import userReducer from './profile';
 
-export const rootReducer = combineReducers({
+const rootReducer = combineReducers({
   ingredients: ingredientsReducer,
   activeTab: activeTabReducer,
   orderNumber: orderNumberReducer,
@@ -18,3 +18,5 @@ export const rootReducer = combineReducers({
   order: orderReducer,
   user: userReducer,
 });
+
+export default rootReducer;

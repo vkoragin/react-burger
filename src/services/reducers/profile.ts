@@ -12,10 +12,7 @@ const initialUSerState: UserStore = {
   userFailed: false,
 };
 
-export const userReducer = (
-  state = initialUSerState,
-  action: Actions,
-) => {
+const userReducer = (state = initialUSerState, action: Actions) => {
   switch (action.type) {
     case GET_USER: {
       return {
@@ -43,3 +40,5 @@ export const userReducer = (
     }
   }
 };
+
+export default userReducer;

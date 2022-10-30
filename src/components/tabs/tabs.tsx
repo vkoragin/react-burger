@@ -22,6 +22,7 @@ const Tabs: FC<TTabsProps> = ({ ingredientsTypes }) => {
         <Tab
           value={ingredientsType}
           active={activeTab === ingredientsType}
+          // eslint-disable-next-line
           key={index}
           onClick={onClick}
         >

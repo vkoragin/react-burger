@@ -26,6 +26,10 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "default-param-last": 0,
+    "no-param-reassign": 0,
+    "no-use-before-define": "off",
+    "no-underscore-dangle": "off",
     "react/function-component-definition": [
       2,
       {
@@ -54,11 +58,10 @@
         "tsx": "never"
       }
     ],
-    "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": [
       "error"
     ],
-    "no-underscore-dangle": "off"
+    "@typescript-eslint/camelcase": "off"
   },
   "settings": {
     "import/resolver": {

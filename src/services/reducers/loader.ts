@@ -6,7 +6,7 @@ const initialState: LoaderStore = {
   loader: false,
 };
 
-export const loaderReducer = (
+const loaderReducer = (
   state = initialState,
   action: LoaderAction,
 ) => {
@@ -21,3 +21,5 @@ export const loaderReducer = (
     }
   }
 };
+
+export default loaderReducer;

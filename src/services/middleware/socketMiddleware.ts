@@ -8,8 +8,9 @@ import {
   WS_CONNECTION_START,
   WS_SEND_MESSAGE,
 } from '../actions/wsActionTypes';
+import { WebSocketEventMap } from '../../types';
 
-export const socketMiddleware = () => {
+const socketMiddleware = () => {
   return (store: { dispatch: Dispatch<Actions> }) => {
     let socket: any = null;
 
@@ -51,3 +52,5 @@ export const socketMiddleware = () => {
     };
   };
 };
+
+export default socketMiddleware;

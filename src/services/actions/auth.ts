@@ -11,11 +11,9 @@ import { LoaderAction } from './loader.types';
 
 import { SHOW_LOADER } from './actionTypes';
 
-export function loginUser(userData: {
-  email: string;
-  password: string;
-}) {
-  return async function (dispatch: Dispatch<LoaderAction>) {
+export const loginUser =
+  (userData: { email: string; password: string }) =>
+  async (dispatch: Dispatch<LoaderAction>) => {
     dispatch({
       type: SHOW_LOADER,
       loader: true,
@@ -39,14 +37,10 @@ export function loginUser(userData: {
       });
     }
   };
-}
 
-export function registerUser(userData: {
-  email: string;
-  password: string;
-  name: string;
-}) {
-  return async function (dispatch: Dispatch<LoaderAction>) {
+export const registerUser =
+  (userData: { email: string; password: string; name: string }) =>
+  async (dispatch: Dispatch<LoaderAction>) => {
     dispatch({
       type: SHOW_LOADER,
       loader: true,
@@ -70,10 +64,9 @@ export function registerUser(userData: {
       });
     }
   };
-}
 
-export function logoutUser() {
-  return async function (dispatch: Dispatch<LoaderAction>) {
+export const logoutUser =
+  () => async (dispatch: Dispatch<LoaderAction>) => {
     dispatch({
       type: SHOW_LOADER,
       loader: true,
@@ -102,10 +95,9 @@ export function logoutUser() {
       });
     }
   };
-}
 
-export function refreshToken(callback: Function) {
-  return async function (dispatch: Dispatch<LoaderAction>) {
+export const refreshToken =
+  (callback: any) => async (dispatch: Dispatch<LoaderAction>) => {
     dispatch({
       type: SHOW_LOADER,
       loader: true,
@@ -134,4 +126,3 @@ export function refreshToken(callback: Function) {
       });
     }
   };
-}

@@ -11,8 +11,8 @@ export type TForgotPasswordResponse = {
   message: string;
 } & Response;
 
-export function resetPassword(email: string) {
-  return async function (dispatch: Dispatch<LoaderAction>) {
+export const resetPassword =
+  (email: string) => async (dispatch: Dispatch<LoaderAction>) => {
     dispatch({
       type: SHOW_LOADER,
       loader: true,
@@ -40,4 +40,3 @@ export function resetPassword(email: string) {
       });
     }
   };
-}

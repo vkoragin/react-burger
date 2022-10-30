@@ -1,4 +1,4 @@
-import { TMassage } from '../../types';
+import { TMassage, WebSocketEventMap } from '../../types';
 
 export const WS_CONNECTION_START = 'WS_CONNECTION_START';
 export const WS_CONNECTION_SUCCESS = 'WS_CONNECTION_SUCCESS';

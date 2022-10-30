@@ -13,7 +13,7 @@ const initialState: WsStore = {
   error: '',
 };
 
-export const wsReducer = (state = initialState, action: Actions) => {
+const wsReducer = (state = initialState, action: Actions) => {
   switch (action.type) {
     case WS_CONNECTION_SUCCESS:
       return {
@@ -46,3 +46,5 @@ export const wsReducer = (state = initialState, action: Actions) => {
       return state;
   }
 };
+
+export default wsReducer;

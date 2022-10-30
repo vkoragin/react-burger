@@ -1,5 +1,7 @@
 import { SHOW_LOADER } from './actionTypes';
 
-export function showLoader(loader: boolean) {
+const showLoader = (loader: boolean) => {
   return { type: SHOW_LOADER, loader };
-}
+};
+
+export default showLoader;

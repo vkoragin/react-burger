@@ -2,8 +2,8 @@ export function getCookie(name: string) {
   const matches = document.cookie.match(
     new RegExp(
       `(?:^|; )${name.replace(
-        // eslint-disable-line
-        /([\.$?*|{}\(\)\[\]\\\/\+^])/g, // eslint-disable-line
+        // eslint-disable-next-line
+        /([\.$?*|{}\(\)\[\]\\\/\+^])/g,
         '\\$1', // eslint-disable-line
       )}=([^;]*)`, // eslint-disable-line
     ),
@@ -37,14 +37,13 @@ export function setCookie(
     name,
   )}=${encodeURIComponent(value)}`;
 
-  let optionKey: keyof ICookieOptions;
-  for (optionKey in options) {
+  Object.keys(options).forEach((optionKey) => {
     updatedCookie += `; ${optionKey}`;
-    const optionValue = options[optionKey];
+    const optionValue = options[optionKey as keyof ICookieOptions];
     if (optionValue !== true) {
       updatedCookie += `=${optionValue}`;
     }
-  }
+  });
 
   document.cookie = updatedCookie;
 }
