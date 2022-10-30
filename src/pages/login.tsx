@@ -51,7 +51,7 @@ const LoginPage: FC = () => {
       );
     if (!password.length)
       setPasswordText('Это поле не должно быть пустым');
-    setPasswordError(isValid);
+    setPasswordError(!isValid);
     return isValid;
   };
 

@@ -15,8 +15,6 @@ const enhancer = composeEnhancers(
   applyMiddleware(socketMiddleware()),
 );
 
-function initStore(initialState = {}) {
+const initStore = (initialState = {}) =>
   createStore(rootReducer, initialState, enhancer);
-}
-
 export default initStore;
