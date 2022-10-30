@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { Dispatch } from 'react';
 import { getCookie } from '../../utils';
 import { forgotPasswordUrl } from '../../url';
@@ -12,14 +12,14 @@ export type TForgotPasswordResponse = {
 } & Response;
 
 export function resetPassword(email: string) {
-  return function (dispatch: Dispatch<LoaderAction>) {
+  return async function (dispatch: Dispatch<LoaderAction>) {
     dispatch({
       type: SHOW_LOADER,
       loader: true,
     });
 
-    return axios
-      .post(
+    try {
+      const { data } = await axios.post(
         forgotPasswordUrl,
         { email },
         {
@@ -28,19 +28,16 @@ export function resetPassword(email: string) {
             authorization: getCookie('accessToken'),
           },
         },
-      )
-      .then<TForgotPasswordResponse>((response: AxiosResponse) => {
-        localStorage.setItem('resetPassword', 'true');
-        return response.data;
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() =>
-        dispatch({
-          type: SHOW_LOADER,
-          loader: false,
-        }),
       );
+      localStorage.setItem('resetPassword', 'true');
+      return data;
+    } catch (error) {
+      return false;
+    } finally {
+      dispatch({
+        type: SHOW_LOADER,
+        loader: false,
+      });
+    }
   };
 }

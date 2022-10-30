@@ -1,18 +1,17 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import ReactDOM from 'react-dom';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './modal.module.css';
-import { ModalOverlay } from '../modal-overlay/modal-overlay';
+import ModalOverlay from '../modal-overlay/modal-overlay';
 
 const modalRoot = document.getElementById('modals') as HTMLElement;
 
 interface IModalProps {
   onClose: (e: any) => void;
+  children: React.ReactNode;
 }
 
-export const Modal: FunctionComponent<IModalProps> = (props) => {
-  const { children, onClose } = props;
-
+const Modal: FC<IModalProps> = ({ onClose, children }) => {
   return ReactDOM.createPortal(
     <>
       <div className={styles.modal}>
@@ -26,3 +25,5 @@ export const Modal: FunctionComponent<IModalProps> = (props) => {
     modalRoot,
   );
 };
+
+export default Modal;

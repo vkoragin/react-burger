@@ -2,13 +2,13 @@ import {
   Input,
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../services/actions/auth';
 import { minPasswordLength, emailRegExp } from '../utils';
 
-export function RegisterPage() {
+const RegisterPage: FC = () => {
   const [email, setEmail] = useState('');
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorEmailText, setErrorEmailText] = useState('');
@@ -40,6 +40,18 @@ export function RegisterPage() {
     passwordType === 'password'
       ? setPasswordType('text')
       : setPasswordType('password');
+  };
+
+  const validateName = () => {
+    const isValid = Boolean(name.length);
+    isValid ? setNameError(false) : setNameError(true);
+    return isValid;
+  };
+
+  const clearErrors = () => {
+    setPasswordError(false);
+    setErrorEmail(false);
+    setNameError(false);
   };
 
   const register = (e: any) => {
@@ -90,18 +102,6 @@ export function RegisterPage() {
     return isValid;
   };
 
-  const validateName = () => {
-    const isValid = Boolean(name.length);
-    isValid ? setNameError(false) : setNameError(true);
-    return isValid;
-  };
-
-  const clearErrors = () => {
-    setPasswordError(false);
-    setErrorEmail(false);
-    setNameError(false);
-  };
-
   return (
     <form className="form" onSubmit={register}>
       <p className="text text_type_main-medium mb-6">Регистрация</p>
@@ -149,4 +149,6 @@ export function RegisterPage() {
       </p>
     </form>
   );
-}
+};
+
+export default RegisterPage;

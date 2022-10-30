@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { Dispatch } from 'react';
 import { setCookie, deleteCookie } from '../../utils';
 import {
@@ -8,90 +8,79 @@ import {
   refrechTokenUrl,
 } from '../../url';
 import { LoaderAction } from './loader.types';
-import {
-  TLoginUserResponse,
-  TRegisterUserResponse,
-  TLogoutUserResponse,
-  TRefreshTokenResponse,
-} from './auth.types';
 
 import { SHOW_LOADER } from './actionTypes';
 
-export function loginUser(data: { email: string; password: string }) {
-  return function (dispatch: Dispatch<LoaderAction>) {
+export function loginUser(userData: {
+  email: string;
+  password: string;
+}) {
+  return async function (dispatch: Dispatch<LoaderAction>) {
     dispatch({
       type: SHOW_LOADER,
       loader: true,
     });
 
-    return axios
-      .post(loginUrl, data, {
-        headers: { 'Content-Type': 'application/json;charset=utf-8' },
-      })
-      .then<TLoginUserResponse>((response: AxiosResponse) => {
-        setCookie('accessToken', response.data.accessToken);
-        localStorage.setItem(
-          'refreshToken',
-          response.data.refreshToken,
-        );
-        return response.data;
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() =>
-        dispatch({
-          type: SHOW_LOADER,
-          loader: false,
-        }),
-      );
+    try {
+      const { data } = await axios.post(loginUrl, userData, {
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+      });
+      setCookie('accessToken', data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
+      return data;
+    } catch (error) {
+      return false;
+    } finally {
+      dispatch({
+        type: SHOW_LOADER,
+        loader: false,
+      });
+    }
   };
 }
 
-export function registerUser(data: {
+export function registerUser(userData: {
   email: string;
   password: string;
   name: string;
 }) {
-  return function (dispatch: Dispatch<LoaderAction>) {
+  return async function (dispatch: Dispatch<LoaderAction>) {
     dispatch({
       type: SHOW_LOADER,
       loader: true,
     });
 
-    return axios
-      .post(registrUrl, data, {
-        headers: { 'Content-Type': 'application/json;charset=utf-8' },
-      })
-      .then<TRegisterUserResponse>((response: AxiosResponse) => {
-        setCookie('accessToken', response.data.accessToken);
-        localStorage.setItem(
-          'refreshToken',
-          response.data.refreshToken,
-        );
-        return response.data;
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() =>
-        dispatch({
-          type: SHOW_LOADER,
-          loader: false,
-        }),
-      );
+    try {
+      const { data } = await axios.post(registrUrl, userData, {
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+      });
+      setCookie('accessToken', data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
+      return data;
+    } catch (error) {
+      return false;
+    } finally {
+      dispatch({
+        type: SHOW_LOADER,
+        loader: false,
+      });
+    }
   };
 }
 
 export function logoutUser() {
-  return function (dispatch: Dispatch<LoaderAction>) {
+  return async function (dispatch: Dispatch<LoaderAction>) {
     dispatch({
       type: SHOW_LOADER,
       loader: true,
     });
 
-    return axios
-      .post(
+    try {
+      const { data } = await axios.post(
         logoutUrl,
         { token: localStorage.refreshToken },
         {
@@ -99,34 +88,31 @@ export function logoutUser() {
             'Content-Type': 'application/json;charset=utf-8',
           },
         },
-      )
-      .then<TLogoutUserResponse>((response: AxiosResponse) => {
-        deleteCookie('accessToken');
-        localStorage.removeItem('refreshToken');
-        localStorage.removeItem('resetPassword');
-        return response.data;
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() =>
-        dispatch({
-          type: SHOW_LOADER,
-          loader: false,
-        }),
       );
+      deleteCookie('accessToken');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('resetPassword');
+      return data;
+    } catch (error) {
+      return false;
+    } finally {
+      dispatch({
+        type: SHOW_LOADER,
+        loader: false,
+      });
+    }
   };
 }
 
 export function refreshToken(callback: Function) {
-  return function (dispatch: Dispatch<LoaderAction>) {
+  return async function (dispatch: Dispatch<LoaderAction>) {
     dispatch({
       type: SHOW_LOADER,
       loader: true,
     });
 
-    return axios
-      .post(
+    try {
+      const { data } = await axios.post(
         refrechTokenUrl,
         { token: localStorage.refreshToken },
         {
@@ -134,24 +120,18 @@ export function refreshToken(callback: Function) {
             'Content-Type': 'application/json;charset=utf-8',
           },
         },
-      )
-      .then<TRefreshTokenResponse>((response: AxiosResponse) => {
-        setCookie('accessToken', response.data.accessToken);
-        localStorage.setItem(
-          'refreshToken',
-          response.data.refreshToken,
-        );
-        dispatch(callback());
-        return response.data;
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() =>
-        dispatch({
-          type: SHOW_LOADER,
-          loader: false,
-        }),
       );
+      setCookie('accessToken', data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
+      dispatch(callback());
+      return data;
+    } catch (error) {
+      return false;
+    } finally {
+      dispatch({
+        type: SHOW_LOADER,
+        loader: false,
+      });
+    }
   };
 }

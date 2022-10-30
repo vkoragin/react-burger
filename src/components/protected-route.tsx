@@ -2,10 +2,10 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { getCookie } from '../utils';
 
-export function ProtectedRoute({
+const ProtectedRoute = ({
   children,
   ...rest
-}: React.PropsWithChildren<{ [key: string]: any }>) {
+}: React.PropsWithChildren<{ [key: string]: any }>) => {
   const isAuth = getCookie('accessToken');
 
   return (
@@ -25,4 +25,6 @@ export function ProtectedRoute({
       }
     />
   );
-}
+};
+
+export default ProtectedRoute;

@@ -1,4 +1,3 @@
-import React from 'react';
 import { UserStore } from './profile.types';
 import { Actions } from '../actions/profile.types';
 import {

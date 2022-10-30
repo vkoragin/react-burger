@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import {
   Counter,
@@ -11,10 +11,11 @@ import styles from './ingredient.module.css';
 import type { ReduxStore } from '../../services/store.types';
 import type { TIngredient } from '../../types';
 
-export default function Ingredient(props: {
+interface IIngredientProps {
   ingredient: TIngredient;
-}) {
-  const { ingredient } = props;
+}
+
+const Ingredient: FC<IIngredientProps> = ({ ingredient }) => {
   const [count, setCount] = useState(0);
   const { constructor } = useSelector(
     (store: ReduxStore) => store.ingredients,
@@ -28,10 +29,10 @@ export default function Ingredient(props: {
   });
 
   useEffect(() => {
-    const count = constructor.filter(
+    const newCount = constructor.filter(
       (item) => item._id === ingredient._id,
     ).length;
-    setCount(count);
+    setCount(newCount);
   }, [constructor, ingredient]);
 
   return (
@@ -65,4 +66,6 @@ export default function Ingredient(props: {
       </figure>
     </Link>
   );
-}
+};
+
+export default Ingredient;

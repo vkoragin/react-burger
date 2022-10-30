@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { FC, useRef } from 'react';
 import {
   ConstructorElement,
   DragIcon,
@@ -8,7 +8,7 @@ import { useDrop, useDrag } from 'react-dnd';
 import styles from './not-bun-ingredients-constructor.module.css';
 import { DEL_FROM_CONSTRUCTOR } from '../../services/actions/actionTypes';
 
-type TNotBunIngredientsConstructorProps = {
+interface INotBunIngredientsConstructorProps {
   moveElement: (dragIndex: number, hoverIndex: number) => void;
   thumbnail: string;
   text: string;
@@ -16,9 +16,11 @@ type TNotBunIngredientsConstructorProps = {
   index: number;
   price: number;
   uniqueKey: number;
-};
+}
 
-export default function NotBunIngredientsConstructor({
+const NotBunIngredientsConstructor: FC<
+  INotBunIngredientsConstructorProps
+> = ({
   thumbnail,
   text,
   id,
@@ -26,7 +28,7 @@ export default function NotBunIngredientsConstructor({
   moveElement,
   price,
   uniqueKey,
-}: TNotBunIngredientsConstructorProps) {
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
@@ -95,4 +97,6 @@ export default function NotBunIngredientsConstructor({
       </div>
     </div>
   );
-}
+};
+
+export default NotBunIngredientsConstructor;

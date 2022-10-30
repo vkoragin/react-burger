@@ -13,7 +13,7 @@ import {
 import type { ReduxStore } from '../../services/store.types';
 import { TIngredient } from '../../types';
 
-export default function BurgerConstructor() {
+const BurgerConstructor = () => {
   const [bun, setBun] = useState<TIngredient>();
   const [otherIngredients, setOtherIngredients] = useState<
     TIngredient[]
@@ -121,4 +121,6 @@ export default function BurgerConstructor() {
       <TotalPrice />
     </div>
   );
-}
+};
+
+export default BurgerConstructor;

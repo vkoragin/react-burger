@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useSelector } from 'react-redux';
@@ -7,7 +7,7 @@ import BurgerConstructor from '../components/burger-constructor/burger-construct
 import styles from './home.module.css';
 import type { ReduxStore } from '../services/store.types';
 
-export function HomePage() {
+const HomePage: FC = () => {
   const { ingredientsRequest, ingredientsFailed } = useSelector(
     (store: ReduxStore) => store.ingredients,
   );
@@ -40,4 +40,6 @@ export function HomePage() {
       </section>
     </>
   );
-}
+};
+
+export default HomePage;

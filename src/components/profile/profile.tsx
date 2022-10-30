@@ -10,7 +10,7 @@ import { minPasswordLength, emailRegExp } from '../../utils';
 import type { ReduxStore } from '../../services/store.types';
 import type { TUser } from '../../types';
 
-export function Profile() {
+const Profile = () => {
   const { user } = useSelector((store: ReduxStore) => store.user);
   const [defEmail, setDefEmail] = useState('');
   const [defName, setDefName] = useState('');
@@ -56,6 +56,50 @@ export function Profile() {
     setName(e.target.value);
   };
 
+  const validatePassword = () => {
+    const isValid = Boolean(
+      password.length && password.length >= minPasswordLength,
+    );
+    if (password.length && password.length < minPasswordLength)
+      setPasswordText(
+        `Пароль должен быть не менее ${minPasswordLength} символов`,
+      );
+    if (!password.length)
+      setPasswordText('Это поле не должно быть пустым');
+    setPasswordError(isValid);
+    return isValid;
+  };
+
+  const validateEmail = () => {
+    const validEmail = emailRegExp.test(String(email).toLowerCase());
+    const isValid = Boolean(email.length && validEmail);
+    if (email.length && !validEmail)
+      setErrorEmailText('Не валидный email');
+    if (!email.length)
+      setErrorEmailText('Это поле не должно быть пустым');
+    setErrorEmail(isValid);
+    return isValid;
+  };
+
+  const validateName = () => {
+    const isValid = Boolean(name.length);
+    setNameError(isValid);
+    return isValid;
+  };
+
+  const validate = () => {
+    const isPasswordValid = validatePassword();
+    const isEmailValid = validateEmail();
+    const isNameValid = validateName();
+    return isPasswordValid && isEmailValid && isNameValid;
+  };
+
+  const clearErrors = () => {
+    setPasswordError(false);
+    setErrorEmail(false);
+    setNameError(false);
+  };
+
   const save = (e: any) => {
     e.preventDefault();
     clearErrors();
@@ -68,50 +112,6 @@ export function Profile() {
       };
       dispatch(updateUser(data));
     }
-  };
-
-  const validate = () => {
-    const isPasswordValid = validatePassword();
-    const isEmailValid = validateEmail();
-    const isNameValid = validateName();
-    return isPasswordValid && isEmailValid && isNameValid;
-  };
-
-  const validatePassword = () => {
-    const isValid = Boolean(
-      password.length && password.length >= minPasswordLength,
-    );
-    if (password.length && password.length < minPasswordLength)
-      setPasswordText(
-        `Пароль должен быть не менее ${minPasswordLength} символов`,
-      );
-    if (!password.length)
-      setPasswordText('Это поле не должно быть пустым');
-    isValid ? setPasswordError(false) : setPasswordError(true);
-    return isValid;
-  };
-
-  const validateEmail = () => {
-    const validEmail = emailRegExp.test(String(email).toLowerCase());
-    const isValid = Boolean(email.length && validEmail);
-    if (email.length && !validEmail)
-      setErrorEmailText('Не валидный email');
-    if (!email.length)
-      setErrorEmailText('Это поле не должно быть пустым');
-    isValid ? setErrorEmail(false) : setErrorEmail(true);
-    return isValid;
-  };
-
-  const validateName = () => {
-    const isValid = Boolean(name.length);
-    isValid ? setNameError(false) : setNameError(true);
-    return isValid;
-  };
-
-  const clearErrors = () => {
-    setPasswordError(false);
-    setErrorEmail(false);
-    setNameError(false);
   };
 
   const cancel = (e: any) => {
@@ -207,4 +207,6 @@ export function Profile() {
       </section>
     )
   );
-}
+};
+
+export default Profile;

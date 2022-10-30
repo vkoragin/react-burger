@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   Button,
   CurrencyIcon,
@@ -6,13 +6,13 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import OrderDetails from '../order-details/order-details';
-import { Modal } from '../modal/modal';
+import Modal from '../modal/modal';
 import styles from './total-price.module.css';
 import { getCookie } from '../../utils';
 import { getOrderNumber } from '../../services/actions/order-details';
 import type { ReduxStore } from '../../services/store.types';
 
-export default function TotalPrice() {
+const TotalPrice: FC = () => {
   const [visible, setVisible] = useState(false);
   const { constructor } = useSelector(
     (store: ReduxStore) => store.ingredients,
@@ -23,6 +23,13 @@ export default function TotalPrice() {
   const dispatch = useDispatch();
 
   const onClose = () => setVisible(false);
+
+  const createOrder = () => {
+    const ingredientsIds = constructor.map(
+      (ingredient) => ingredient._id,
+    );
+    dispatch(getOrderNumber(ingredientsIds));
+  };
 
   const onOpen = () => {
     if (isAuth) {
@@ -38,13 +45,6 @@ export default function TotalPrice() {
       constructor.length &&
         constructor.filter((item) => item.type === 'bun').length,
     );
-  };
-
-  const createOrder = () => {
-    const ingredientsIds = constructor.map(
-      (ingredient) => ingredient._id,
-    );
-    dispatch(getOrderNumber(ingredientsIds));
   };
 
   useEffect(() => {
@@ -80,4 +80,6 @@ export default function TotalPrice() {
       )}
     </>
   );
-}
+};
+
+export default TotalPrice;

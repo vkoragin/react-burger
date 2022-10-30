@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
   NavLink,
   useHistory,
@@ -9,11 +9,11 @@ import {
 import { useDispatch } from 'react-redux';
 import styles from './profile.module.css';
 import { logoutUser } from '../services/actions/auth';
-import { Profile } from '../components/profile/profile';
-import { Orders } from '../components/orders/orders';
-import { ProtectedRoute } from '../components/protected-route';
+import Profile from '../components/profile/profile';
+import Orders from '../components/orders/orders';
+import ProtectedRoute from '../components/protected-route';
 
-export function ProfilePage() {
+const ProfilePage: FC = () => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -85,4 +85,6 @@ export function ProfilePage() {
       </section>
     </div>
   );
-}
+};
+
+export default ProfilePage;

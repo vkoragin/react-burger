@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import styles from './order-details.module.css';
 import done from '../../images/done.png';
 import type { ReduxStore } from '../../services/store.types';
 
-export default function OrderDetails() {
+const OrderDetails: FC = () => {
   const { number, numberRequest, numberFailed } = useSelector(
     (store: ReduxStore) => store.orderNumber,
   );
@@ -39,4 +39,6 @@ export default function OrderDetails() {
       </p>
     </div>
   );
-}
+};
+
+export default OrderDetails;

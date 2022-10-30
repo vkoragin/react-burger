@@ -1,35 +1,51 @@
 export function getCookie(name: string) {
   const matches = document.cookie.match(
-    // eslint-disable-next-line
     new RegExp(
-      '(?:^|; )' +
-        name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') +
-        '=([^;]*)',
+      `(?:^|; )${name.replace(
+        // eslint-disable-line
+        /([\.$?*|{}\(\)\[\]\\\/\+^])/g, // eslint-disable-line
+        '\\$1', // eslint-disable-line
+      )}=([^;]*)`, // eslint-disable-line
     ),
   );
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-export function setCookie(name: string, value: string, props?: any) {
-  props = props || {};
-  let exp = props.expires;
-  if (typeof exp === 'number' && exp) {
-    const d = new Date();
-    d.setTime(d.getTime() + exp * 1000);
-    exp = props.expires = d;
+interface ICookieOptions {
+  path?: string;
+  domain?: string;
+  expires?: Date | string | number;
+  secure?: boolean;
+  sameSite?: 'strict' | 'lax' | 'none' | boolean;
+}
+
+export function setCookie(
+  name: string,
+  value: string,
+  options = {} as ICookieOptions,
+) {
+  options = {
+    path: '/',
+    ...options,
+  };
+
+  if (options.expires instanceof Date) {
+    options.expires = options.expires.toUTCString();
   }
-  if (exp && exp.toUTCString) {
-    props.expires = exp.toUTCString();
-  }
-  value = encodeURIComponent(value);
-  let updatedCookie = `${name}=${value}`;
-  for (const propName in props) {
-    updatedCookie += `; ${propName}`;
-    const propValue = props[propName];
-    if (propValue !== true) {
-      updatedCookie += `=${propValue}`;
+
+  let updatedCookie = `${encodeURIComponent(
+    name,
+  )}=${encodeURIComponent(value)}`;
+
+  let optionKey: keyof ICookieOptions;
+  for (optionKey in options) {
+    updatedCookie += `; ${optionKey}`;
+    const optionValue = options[optionKey];
+    if (optionValue !== true) {
+      updatedCookie += `=${optionValue}`;
     }
   }
+
   document.cookie = updatedCookie;
 }
 

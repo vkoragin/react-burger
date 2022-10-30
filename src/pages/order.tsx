@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Order from '../components/order/order';
 import styles from './order.module.css';
 
-export function OrderPage() {
+const OrderPage: FC = () => {
   return (
     <div className={styles.orderPage}>
       <Order />
     </div>
   );
-}
+};
+
+export default OrderPage;

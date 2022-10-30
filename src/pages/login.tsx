@@ -2,13 +2,13 @@ import {
   Input,
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../services/actions/auth';
 import { minPasswordLength, emailRegExp } from '../utils';
 
-export function LoginPage() {
+const LoginPage: FC = () => {
   const [email, setEmail] = useState('');
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorEmailText, setErrorEmailText] = useState('');
@@ -30,6 +30,17 @@ export function LoginPage() {
     setPassword(e.target.value);
   };
 
+  const validate = () => {
+    const isPasswordValid = validatePassword();
+    const isEmailValid = validateEmail();
+    return isPasswordValid && isEmailValid;
+  };
+
+  const clearErrors = () => {
+    setPasswordError(false);
+    setErrorEmail(false);
+  };
+
   const login = (e: any) => {
     e.preventDefault();
     clearErrors();
@@ -46,21 +57,10 @@ export function LoginPage() {
     }
   };
 
-  const clearErrors = () => {
-    setPasswordError(false);
-    setErrorEmail(false);
-  };
-
   const toggleText = () => {
     passwordType === 'password'
       ? setPasswordType('text')
       : setPasswordType('password');
-  };
-
-  const validate = () => {
-    const isPasswordValid = validatePassword();
-    const isEmailValid = validateEmail();
-    return isPasswordValid && isEmailValid;
   };
 
   const validatePassword = () => {
@@ -129,4 +129,6 @@ export function LoginPage() {
       </p>
     </form>
   );
-}
+};
+
+export default LoginPage;

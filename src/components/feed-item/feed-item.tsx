@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useLocation, Link } from 'react-router-dom';
@@ -7,11 +7,12 @@ import { formatDate } from '../../utils';
 import type { ReduxStore } from '../../services/store.types';
 import type { TIngredient, TOrder } from '../../types';
 
-export function FeedItem(props: {
+interface IFeedItemProps {
   order: TOrder;
   showStatus: boolean;
-}) {
-  const { order, showStatus } = props;
+}
+
+const FeedItem: FC<IFeedItemProps> = ({ order, showStatus }) => {
   const { ingredients } = useSelector(
     (store: ReduxStore) => store.ingredients,
   );
@@ -114,7 +115,7 @@ export function FeedItem(props: {
               if (i <= showCount - 1)
                 return (
                   <div
-                    key={i}
+                    key={String(i + 1)}
                     className={styles.imageWrapper}
                     style={{ left, zIndex: 100 - i }}
                   >
@@ -128,7 +129,7 @@ export function FeedItem(props: {
               if (i === showCount)
                 return (
                   <div
-                    key={i}
+                    key={String(i + 1)}
                     className={styles.imageWrapper}
                     style={{ left, zIndex: 100 - i }}
                   >
@@ -158,4 +159,6 @@ export function FeedItem(props: {
       </section>
     </Link>
   );
-}
+};
+
+export default FeedItem;

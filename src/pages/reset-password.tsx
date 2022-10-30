@@ -2,13 +2,13 @@ import {
   Input,
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { resetPassword } from '../services/actions/reset-password';
 import { minPasswordLength } from '../utils';
 
-export function ResetPasswordPage() {
+const ResetPasswordPage: FC = () => {
   const [password, setPassword] = useState('');
   const [passwordType, setPasswordType] = useState<
     'password' | 'email' | 'text' | undefined
@@ -118,4 +118,6 @@ export function ResetPasswordPage() {
       </p>
     </form>
   );
-}
+};
+
+export default ResetPasswordPage;

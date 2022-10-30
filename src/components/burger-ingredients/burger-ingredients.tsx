@@ -7,7 +7,7 @@ import styles from './burger-ingredients.module.css';
 import { setActiveTab } from '../../services/actions/burger-ingredients';
 import type { ReduxStore } from '../../services/store.types';
 
-export default function BurgerIngredients() {
+const BurgerIngredients = () => {
   const { ingredients } = useSelector(
     (store: ReduxStore) => store.ingredients,
   );
@@ -58,4 +58,6 @@ export default function BurgerIngredients() {
       </div>
     </div>
   );
-}
+};
+
+export default BurgerIngredients;

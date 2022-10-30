@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './loader.module.css';
 import LoaderOverlay from '../loader-overlay/loader-overlay';
 
 const loaderRoot = document.getElementById('loader') as HTMLElement;
 
-export default function Loader(props: { text: string }) {
-  const { text } = props;
+interface ILoaderProps {
+  text: string;
+}
 
+const Loader: FC<ILoaderProps> = ({ text }) => {
   return ReactDOM.createPortal(
     <>
       <div className={styles.loader}>
@@ -17,4 +19,6 @@ export default function Loader(props: { text: string }) {
     </>,
     loaderRoot,
   );
-}
+};
+
+export default Loader;

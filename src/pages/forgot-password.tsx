@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import {
   Input,
   Button,
@@ -9,26 +9,15 @@ import { resetPassword } from '../services/actions/forgot-password';
 
 import { emailRegExp } from '../utils';
 
-export function ForgotPasswordPage() {
+const ForgotPasswordPage: FC = () => {
   const [email, setEmail] = useState('');
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorEmailText, setErrorEmailText] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const changeEmail = (e) => {
+  const changeEmail = (e: any) => {
     setEmail(e.target.value);
-  };
-
-  const submit = (e) => {
-    e.preventDefault();
-    setErrorEmail(false);
-    const isValid = validateEmail();
-    if (isValid) {
-      dispatch(resetPassword(email)).then(() =>
-        history.replace({ pathname: '/reset-password' }),
-      );
-    }
   };
 
   const validateEmail = () => {
@@ -40,6 +29,17 @@ export function ForgotPasswordPage() {
       setErrorEmailText('Это поле не должно быть пустым');
     isValid ? setErrorEmail(false) : setErrorEmail(true);
     return isValid;
+  };
+
+  const submit = (e: any) => {
+    e.preventDefault();
+    setErrorEmail(false);
+    const isValid = validateEmail();
+    if (isValid) {
+      dispatch(resetPassword(email) as any).then(() =>
+        history.replace({ pathname: '/reset-password' }),
+      );
+    }
   };
 
   return (
@@ -63,8 +63,10 @@ export function ForgotPasswordPage() {
         </Button>
       </p>
       <p className="text text_type_main-default text_color_inactive">
-        Вспомнили пароль? <Link to="/login">Войти</Link>
+        Вспомнили пароль ? <Link to="/login"> Войти </Link>
       </p>
     </form>
   );
-}
+};
+
+export default ForgotPasswordPage;

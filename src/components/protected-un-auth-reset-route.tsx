@@ -2,10 +2,10 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { getCookie } from '../utils';
 
-export function ProtectedUnAuthResetRoute({
+const ProtectedUnAuthResetRoute = ({
   children,
   ...rest
-}: React.PropsWithChildren<{ [key: string]: any }>) {
+}: React.PropsWithChildren<{ [key: string]: any }>) => {
   const isAuth = getCookie('accessToken');
   const wasResetPassword = localStorage.getItem('resetPassword');
 
@@ -26,4 +26,6 @@ export function ProtectedUnAuthResetRoute({
       }
     />
   );
-}
+};
+
+export default ProtectedUnAuthResetRoute;

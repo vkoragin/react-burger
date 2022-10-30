@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FeedItem } from '../components/feed-item/feed-item';
+import FeedItem from '../components/feed-item/feed-item';
 import styles from './feed.module.css';
 import { feedsUrl } from '../url';
 import type { ReduxStore } from '../services/store.types';
 import type { TOrder } from '../types';
 
-export function FeedPage() {
+const FeedPage: FC = () => {
   const dispatch = useDispatch();
   const { messages } = useSelector(
     (store: ReduxStore) => store.messages,
@@ -34,6 +34,16 @@ export function FeedPage() {
     }
   }, [messages]);
 
+  const splitArray = (arr: any, size: number) =>
+    arr.reduce(
+      (p: any, c: any) => {
+        if (p[p.length - 1].length === size) p.push([]);
+        p[p.length - 1].push(c);
+        return p;
+      },
+      [[]],
+    );
+
   useEffect(() => {
     if (orders.length) {
       const created = orders.filter(
@@ -44,16 +54,6 @@ export function FeedPage() {
       setDoneNumbers(splitArray(done, 10));
     }
   }, [orders]);
-
-  const splitArray = (arr: any, size: number) =>
-    arr.reduce(
-      (p: any, c: any) => {
-        if (p[p.length - 1].length === size) p.push([]);
-        p[p.length - 1].push(c);
-        return p;
-      },
-      [[]],
-    );
 
   return (
     <div>
@@ -148,4 +148,6 @@ export function FeedPage() {
       </section>
     </div>
   );
-}
+};
+
+export default FeedPage;

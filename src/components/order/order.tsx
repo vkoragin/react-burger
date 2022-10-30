@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -8,7 +8,7 @@ import { formatDate } from '../../utils';
 import type { ReduxStore } from '../../services/store.types';
 import type { TIngredient } from '../../types';
 
-export default function Order() {
+const Order: FC = () => {
   const { order, orderRequest, orderFailed } = useSelector(
     (store: ReduxStore) => store.order,
   );
@@ -155,4 +155,6 @@ export default function Order() {
       </section>
     )
   );
-}
+};
+
+export default Order;

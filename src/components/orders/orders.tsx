@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FeedItem } from '../feed-item/feed-item';
+import FeedItem from '../feed-item/feed-item';
 import { feedsUserUrl } from '../../url';
 import styles from './orders.module.css';
 import { getCookie } from '../../utils';
@@ -11,7 +11,7 @@ import {
 import type { ReduxStore } from '../../services/store.types';
 import type { TOrder } from '../../types';
 
-export function Orders() {
+const Orders: FC = () => {
   const dispatch = useDispatch();
   const { messages } = useSelector(
     (store: ReduxStore) => store.messages,
@@ -54,4 +54,6 @@ export function Orders() {
       )}
     </div>
   );
-}
+};
+
+export default Orders;

@@ -1,14 +1,11 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import styles from './modal-overlay.module.css';
 
 interface IModalOverlayProps {
   onClose: (e: any) => void;
 }
 
-export const ModalOverlay: FunctionComponent<IModalOverlayProps> = (
-  props,
-) => {
-  const { onClose } = props;
+const ModalOverlay: FC<IModalOverlayProps> = ({ onClose }) => {
   const handleClose = (e: any) => {
     if (e.keyCode === 27) onClose(e);
   };
@@ -20,3 +17,5 @@ export const ModalOverlay: FunctionComponent<IModalOverlayProps> = (
 
   return <div className={styles.overlay} onClick={onClose} />;
 };
+
+export default ModalOverlay;

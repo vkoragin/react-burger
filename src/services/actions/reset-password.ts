@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { Dispatch } from 'react';
 import { getCookie } from '../../utils';
 import { resetPasswordUrl } from '../../url';
@@ -11,34 +11,31 @@ export type TResetPasswordResponse = {
   message: string;
 } & Response;
 
-export function resetPassword(data: {
+export function resetPassword(authData: {
   password: string;
   token: string;
 }) {
-  return function (dispatch: Dispatch<LoaderAction>) {
+  return async function (dispatch: Dispatch<LoaderAction>) {
     dispatch({
       type: SHOW_LOADER,
       loader: true,
     });
 
-    return axios
-      .post(resetPasswordUrl, data, {
+    try {
+      const { data } = await axios.post(resetPasswordUrl, authData, {
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
           authorization: getCookie('accessToken'),
         },
-      })
-      .then<TResetPasswordResponse>((response: AxiosResponse) => {
-        return response.data;
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() =>
-        dispatch({
-          type: SHOW_LOADER,
-          loader: false,
-        }),
-      );
+      });
+      return data;
+    } catch (error) {
+      return false;
+    } finally {
+      return dispatch({
+        type: SHOW_LOADER,
+        loader: false,
+      });
+    }
   };
 }

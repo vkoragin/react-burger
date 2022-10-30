@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector } from 'react-redux';
 import type { ReduxStore } from '../../services/store.types';
@@ -7,7 +7,7 @@ type TTabsProps = {
   ingredientsTypes: string[];
 };
 
-export default function Tabs({ ingredientsTypes }: TTabsProps) {
+const Tabs: FC<TTabsProps> = ({ ingredientsTypes }) => {
   const { activeTab } = useSelector(
     (store: ReduxStore) => store.activeTab,
   );
@@ -30,4 +30,6 @@ export default function Tabs({ ingredientsTypes }: TTabsProps) {
       ))}
     </div>
   );
-}
+};
+
+export default Tabs;

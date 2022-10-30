@@ -9,7 +9,7 @@ import {
 import { NavLink, useLocation } from 'react-router-dom';
 import styles from './app-header.module.css';
 
-export default function AppHeader() {
+const AppHeader = () => {
   const location = useLocation();
 
   return (
@@ -59,7 +59,7 @@ export default function AppHeader() {
         <section className={styles.profile}>
           <ProfileIcon
             type={
-              ~location.pathname.indexOf('/profile')
+              location.pathname.indexOf('/profile') !== -1
                 ? 'primary'
                 : 'secondary'
             }
@@ -75,4 +75,6 @@ export default function AppHeader() {
       </header>
     </div>
   );
-}
+};
+
+export default AppHeader;
