@@ -1,13 +1,14 @@
 import React, { FC, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+
 import {
   Input,
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { resetPassword } from '../services/actions/forgot-password';
-
 import { emailRegExp } from '../utils';
+
+import { resetPassword } from '../services/actions/forgot-password';
 
 const ForgotPasswordPage: FC = () => {
   const [email, setEmail] = useState('');

@@ -1,6 +1,7 @@
-import { loaderReducer } from './loader';
 import { LoaderStore } from './loader.types';
 import { SHOW_LOADER } from '../actions/actionTypes';
+
+import loaderReducer from './loader';
 
 const initialState: LoaderStore = {
   loader: false,

@@ -1,17 +1,21 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
-import TotalPrice from '../total-price/total-price';
-import NotBunIngredientsConstructor from '../not-bun-ingredients-constructor/not-bun-ingredients-constructor';
-import styles from './burger-constructor.module.css';
+
+import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+
+import { TIngredient } from '../../types';
+import type { ReduxStore } from '../../services/store.types';
 import {
   ADD_TO_CONSTRUCTOR,
   REORDER_INGREDIENTS,
   SET_UNIQUE_KEY,
 } from '../../services/actions/actionTypes';
-import type { ReduxStore } from '../../services/store.types';
-import { TIngredient } from '../../types';
+
+import NotBunIngredientsConstructor from '../not-bun-ingredients-constructor/not-bun-ingredients-constructor';
+import TotalPrice from '../total-price/total-price';
+
+import styles from './burger-constructor.module.css';
 
 const BurgerConstructor = () => {
   const [bun, setBun] = useState<TIngredient>();

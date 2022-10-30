@@ -1,7 +1,8 @@
-import { userReducer } from './profile';
 import { UserStore } from './profile.types';
 import { TUser } from '../../types';
 import { GET_USER, GET_USER_SUCCESS } from '../actions/actionTypes';
+
+import userReducer from './profile';
 
 const initialState: UserStore = {
   user: null,

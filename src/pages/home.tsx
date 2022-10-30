@@ -1,11 +1,14 @@
 import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { useSelector } from 'react-redux';
+
+import type { ReduxStore } from '../services/store.types';
+
 import BurgerIngredients from '../components/burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../components/burger-constructor/burger-constructor';
+
 import styles from './home.module.css';
-import type { ReduxStore } from '../services/store.types';
 
 const HomePage: FC = () => {
   const { ingredientsRequest, ingredientsFailed } = useSelector(

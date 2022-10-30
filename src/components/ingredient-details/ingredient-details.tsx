@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import styles from './ingredient-details.module.css';
-import type { ReduxStore } from '../../services/store.types';
+
 import type { TIngredient } from '../../types';
+import type { ReduxStore } from '../../services/store.types';
+
+import styles from './ingredient-details.module.css';
 
 const IngredientDetails = () => {
   const { ingredients } = useSelector(

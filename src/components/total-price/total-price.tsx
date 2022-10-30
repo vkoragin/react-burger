@@ -1,16 +1,21 @@
 import React, { FC, useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
 import {
   Button,
   CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+
+import { getCookie } from '../../utils';
+import type { ReduxStore } from '../../services/store.types';
+
+import getOrderNumber from '../../services/actions/order-details';
+
 import OrderDetails from '../order-details/order-details';
 import Modal from '../modal/modal';
+
 import styles from './total-price.module.css';
-import { getCookie } from '../../utils';
-import getOrderNumber from '../../services/actions/order-details';
-import type { ReduxStore } from '../../services/store.types';
 
 const TotalPrice: FC = () => {
   const [visible, setVisible] = useState(false);

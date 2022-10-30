@@ -1,14 +1,16 @@
 import axios, { AxiosError } from 'axios';
+
 import { getOrderNumberUrl } from '../../url';
 import { getCookie } from '../../utils';
 import type { AppDispatch, AppThunk } from '../store.types';
-import { refreshToken } from './auth';
 import {
   GET_ODDER_NUMBER,
   GET_ODDER_NUMBER_FAILED,
   GET_ODDER_NUMBER_SUCCESS,
   CLEAR_CONSTRUCTOR,
 } from './actionTypes';
+
+import { refreshToken } from './auth';
 
 const getOrderNumber =
   (ingredientsIds: string[]) =>

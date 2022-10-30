@@ -1,5 +1,6 @@
 import { Action, ActionCreator, Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
+
 import {
   BurgerIngredientStore,
   ActiveTabStore,
@@ -9,6 +10,7 @@ import { OrderNumberStore } from './reducers/order-details.type';
 import { OrderStore } from './reducers/order.types';
 import { UserStore } from './reducers/profile.types';
 import { WsStore } from './reducers/wsReducer.type';
+
 import { Actions as BurgerIngredientsActions } from './actions/burgrer-ingredients.types';
 import { LoaderAction } from './actions/loader.types';
 import { Actions as WsActions } from './actions/wsActionTypes';

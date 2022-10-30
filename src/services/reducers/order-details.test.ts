@@ -1,9 +1,10 @@
-import { orderNumberReducer } from './order-details';
 import { OrderNumberStore } from './order-details.type';
 import {
   GET_ODDER_NUMBER,
   GET_ODDER_NUMBER_SUCCESS,
 } from '../actions/actionTypes';
+
+import orderNumberReducer from './order-details';
 
 const initialState: OrderNumberStore = {
   number: '',

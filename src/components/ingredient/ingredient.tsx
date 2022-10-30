@@ -1,15 +1,16 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useDrag } from 'react-dnd';
+
 import {
   Counter,
   CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-
-import { useSelector } from 'react-redux';
-import { useDrag } from 'react-dnd';
-import styles from './ingredient.module.css';
-import type { ReduxStore } from '../../services/store.types';
 import type { TIngredient } from '../../types';
+import type { ReduxStore } from '../../services/store.types';
+
+import styles from './ingredient.module.css';
 
 interface IIngredientProps {
   ingredient: TIngredient;

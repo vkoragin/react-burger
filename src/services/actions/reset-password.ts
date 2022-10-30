@@ -1,9 +1,10 @@
 import axios from 'axios';
+
 import { Dispatch } from 'react';
+
 import { getCookie } from '../../utils';
 import { resetPasswordUrl } from '../../url';
 import { LoaderAction } from './loader.types';
-
 import { SHOW_LOADER } from './actionTypes';
 
 export type TResetPasswordResponse = {

@@ -1,11 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useLocation, Link } from 'react-router-dom';
-import styles from './feed-item.module.css';
+
+import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { formatDate } from '../../utils';
-import type { ReduxStore } from '../../services/store.types';
 import type { TIngredient, TOrder } from '../../types';
+import type { ReduxStore } from '../../services/store.types';
+
+import styles from './feed-item.module.css';
 
 interface IFeedItemProps {
   order: TOrder;

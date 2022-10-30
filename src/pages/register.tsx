@@ -1,12 +1,14 @@
+import React, { FC, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+
 import {
   Input,
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import React, { FC, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { registerUser } from '../services/actions/auth';
 import { minPasswordLength, emailRegExp } from '../utils';
+
+import { registerUser } from '../services/actions/auth';
 
 const RegisterPage: FC = () => {
   const [email, setEmail] = useState('');

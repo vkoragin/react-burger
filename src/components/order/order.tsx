@@ -1,12 +1,16 @@
 import React, { FC, useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import getOrder from '../../services/actions/order';
-import styles from './order.module.css';
+
 import { formatDate } from '../../utils';
-import type { ReduxStore } from '../../services/store.types';
 import type { TIngredient } from '../../types';
+import type { ReduxStore } from '../../services/store.types';
+
+import getOrder from '../../services/actions/order';
+
+import styles from './order.module.css';
 
 const Order: FC = () => {
   const { order, orderRequest, orderFailed } = useSelector(

@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useInView } from 'react-intersection-observer';
-import Tabs from '../tabs/tabs';
-import IngredientsGroup from '../ingredients-group/ingredients-group';
-import styles from './burger-ingredients.module.css';
-import { setActiveTab } from '../../services/actions/burger-ingredients';
+
 import type { ReduxStore } from '../../services/store.types';
+
+import { setActiveTab } from '../../services/actions/burger-ingredients';
+
+import IngredientsGroup from '../ingredients-group/ingredients-group';
+import Tabs from '../tabs/tabs';
+
+import styles from './burger-ingredients.module.css';
 
 const BurgerIngredients = () => {
   const { ingredients } = useSelector(

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   NavLink,
   useHistory,
@@ -6,12 +7,14 @@ import {
   useLocation,
   Switch,
 } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import styles from './profile.module.css';
+
 import { logoutUser } from '../services/actions/auth';
+
 import Profile from '../components/profile/profile';
 import Orders from '../components/orders/orders';
 import ProtectedRoute from '../components/protected-route';
+
+import styles from './profile.module.css';
 
 const ProfilePage: FC = () => {
   const history = useHistory();

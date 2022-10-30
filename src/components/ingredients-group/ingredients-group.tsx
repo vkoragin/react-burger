@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
-import Ingredient from '../ingredient/ingredient';
-import styles from './ingredients-group.module.css';
+
 import type { TIngredient } from '../../types';
+
+import Ingredient from '../ingredient/ingredient';
+
+import styles from './ingredients-group.module.css';
 
 interface IIngredientsGroupProps {
   ingredients: TIngredient[];

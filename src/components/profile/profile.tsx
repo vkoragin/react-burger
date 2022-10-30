@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
+
 import {
   Input,
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from './profile.module.css';
-import { getUser, updateUser } from '../../services/actions/profile';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { minPasswordLength, emailRegExp } from '../../utils';
 import type { ReduxStore } from '../../services/store.types';
 import type { TUser } from '../../types';
+
+import { getUser, updateUser } from '../../services/actions/profile';
+
+import styles from './profile.module.css';
 
 const Profile = () => {
   const { user } = useSelector((store: ReduxStore) => store.user);

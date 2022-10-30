@@ -6,8 +6,21 @@ import {
   useLocation,
   useHistory,
 } from 'react-router-dom';
-import styles from './app.module.css';
+
+import type { ReduxStore } from '../../services/store.types';
+
+import { getIngredients } from '../../services/actions/burger-ingredients';
+import { useDispatch, useSelector } from '../../services/hooks';
+
+import ProtectedRoute from '../protected-route';
+import ProtectedUnAuthRoute from '../protected-un-auth-route';
+import ProtectedUnAuthResetRoute from '../protected-un-auth-reset-route';
+import IngredientDetails from '../ingredient-details/ingredient-details';
 import AppHeader from '../app-header/app-header';
+import Loader from '../loader/loader';
+import Modal from '../modal/modal';
+import Order from '../order/order';
+
 import {
   LoginPage,
   RegisterPage,
@@ -20,16 +33,8 @@ import {
   NotFound404,
   OrderPage,
 } from '../../pages';
-import ProtectedRoute from '../protected-route';
-import ProtectedUnAuthResetRoute from '../protected-un-auth-reset-route';
-import ProtectedUnAuthRoute from '../protected-un-auth-route';
-import { useDispatch, useSelector } from '../../services/hooks';
-import Loader from '../loader/loader';
-import Modal from '../modal/modal';
-import IngredientDetails from '../ingredient-details/ingredient-details';
-import Order from '../order/order';
-import { getIngredients } from '../../services/actions/burger-ingredients';
-import type { ReduxStore } from '../../services/store.types';
+
+import styles from './app.module.css';
 
 const ModalSwitch = () => {
   const { loader } = useSelector((store: ReduxStore) => store.loader);

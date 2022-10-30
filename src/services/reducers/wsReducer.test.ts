@@ -1,4 +1,3 @@
-import { wsReducer } from './wsReducer';
 import { TMassage } from '../../types';
 import { WsStore } from './wsReducer.type';
 import {
@@ -6,6 +5,8 @@ import {
   WS_CONNECTION_CLOSED,
   WS_GET_MESSAGE,
 } from '../actions/wsActionTypes';
+
+import wsReducer from './wsReducer';
 
 const messages: TMassage[] = [
   {

@@ -1,10 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import FeedItem from '../components/feed-item/feed-item';
-import styles from './feed.module.css';
-import { feedsUrl } from '../url';
+
 import type { ReduxStore } from '../services/store.types';
 import type { TOrder } from '../types';
+import { feedsUrl } from '../url';
+
+import FeedItem from '../components/feed-item/feed-item';
+
+import styles from './feed.module.css';
 
 const FeedPage: FC = () => {
   const dispatch = useDispatch();

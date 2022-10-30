@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector } from 'react-redux';
+
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import type { ReduxStore } from '../../services/store.types';
 
 type TTabsProps = {

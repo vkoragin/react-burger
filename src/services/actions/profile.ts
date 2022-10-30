@@ -1,8 +1,10 @@
 import axios, { AxiosError } from 'axios';
+
 import { getCookie } from '../../utils';
 import { profileUrl } from '../../url';
-import { refreshToken } from './auth';
 import type { AppDispatch, AppThunk } from '../store.types';
+
+import { refreshToken } from './auth';
 
 import {
   GET_USER,

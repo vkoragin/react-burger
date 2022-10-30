@@ -1,12 +1,14 @@
+import React, { FC, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+
 import {
   Input,
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import React, { FC, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { resetPassword } from '../services/actions/reset-password';
 import { minPasswordLength } from '../utils';
+
+import { resetPassword } from '../services/actions/reset-password';
 
 const ResetPasswordPage: FC = () => {
   const [password, setPassword] = useState('');

@@ -1,12 +1,14 @@
 import React, { FC, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { useDrop, useDrag } from 'react-dnd';
+
 import {
   ConstructorElement,
   DragIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useDispatch } from 'react-redux';
-import { useDrop, useDrag } from 'react-dnd';
-import styles from './not-bun-ingredients-constructor.module.css';
 import { DEL_FROM_CONSTRUCTOR } from '../../services/actions/actionTypes';
+
+import styles from './not-bun-ingredients-constructor.module.css';
 
 interface INotBunIngredientsConstructorProps {
   // eslint-disable-next-line

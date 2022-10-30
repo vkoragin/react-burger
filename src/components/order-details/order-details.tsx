@@ -1,8 +1,11 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
-import styles from './order-details.module.css';
-import done from '../../images/done.png';
+
 import type { ReduxStore } from '../../services/store.types';
+
+import done from '../../images/done.png';
+
+import styles from './order-details.module.css';
 
 const OrderDetails: FC = () => {
   const { number, numberRequest, numberFailed } = useSelector(

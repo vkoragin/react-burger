@@ -1,4 +1,3 @@
-import { ingredientsReducer } from './burger-ingredients';
 import { TIngredient } from '../../types';
 import { BurgerIngredientStore } from './burger-ingredient.types';
 import {
@@ -10,6 +9,8 @@ import {
   REORDER_INGREDIENTS,
   SET_UNIQUE_KEY,
 } from '../actions/actionTypes';
+
+import { ingredientsReducer } from './burger-ingredients';
 
 const ingredient: TIngredient = {
   calories: 420,

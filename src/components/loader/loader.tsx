@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 import ReactDOM from 'react-dom';
-import styles from './loader.module.css';
+
 import LoaderOverlay from '../loader-overlay/loader-overlay';
+
+import styles from './loader.module.css';
 
 const loaderRoot = document.getElementById('loader') as HTMLElement;
 

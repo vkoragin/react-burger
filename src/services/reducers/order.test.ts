@@ -1,4 +1,3 @@
-import { orderReducer } from './order';
 import { TOrder } from '../../types';
 import { OrderStore } from './order.types';
 import {
@@ -6,6 +5,8 @@ import {
   GET_ORDER_SUCCESS,
   CLEAR_ORDER,
 } from '../actions/actionTypes';
+
+import orderReducer from './order';
 
 const orders: TOrder[] = [
   {

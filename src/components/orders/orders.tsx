@@ -1,15 +1,18 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import FeedItem from '../feed-item/feed-item';
+
 import { feedsUserUrl } from '../../url';
-import styles from './orders.module.css';
-import { getCookie } from '../../utils';
+
+import type { ReduxStore } from '../../services/store.types';
 import {
   WS_CONNECTION_START,
   WS_CONNECTION_CLOSED,
 } from '../../services/actions/wsActionTypes';
-import type { ReduxStore } from '../../services/store.types';
 import type { TOrder } from '../../types';
+import FeedItem from '../feed-item/feed-item';
+import { getCookie } from '../../utils';
+
+import styles from './orders.module.css';
 
 const Orders: FC = () => {
   const dispatch = useDispatch();
