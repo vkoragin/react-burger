@@ -1,4 +1,4 @@
-export function getCookie(name: string) {
+export const getCookie = (name: string) => {
   const matches = document.cookie.match(
     new RegExp(
       `(?:^|; )${name.replace(
@@ -9,7 +9,7 @@ export function getCookie(name: string) {
     ),
   );
   return matches ? decodeURIComponent(matches[1]) : undefined;
-}
+};
 
 interface ICookieOptions {
   path?: string;
@@ -19,11 +19,11 @@ interface ICookieOptions {
   sameSite?: 'strict' | 'lax' | 'none' | boolean;
 }
 
-export function setCookie(
+export const setCookie = (
   name: string,
   value: string,
   options = {} as ICookieOptions,
-) {
+) => {
   options = {
     path: '/',
     ...options,
@@ -46,11 +46,11 @@ export function setCookie(
   });
 
   document.cookie = updatedCookie;
-}
+};
 
-export function deleteCookie(name: string) {
+export const deleteCookie = (name: string) => {
   setCookie(name, '', { expires: -1 });
-}
+};
 
 export const minPasswordLength = 6;
 
