@@ -65,7 +65,7 @@ const Profile = () => {
       );
     if (!password.length)
       setPasswordText('Это поле не должно быть пустым');
-    setPasswordError(isValid);
+    setPasswordError(!isValid);
     return isValid;
   };
 
@@ -76,13 +76,13 @@ const Profile = () => {
       setErrorEmailText('Не валидный email');
     if (!email.length)
       setErrorEmailText('Это поле не должно быть пустым');
-    setErrorEmail(isValid);
+    setErrorEmail(!isValid);
     return isValid;
   };
 
   const validateName = () => {
     const isValid = Boolean(name.length);
-    setNameError(isValid);
+    setNameError(!isValid);
     return isValid;
   };
 

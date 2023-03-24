@@ -21,10 +21,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint"
-  ],
+  "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "default-param-last": 0,
     "no-param-reassign": 0,
@@ -40,12 +37,7 @@
     "react/jsx-filename-extension": [
       2,
       {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ],
     "import/extensions": [
@@ -58,21 +50,14 @@
         "tsx": "never"
       }
     ],
-    "@typescript-eslint/no-use-before-define": [
-      "error"
-    ],
+    "@typescript-eslint/no-use-before-define": ["error"],
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off"
   },
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
   }
