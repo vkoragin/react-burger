@@ -207,7 +207,7 @@ const Profile = () => {
               >
                 Отмена
               </a>
-              <Button type="primary" size="medium">
+              <Button type="primary" size="medium" htmlType="button">
                 Сохранить
               </Button>
             </p>

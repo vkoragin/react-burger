@@ -61,7 +61,7 @@ const ForgotPasswordPage: FC = () => {
         />
       </div>
       <p className="mb-20">
-        <Button type="primary" size="medium">
+        <Button type="primary" size="medium" htmlType="button">
           Восстановить
         </Button>
       </p>

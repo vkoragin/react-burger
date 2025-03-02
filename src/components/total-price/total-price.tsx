@@ -72,7 +72,12 @@ const TotalPrice: FC = () => {
         <CurrencyIcon type="primary" />
         <p className="ml-10">
           {showButton() && (
-            <Button onClick={onOpen} type="primary" size="medium">
+            <Button
+              onClick={onOpen}
+              type="primary"
+              size="medium"
+              htmlType="button"
+            >
               Оформить заказ
             </Button>
           )}
