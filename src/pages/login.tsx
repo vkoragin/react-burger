@@ -121,7 +121,7 @@ const LoginPage: FC = () => {
         />
       </div>
       <p className="mb-20">
-        <Button type="primary" size="medium" htmlType="button">
+        <Button type="primary" size="medium" htmlType="submit">
           Войти
         </Button>
       </p>

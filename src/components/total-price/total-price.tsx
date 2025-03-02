@@ -76,7 +76,7 @@ const TotalPrice: FC = () => {
               onClick={onOpen}
               type="primary"
               size="medium"
-              htmlType="button"
+              htmlType="submit"
             >
               Оформить заказ
             </Button>
