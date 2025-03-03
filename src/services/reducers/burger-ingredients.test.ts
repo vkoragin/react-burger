@@ -17,10 +17,8 @@ const ingredient: TIngredient = {
   carbohydrates: 53,
   fat: 24,
   image: 'https://code.s3.yandex.net/react/code/bun-02.png',
-  image_large:
-    'https://code.s3.yandex.net/react/code/bun-02-large.png',
-  image_mobile:
-    'https://code.s3.yandex.net/react/code/bun-02-mobile.png',
+  image_large: 'https://code.s3.yandex.net/react/code/bun-02-large.png',
+  image_mobile: 'https://code.s3.yandex.net/react/code/bun-02-mobile.png',
   name: 'Краторная булка N-200i',
   price: 1255,
   proteins: 80,
@@ -37,10 +35,8 @@ const ingredients: TIngredient[] = [
     carbohydrates: 53,
     fat: 24,
     image: 'https://code.s3.yandex.net/react/code/bun-02.png',
-    image_large:
-      'https://code.s3.yandex.net/react/code/bun-02-large.png',
-    image_mobile:
-      'https://code.s3.yandex.net/react/code/bun-02-mobile.png',
+    image_large: 'https://code.s3.yandex.net/react/code/bun-02-large.png',
+    image_mobile: 'https://code.s3.yandex.net/react/code/bun-02-mobile.png',
     name: 'Краторная булка N-200i',
     price: 1255,
     proteins: 80,
@@ -56,10 +52,8 @@ const ingredientsWithUniqueKeys: TIngredient[] = [
     carbohydrates: 53,
     fat: 24,
     image: 'https://code.s3.yandex.net/react/code/bun-02.png',
-    image_large:
-      'https://code.s3.yandex.net/react/code/bun-02-large.png',
-    image_mobile:
-      'https://code.s3.yandex.net/react/code/bun-02-mobile.png',
+    image_large: 'https://code.s3.yandex.net/react/code/bun-02-large.png',
+    image_mobile: 'https://code.s3.yandex.net/react/code/bun-02-mobile.png',
     name: 'Краторная булка N-200i',
     price: 1255,
     proteins: 80,
@@ -174,9 +168,7 @@ describe('check ingredientsReducer', () => {
       uniqueKey,
     });
 
-    expect(recived.constructor.length).toEqual(
-      expected.constructor.length - 1,
-    );
+    expect(recived.constructor.length).toEqual(expected.constructor.length - 1);
   });
 
   it('check CLEAR_CONSTRUCTOR', () => {

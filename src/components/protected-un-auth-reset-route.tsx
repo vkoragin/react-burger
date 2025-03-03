@@ -12,7 +12,6 @@ const ProtectedUnAuthResetRoute = ({
 
   return (
     <Route
-      /* eslint-disable-next-line react/jsx-props-no-spreading */
       {...rest}
       render={({ location }) =>
         !isAuth && wasResetPassword === 'true' ? (

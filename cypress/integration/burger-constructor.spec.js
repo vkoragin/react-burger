@@ -6,15 +6,15 @@ describe('burger constructor works correctly', function () {
   });
 
   it('drag-and-drop', () => {
-    cy.get(
-      '.bun   + section[class^="ingredients-group"] > a:first-child',
-    ).drag('[class^="burger-constructor"]');
-    cy.get(
-      '.sauce + section[class^="ingredients-group"] > a:first-child',
-    ).drag('[class^="burger-constructor"]');
-    cy.get(
-      '.main  + section[class^="ingredients-group"] > a:first-child',
-    ).drag('[class^="burger-constructor"]');
+    cy.get('.bun   + section[class^="ingredients-group"] > a:first-child').drag(
+      '[class^="burger-constructor"]',
+    );
+    cy.get('.sauce + section[class^="ingredients-group"] > a:first-child').drag(
+      '[class^="burger-constructor"]',
+    );
+    cy.get('.main  + section[class^="ingredients-group"] > a:first-child').drag(
+      '[class^="burger-constructor"]',
+    );
 
     let defaultText = '';
 
@@ -48,10 +48,7 @@ describe('burger constructor works correctly', function () {
         expect(defaultText).to.equal(text);
       });
 
-    cy.get('div[class^="burger-constructor"]').should(
-      'contain',
-      'булка',
-    );
+    cy.get('div[class^="burger-constructor"]').should('contain', 'булка');
 
     cy.get('div[class^="burger-constructor_bun"]').should((item) => {
       expect(item).to.have.length(2);

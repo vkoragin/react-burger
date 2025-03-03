@@ -30,9 +30,7 @@ const socketMiddleware = () => {
           dispatch({ type: WS_CONNECTION_ERROR, payload: event });
         };
 
-        socket.onmessage = (
-          event: WebSocketEventMap & { data: string },
-        ) => {
+        socket.onmessage = (event: WebSocketEventMap & { data: string }) => {
           const { data } = event;
           const parsedData = JSON.parse(data);
           dispatch({ type: WS_GET_MESSAGE, payload: parsedData });

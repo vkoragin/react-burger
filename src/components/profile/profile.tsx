@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import {
-  Input,
-  Button,
-} from '@ya.praktikum/react-developer-burger-ui-components';
+import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { minPasswordLength, emailRegExp } from '../../utils';
 import type { ReduxStore } from '../../services/store.types';
@@ -37,34 +34,23 @@ const Profile = () => {
     setPassword(defPassword);
   };
 
-  const handleChangeEmail = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const handleChangePassword = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handleChangeName = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
   const validatePassword = () => {
-    const isValid = Boolean(
-      password.length && password.length >= minPasswordLength,
-    );
+    const isValid = Boolean(password.length && password.length >= minPasswordLength);
     if (password.length && password.length < minPasswordLength)
-      setPasswordText(
-        `Пароль должен быть не менее ${minPasswordLength} символов`,
-      );
-    if (!password.length)
-      setPasswordText('Это поле не должно быть пустым');
+      setPasswordText(`Пароль должен быть не менее ${minPasswordLength} символов`);
+    if (!password.length) setPasswordText('Это поле не должно быть пустым');
     setPasswordError(!isValid);
     return isValid;
   };
@@ -72,10 +58,8 @@ const Profile = () => {
   const validateEmail = () => {
     const validEmail = emailRegExp.test(String(email).toLowerCase());
     const isValid = Boolean(email.length && validEmail);
-    if (email.length && !validEmail)
-      setErrorEmailText('Не валидный email');
-    if (!email.length)
-      setErrorEmailText('Это поле не должно быть пустым');
+    if (email.length && !validEmail) setErrorEmailText('Не валидный email');
+    if (!email.length) setErrorEmailText('Это поле не должно быть пустым');
     setErrorEmail(!isValid);
     return isValid;
   };
@@ -134,11 +118,7 @@ const Profile = () => {
   };
 
   const isDef = () => {
-    return (
-      password === defPassword &&
-      email === defEmail &&
-      name === defName
-    );
+    return password === defPassword && email === defEmail && name === defName;
   };
 
   useEffect(() => {
@@ -154,10 +134,7 @@ const Profile = () => {
   return (
     user && (
       <section>
-        <form
-          className={`${styles.profileForm} form`}
-          onSubmit={handleSave}
-        >
+        <form className={`${styles.profileForm} form`} onSubmit={handleSave}>
           <div className="mb-6">
             <Input
               type="text"
@@ -189,9 +166,7 @@ const Profile = () => {
               type="password"
               value={password}
               name="password"
-              icon={
-                password !== defPassword ? 'CloseIcon' : 'EditIcon'
-              }
+              icon={password !== defPassword ? 'CloseIcon' : 'EditIcon'}
               error={errorPassword}
               errorText={errorPasswordText}
               onIconClick={handleResetPassword}
@@ -200,11 +175,7 @@ const Profile = () => {
           </div>
           {!isDef() && (
             <p className="mb-20">
-              <a
-                href="/#"
-                className="text text_type_main-default mr-7"
-                onClick={handleCancel}
-              >
+              <a href="/#" className="text text_type_main-default mr-7" onClick={handleCancel}>
                 Отмена
               </a>
               <Button type="primary" size="medium" htmlType="submit">

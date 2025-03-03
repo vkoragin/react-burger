@@ -4,10 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { feedsUserUrl } from '../../url';
 
 import type { ReduxStore } from '../../services/store.types';
-import {
-  WS_CONNECTION_START,
-  WS_CONNECTION_CLOSED,
-} from '../../services/actions/wsActionTypes';
+import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from '../../services/actions/wsActionTypes';
 import type { TOrder } from '../../types';
 import FeedItem from '../feed-item/feed-item';
 import { getCookie } from '../../utils';
@@ -16,9 +13,7 @@ import styles from './orders.module.css';
 
 const Orders: FC = () => {
   const dispatch = useDispatch();
-  const { messages } = useSelector(
-    (store: ReduxStore) => store.messages,
-  );
+  const { messages } = useSelector((store: ReduxStore) => store.messages);
   const [orders, setOrders] = useState<TOrder[]>([]);
   const accessToken = getCookie('accessToken')?.split(' ');
   let token = '';
@@ -44,11 +39,7 @@ const Orders: FC = () => {
     <div className={styles.userFeed}>
       {orders.length ? (
         orders.map((item) =>
-          item?.ingredients?.length ? (
-            <FeedItem key={item._id} order={item} showStatus />
-          ) : (
-            false
-          ),
+          item?.ingredients?.length ? <FeedItem key={item._id} order={item} showStatus /> : false,
         )
       ) : (
         <p className="text text_type_main-default text_color_inactive pt-4">

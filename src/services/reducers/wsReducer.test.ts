@@ -13,10 +13,7 @@ const messages: TMassage[] = [
     orders: [
       {
         createdAt: new Date('2021-09-19T13:51:33.650Z'),
-        ingredients: [
-          '60d3b41abdacab0026a733cd',
-          '60d3b41abdacab0026a733c7',
-        ],
+        ingredients: ['60d3b41abdacab0026a733cd', '60d3b41abdacab0026a733c7'],
         name: 'Space флюоресцентный бургер',
         number: 3562,
         status: 'done',

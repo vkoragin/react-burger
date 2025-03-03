@@ -13,8 +13,7 @@ export type TResetPasswordResponse = {
 } & Response;
 
 export const resetPassword =
-  (authData: { password: string; token: string }) =>
-  async (dispatch: Dispatch<LoaderAction>) => {
+  (authData: { password: string; token: string }) => async (dispatch: Dispatch<LoaderAction>) => {
     dispatch({
       type: SHOW_LOADER,
       loader: true,

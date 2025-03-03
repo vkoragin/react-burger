@@ -6,10 +6,7 @@ const initialState: LoaderStore = {
   loader: false,
 };
 
-const loaderReducer = (
-  state = initialState,
-  action: LoaderAction,
-) => {
+const loaderReducer = (state = initialState, action: LoaderAction) => {
   switch (action.type) {
     case SHOW_LOADER: {
       return {

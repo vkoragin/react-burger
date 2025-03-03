@@ -1,12 +1,6 @@
 export const getCookie = (name: string) => {
   const matches = document.cookie.match(
-    new RegExp(
-      `(?:^|; )${name.replace(
-        // eslint-disable-next-line
-        /([\.$?*|{}\(\)\[\]\\\/\+^])/g,
-        '\\$1', // eslint-disable-line
-      )}=([^;]*)`, // eslint-disable-line
-    ),
+    new RegExp(`(?:^|; )${name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1')}=([^;]*)`),
   );
   return matches ? decodeURIComponent(matches[1]) : undefined;
 };
@@ -19,11 +13,7 @@ interface ICookieOptions {
   sameSite?: 'strict' | 'lax' | 'none' | boolean;
 }
 
-export const setCookie = (
-  name: string,
-  value: string,
-  options = {} as ICookieOptions,
-) => {
+export const setCookie = (name: string, value: string, options = {} as ICookieOptions) => {
   options = {
     path: '/',
     ...options,
@@ -33,9 +23,7 @@ export const setCookie = (
     options.expires = options.expires.toUTCString();
   }
 
-  let updatedCookie = `${encodeURIComponent(
-    name,
-  )}=${encodeURIComponent(value)}`;
+  let updatedCookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`;
 
   Object.keys(options).forEach((optionKey) => {
     updatedCookie += `; ${optionKey}`;
@@ -70,9 +58,7 @@ export const formatDate = (date: Date): string => {
   let dif: string | number = (+today - +targetDate) / msInDay;
   if (dif === 0) dif = 'Сегодня';
   if (dif === 1) dif = 'Вчера';
-  if (dif > 1) dif += ' дн. назад';
+  if (Number(dif) > 1) dif += ' дн. назад';
   const timeZone = targetDate.getTimezoneOffset() / 60;
-  return `${dif}, ${hours}:${minutes} i-GMT${
-    timeZone > 0 ? timeZone : `+${timeZone * -1}`
-  }`;
+  return `${dif}, ${hours}:${minutes} i-GMT${timeZone > 0 ? timeZone : `+${timeZone * -1}`}`;
 };

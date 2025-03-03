@@ -2,10 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import {
-  Button,
-  CurrencyIcon,
-} from '@ya.praktikum/react-developer-burger-ui-components';
+import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import { getCookie } from '../../utils';
 import type { ReduxStore } from '../../services/store.types';
@@ -19,9 +16,7 @@ import styles from './total-price.module.css';
 
 const TotalPrice: FC = () => {
   const [visible, setVisible] = useState(false);
-  const { constructor } = useSelector(
-    (store: ReduxStore) => store.ingredients,
-  );
+  const { constructor } = useSelector((store: ReduxStore) => store.ingredients);
   const [price, setPrice] = useState(0);
   const history = useHistory();
   const isAuth = getCookie('accessToken');
@@ -30,9 +25,7 @@ const TotalPrice: FC = () => {
   const onClose = () => setVisible(false);
 
   const createOrder = () => {
-    const ingredientsIds = constructor.map(
-      (ingredient) => ingredient._id,
-    );
+    const ingredientsIds = constructor.map((ingredient) => ingredient._id);
     dispatch(getOrderNumber(ingredientsIds));
   };
 
@@ -46,18 +39,12 @@ const TotalPrice: FC = () => {
   };
 
   const showButton = () => {
-    return Boolean(
-      constructor.length &&
-        constructor.filter((item) => item.type === 'bun').length,
-    );
+    return Boolean(constructor.length && constructor.filter((item) => item.type === 'bun').length);
   };
 
   useEffect(() => {
     const totalPrice = constructor.reduce(
-      (sum, current) =>
-        current.type === 'bun'
-          ? sum + current.price * 2
-          : sum + current.price,
+      (sum, current) => (current.type === 'bun' ? sum + current.price * 2 : sum + current.price),
       0,
     );
     setPrice(totalPrice);
@@ -66,18 +53,11 @@ const TotalPrice: FC = () => {
   return (
     <>
       <div className={styles.totalPrice}>
-        <span className="text text_type_digits-default pr-2">
-          {price}
-        </span>
+        <span className="text text_type_digits-default pr-2">{price}</span>
         <CurrencyIcon type="primary" />
         <p className="ml-10">
           {showButton() && (
-            <Button
-              onClick={onOpen}
-              type="primary"
-              size="medium"
-              htmlType="submit"
-            >
+            <Button onClick={onOpen} type="primary" size="medium" htmlType="submit">
               Оформить заказ
             </Button>
           )}

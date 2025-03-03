@@ -19,11 +19,7 @@ const AppHeader = () => {
         <nav className="nav">
           <ul className={styles.list}>
             <li className={styles.navItem}>
-              <BurgerIcon
-                type={
-                  location.pathname === '/' ? 'primary' : 'secondary'
-                }
-              />
+              <BurgerIcon type={location.pathname === '/' ? 'primary' : 'secondary'} />
               <NavLink
                 exact
                 to="/"
@@ -34,13 +30,7 @@ const AppHeader = () => {
               </NavLink>
             </li>
             <li className={styles.navItem}>
-              <ListIcon
-                type={
-                  location.pathname === '/feed'
-                    ? 'primary'
-                    : 'secondary'
-                }
-              />
+              <ListIcon type={location.pathname === '/feed' ? 'primary' : 'secondary'} />
               <NavLink
                 exact
                 to="/feed"
@@ -59,11 +49,7 @@ const AppHeader = () => {
         </section>
         <section className={styles.profile}>
           <ProfileIcon
-            type={
-              location.pathname.indexOf('/profile') !== -1
-                ? 'primary'
-                : 'secondary'
-            }
+            type={location.pathname.indexOf('/profile') !== -1 ? 'primary' : 'secondary'}
           />
           <NavLink
             to="/profile"

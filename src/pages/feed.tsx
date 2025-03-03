@@ -11,13 +11,9 @@ import styles from './feed.module.css';
 
 const FeedPage: FC = () => {
   const dispatch = useDispatch();
-  const { messages } = useSelector(
-    (store: ReduxStore) => store.messages,
-  );
+  const { messages } = useSelector((store: ReduxStore) => store.messages);
   const [orders, setOrders] = useState<TOrder[]>([]);
-  const [createdNumbers, setCreatedNumbers] = useState<TOrder[][]>(
-    [],
-  );
+  const [createdNumbers, setCreatedNumbers] = useState<TOrder[][]>([]);
   const [doneNumbers, setDoneNumbers] = useState<TOrder[][]>([]);
   const [total, setTotal] = useState(0);
   const [totalToday, setTotalToday] = useState(0);
@@ -49,9 +45,7 @@ const FeedPage: FC = () => {
 
   useEffect(() => {
     if (orders.length) {
-      const created = orders.filter(
-        (item) => item.status === 'created',
-      );
+      const created = orders.filter((item) => item.status === 'created');
       const done = orders.filter((item) => item.status === 'done');
       setCreatedNumbers(splitArray(created, 10));
       setDoneNumbers(splitArray(done, 10));
@@ -61,20 +55,14 @@ const FeedPage: FC = () => {
   return (
     <div>
       <header className={styles.header}>
-        <h1 className="text text_type_main-large pt-8 pb-6">
-          Лента заказов
-        </h1>
+        <h1 className="text text_type_main-large pt-8 pb-6">Лента заказов</h1>
       </header>
       <section className={styles.content}>
         <div className={styles.feed}>
           {Boolean(orders.length) &&
             orders.map((item) =>
               item?.ingredients?.length ? (
-                <FeedItem
-                  key={item._id}
-                  order={item}
-                  showStatus={false}
-                />
+                <FeedItem key={item._id} order={item} showStatus={false} />
               ) : (
                 false
               ),
@@ -84,13 +72,10 @@ const FeedPage: FC = () => {
         <div className={styles.feedInfo}>
           <div className={styles.statusesWrapper}>
             <section className={styles.statuses}>
-              <header className="text text_type_main-medium pb-6">
-                Готовы:
-              </header>
+              <header className="text text_type_main-medium pb-6">Готовы:</header>
               <div className={styles.statusesColumns}>
                 {doneNumbers.length && doneNumbers[0].length ? (
                   doneNumbers.map((doneNumbersColumn, i) => (
-                    // eslint-disable-next-line
                     <div key={i} className={styles.statusesColumn}>
                       {doneNumbersColumn.map((item) => (
                         <span
@@ -103,51 +88,35 @@ const FeedPage: FC = () => {
                     </div>
                   ))
                 ) : (
-                  <p className="text text_type_main-medium text_color_inactive">
-                    нет
-                  </p>
+                  <p className="text text_type_main-medium text_color_inactive">нет</p>
                 )}
               </div>
             </section>
             <section>
-              <header className="text text_type_main-medium pb-6">
-                В работе:
-              </header>
+              <header className="text text_type_main-medium pb-6">В работе:</header>
               <div className={styles.statusesColumns}>
                 {createdNumbers.length && createdNumbers[0].length ? (
                   createdNumbers.map((createdNumbersColumn, i) => (
-                    // eslint-disable-next-line
                     <div key={i} className={styles.statusesColumn}>
                       {createdNumbersColumn.map((item) => (
-                        <span
-                          key={item.number}
-                          className="text text_type_digits-default"
-                        >
+                        <span key={item.number} className="text text_type_digits-default">
                           {item.number}
                         </span>
                       ))}
                     </div>
                   ))
                 ) : (
-                  <p className="text text_type_main-medium text_color_inactive">
-                    нет
-                  </p>
+                  <p className="text text_type_main-medium text_color_inactive">нет</p>
                 )}
               </div>
             </section>
           </div>
           <div>
-            <p className="text text_type_main-medium mt-10">
-              Выполнено за все время:
-            </p>
+            <p className="text text_type_main-medium mt-10">Выполнено за все время:</p>
             <p className="text text_type_digits-large">{total}</p>
 
-            <p className="text text_type_main-medium mt-10">
-              Выполнено за сегодня:
-            </p>
-            <p className="text text_type_digits-large">
-              {totalToday}
-            </p>
+            <p className="text text_type_main-medium mt-10">Выполнено за сегодня:</p>
+            <p className="text text_type_digits-large">{totalToday}</p>
           </div>
         </div>
       </section>

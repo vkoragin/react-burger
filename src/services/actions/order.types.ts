@@ -1,9 +1,4 @@
-import {
-  GET_ORDER,
-  GET_ORDER_FAILED,
-  GET_ORDER_SUCCESS,
-  CLEAR_ORDER,
-} from './actionTypes';
+import { GET_ORDER, GET_ORDER_FAILED, GET_ORDER_SUCCESS, CLEAR_ORDER } from './actionTypes';
 import { TOrder } from '../../types';
 
 export type GetOrderAction = {

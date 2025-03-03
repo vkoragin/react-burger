@@ -1,11 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useLocation,
-  useHistory,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useLocation, useHistory } from 'react-router-dom';
 
 import type { ReduxStore } from '../../services/store.types';
 
@@ -32,6 +26,7 @@ import {
   IngredientsPage,
   NotFound404,
   OrderPage,
+  
 } from '../../pages';
 
 import styles from './app.module.css';
@@ -97,10 +92,7 @@ const ModalSwitch = () => {
 
         {background && (
           <Route path="/ingredients/:id">
-            <Modal
-              onCloseByClick={handleClose}
-              onCloseByKeyDown={handleClose}
-            >
+            <Modal onCloseByClick={handleClose} onCloseByKeyDown={handleClose}>
               <IngredientDetails />
             </Modal>
           </Route>
@@ -108,10 +100,7 @@ const ModalSwitch = () => {
 
         {background && (
           <Route path="/feed/:id">
-            <Modal
-              onCloseByClick={handleClose}
-              onCloseByKeyDown={handleClose}
-            >
+            <Modal onCloseByClick={handleClose} onCloseByKeyDown={handleClose}>
               <Order />
             </Modal>
           </Route>
@@ -119,10 +108,7 @@ const ModalSwitch = () => {
 
         {background && (
           <Route path="/profile/orders/:id">
-            <Modal
-              onCloseByClick={handleClose}
-              onCloseByKeyDown={handleClose}
-            >
+            <Modal onCloseByClick={handleClose} onCloseByKeyDown={handleClose}>
               <Order />
             </Modal>
           </Route>

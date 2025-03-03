@@ -2,10 +2,7 @@ import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
-import {
-  Input,
-  Button,
-} from '@ya.praktikum/react-developer-burger-ui-components';
+import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { minPasswordLength, emailRegExp } from '../utils';
 
 import { registerUser } from '../services/actions/auth';
@@ -15,9 +12,9 @@ const RegisterPage: FC = () => {
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorEmailText, setErrorEmailText] = useState('');
   const [password, setPassword] = useState('');
-  const [passwordType, setPasswordType] = useState<
-    'password' | 'email' | 'text' | undefined
-  >('password');
+  const [passwordType, setPasswordType] = useState<'password' | 'email' | 'text' | undefined>(
+    'password',
+  );
   const [errorPassword, setPasswordError] = useState(false);
   const [errorPasswordText, setPasswordText] = useState('');
   const [name, setName] = useState('');
@@ -26,28 +23,20 @@ const RegisterPage: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleChangeEmail = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const handleChangePassword = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handleChangeName = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
   const handleToggleText = () => {
-    setPasswordType(
-      passwordType === 'password' ? 'text' : 'password',
-    );
+    setPasswordType(passwordType === 'password' ? 'text' : 'password');
   };
 
   const validateName = () => {
@@ -63,15 +52,10 @@ const RegisterPage: FC = () => {
   };
 
   const validatePassword = () => {
-    const isValid = Boolean(
-      password.length && password.length >= minPasswordLength,
-    );
+    const isValid = Boolean(password.length && password.length >= minPasswordLength);
     if (password.length && password.length < minPasswordLength)
-      setPasswordText(
-        `Пароль должен быть не менее ${minPasswordLength} символов`,
-      );
-    if (!password.length)
-      setPasswordText('Это поле не должно быть пустым');
+      setPasswordText(`Пароль должен быть не менее ${minPasswordLength} символов`);
+    if (!password.length) setPasswordText('Это поле не должно быть пустым');
     setPasswordError(!isValid);
     return isValid;
   };
@@ -79,10 +63,8 @@ const RegisterPage: FC = () => {
   const validateEmail = () => {
     const validEmail = emailRegExp.test(String(email).toLowerCase());
     const isValid = Boolean(email.length && validEmail);
-    if (email.length && !validEmail)
-      setErrorEmailText('Не валидный email');
-    if (!email.length)
-      setErrorEmailText('Это поле не должно быть пустым');
+    if (email.length && !validEmail) setErrorEmailText('Не валидный email');
+    if (!email.length) setErrorEmailText('Это поле не должно быть пустым');
     setErrorEmail(!isValid);
     return isValid;
   };
@@ -104,9 +86,7 @@ const RegisterPage: FC = () => {
         password,
         name,
       };
-      dispatch(registerUser(data) as any).then(() =>
-        history.replace({ pathname: '/' }),
-      );
+      dispatch(registerUser(data) as any).then(() => history.replace({ pathname: '/' }));
     }
   };
 

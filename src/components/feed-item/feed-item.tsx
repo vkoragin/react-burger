@@ -15,12 +15,8 @@ interface IFeedItemProps {
 }
 
 const FeedItem: FC<IFeedItemProps> = ({ order, showStatus }) => {
-  const { ingredients } = useSelector(
-    (store: ReduxStore) => store.ingredients,
-  );
-  const [orderIngredients, setOrderIngredients] = useState<
-    TIngredient[]
-  >([]);
+  const { ingredients } = useSelector((store: ReduxStore) => store.ingredients);
+  const [orderIngredients, setOrderIngredients] = useState<TIngredient[]>([]);
   const [images, setImages] = useState<string[]>([]);
   const [count, setCount] = useState(0);
   const [price, setPrice] = useState(0);
@@ -43,8 +39,7 @@ const FeedItem: FC<IFeedItemProps> = ({ order, showStatus }) => {
             totalPrice += 2 * targetIngredient.price;
             bun = 1;
           }
-          if (targetIngredient.type !== 'bun')
-            totalPrice += targetIngredient.price;
+          if (targetIngredient.type !== 'bun') totalPrice += targetIngredient.price;
         }
       });
       setPrice(totalPrice);
@@ -75,8 +70,7 @@ const FeedItem: FC<IFeedItemProps> = ({ order, showStatus }) => {
     return false;
   };
 
-  const getStatusColor = (status: string) =>
-    status === 'done' ? '#00CCCC' : '#FFFFFF';
+  const getStatusColor = (status: string) => (status === 'done' ? '#00CCCC' : '#FFFFFF');
 
   return (
     <Link
@@ -89,16 +83,12 @@ const FeedItem: FC<IFeedItemProps> = ({ order, showStatus }) => {
     >
       <section className={styles.order}>
         <header className={styles.header}>
-          <p className="text text_type_digits-default">
-            {`#${order.number}`}
-          </p>
+          <p className="text text_type_digits-default">{`#${order.number}`}</p>
           <p className="text text_type_main-default text_color_inactive">
             {formatDate(order.createdAt)}
           </p>
         </header>
-        <p
-          className={`${styles.name} text text_type_main-medium pb-6 pt-6`}
-        >
+        <p className={`${styles.name} text text_type_main-medium pb-6 pt-6`}>
           {order.name}
           <br />
           {showStatus && (
@@ -116,45 +106,24 @@ const FeedItem: FC<IFeedItemProps> = ({ order, showStatus }) => {
               const left = -i * 15;
               if (i <= showCount - 1)
                 return (
-                  <div
-                    key={i} // eslint-disable-line
-                    className={styles.imageWrapper}
-                    style={{ left, zIndex: 100 - i }}
-                  >
-                    <img
-                      className={styles.image}
-                      src={image}
-                      alt=""
-                    />
+                  <div key={i} className={styles.imageWrapper} style={{ left, zIndex: 100 - i }}>
+                    <img className={styles.image} src={image} alt="" />
                   </div>
                 );
               if (i === showCount)
                 return (
-                  <div
-                    key={i} // eslint-disable-line
-                    className={styles.imageWrapper}
-                    style={{ left, zIndex: 100 - i }}
-                  >
-                    <p
-                      className={`${styles.count} text text_type_digits-default`}
-                    >
+                  <div key={i} className={styles.imageWrapper} style={{ left, zIndex: 100 - i }}>
+                    <p className={`${styles.count} text text_type_digits-default`}>
                       {`+${count - showCount + 1}`}
                     </p>
-                    <img
-                      className={styles.image}
-                      style={{ opacity: 0.5 }}
-                      src={image}
-                      alt=""
-                    />
+                    <img className={styles.image} style={{ opacity: 0.5 }} src={image} alt="" />
                   </div>
                 );
               return false;
             })}
           </div>
           <div className={styles.coast}>
-            <span className="text text_type_digits-default pr-2">
-              {price}
-            </span>
+            <span className="text text_type_digits-default pr-2">{price}</span>
             <CurrencyIcon type="primary" />
           </div>
         </footer>

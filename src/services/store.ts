@@ -8,13 +8,8 @@ declare global {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
   }
 }
-const composeEnhancers =
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const enhancer = composeEnhancers(
-  applyMiddleware(thunk),
-  applyMiddleware(socketMiddleware()),
-);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const enhancer = composeEnhancers(applyMiddleware(thunk), applyMiddleware(socketMiddleware()));
 
-const initStore = (initialState = {}) =>
-  createStore(rootReducer, initialState, enhancer);
+const initStore = (initialState = {}) => createStore(rootReducer, initialState, enhancer);
 export default initStore;

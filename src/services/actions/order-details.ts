@@ -12,39 +12,36 @@ import {
 
 import { refreshToken } from './auth';
 
-const getOrderNumber =
-  (ingredientsIds: string[]) =>
-  async (dispatch: AppDispatch | AppThunk) => {
-    dispatch({
-      type: GET_ODDER_NUMBER,
-    });
+const getOrderNumber = (ingredientsIds: string[]) => async (dispatch: AppDispatch | AppThunk) => {
+  dispatch({
+    type: GET_ODDER_NUMBER,
+  });
 
-    try {
-      const { data } = await axios.post(
-        getOrderNumberUrl,
-        { ingredients: ingredientsIds },
-        {
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            authorization: getCookie('accessToken'),
-          },
+  try {
+    const { data } = await axios.post(
+      getOrderNumberUrl,
+      { ingredients: ingredientsIds },
+      {
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: getCookie('accessToken'),
         },
-      );
-      dispatch({
-        type: GET_ODDER_NUMBER_SUCCESS,
-        number: data.order.number,
-      });
-      dispatch({
-        type: CLEAR_CONSTRUCTOR,
-      });
-      return data;
-    } catch (error) {
-      dispatch({ type: GET_ODDER_NUMBER_FAILED });
-      const err = error as AxiosError;
-      if (err.response?.status === 403)
-        dispatch(refreshToken(getOrderNumber));
-      return false;
-    }
-  };
+      },
+    );
+    dispatch({
+      type: GET_ODDER_NUMBER_SUCCESS,
+      number: data.order.number,
+    });
+    dispatch({
+      type: CLEAR_CONSTRUCTOR,
+    });
+    return data;
+  } catch (error) {
+    dispatch({ type: GET_ODDER_NUMBER_FAILED });
+    const err = error as AxiosError;
+    if (err.response?.status === 403) dispatch(refreshToken(getOrderNumber));
+    return false;
+  }
+};
 
 export default getOrderNumber;
