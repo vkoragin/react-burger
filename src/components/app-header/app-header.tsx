@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 import {
@@ -24,8 +23,7 @@ const AppHeader = () => {
                 exact
                 to="/"
                 className="text text_type_main-default text_color_inactive pl-2"
-                activeClassName={styles.active}
-              >
+                activeClassName={styles.active}>
                 Конструктор
               </NavLink>
             </li>
@@ -35,8 +33,7 @@ const AppHeader = () => {
                 exact
                 to="/feed"
                 className="text text_type_main-default text_color_inactive pl-2"
-                activeClassName={styles.active}
-              >
+                activeClassName={styles.active}>
                 Лента заказов
               </NavLink>
             </li>
@@ -54,8 +51,7 @@ const AppHeader = () => {
           <NavLink
             to="/profile"
             className="text text_type_main-default text_color_inactive pl-2"
-            activeClassName={styles.active}
-          >
+            activeClassName={styles.active}>
             Личный кабинет
           </NavLink>
         </section>

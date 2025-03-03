@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState, ChangeEvent, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ const ForgotPasswordPage: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
@@ -27,7 +27,7 @@ const ForgotPasswordPage: FC = () => {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setErrorEmail(false);
     const isValid = validateEmail();

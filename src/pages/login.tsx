@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, ChangeEvent, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 
@@ -21,11 +21,11 @@ const LoginPage: FC = () => {
   const history = useHistory();
   const location = useLocation<any>();
 
-  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
@@ -62,7 +62,7 @@ const LoginPage: FC = () => {
     return isPasswordValid && isEmailValid;
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = (e: FormEvent) => {
     e.preventDefault();
     clearErrors();
     const isValid = validate();

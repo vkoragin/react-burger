@@ -1,4 +1,4 @@
-import React from 'react';
+import { PropsWithChildren } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 import { getCookie } from '../utils';
@@ -6,7 +6,7 @@ import { getCookie } from '../utils';
 const ProtectedUnAuthResetRoute = ({
   children,
   ...rest
-}: React.PropsWithChildren<{ [key: string]: any }>) => {
+}: PropsWithChildren<{ [key: string]: any }>) => {
   const isAuth = getCookie('accessToken');
   const wasResetPassword = localStorage.getItem('resetPassword');
 

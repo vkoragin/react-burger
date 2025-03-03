@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react';
+import { FC, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useDrop, useDrag } from 'react-dnd';
 

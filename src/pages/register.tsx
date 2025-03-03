@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState, FormEvent, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -23,15 +23,15 @@ const RegisterPage: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
@@ -76,7 +76,7 @@ const RegisterPage: FC = () => {
     return isPasswordValid && isEmailValid && isNameValid;
   };
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = (e: FormEvent) => {
     e.preventDefault();
     clearErrors();
     const isValid = validate();

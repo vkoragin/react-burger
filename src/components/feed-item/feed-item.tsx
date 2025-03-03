@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 
@@ -79,8 +79,7 @@ const FeedItem: FC<IFeedItemProps> = ({ order, showStatus }) => {
         pathname: `${location.pathname}/${orderId}`,
         state: { background: location },
       }}
-      className={styles.link}
-    >
+      className={styles.link}>
       <section className={styles.order}>
         <header className={styles.header}>
           <p className="text text_type_digits-default">{`#${order.number}`}</p>
@@ -94,8 +93,7 @@ const FeedItem: FC<IFeedItemProps> = ({ order, showStatus }) => {
           {showStatus && (
             <span
               className="text text_type_main-default"
-              style={{ color: getStatusColor(order.status) }}
-            >
+              style={{ color: getStatusColor(order.status) }}>
               {getStatus(order.status)}
             </span>
           )}

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { feedsUserUrl } from '../../url';
@@ -37,7 +37,7 @@ const Orders: FC = () => {
 
   return (
     <div className={styles.userFeed}>
-      {orders.length ? (
+      {!!orders.length ? (
         orders.map((item) =>
           item?.ingredients?.length ? <FeedItem key={item._id} order={item} showStatus /> : false,
         )

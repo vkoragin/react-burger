@@ -1,12 +1,9 @@
-import React from 'react';
+import { PropsWithChildren } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 import { getCookie } from '../utils';
 
-const ProtectedUnAuthRoute = ({
-  children,
-  ...rest
-}: React.PropsWithChildren<{ [key: string]: any }>) => {
+const ProtectedUnAuthRoute = ({ children, ...rest }: PropsWithChildren<{ [key: string]: any }>) => {
   const isAuth = getCookie('accessToken');
 
   return (

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import ReactDOM from 'react-dom';
 
 import LoaderOverlay from '../loader-overlay/loader-overlay';

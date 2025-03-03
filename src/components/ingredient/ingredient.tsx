@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
@@ -36,8 +36,7 @@ const Ingredient: FC<IIngredientProps> = ({ ingredient }) => {
         pathname: `/ingredients/${ingredientId}`,
         state: { background: location },
       }}
-      className={styles.link}
-    >
+      className={styles.link}>
       <figure className={styles.ingredient} ref={dragRef}>
         {count > 0 && (
           <Counter count={ingredient.type === 'bun' ? count + 1 : count} size="default" />

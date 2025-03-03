@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC, MouseEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useHistory, useRouteMatch, useLocation, Switch } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ const ProfilePage: FC = () => {
   const dispatch = useDispatch();
   const { url } = useRouteMatch();
 
-  const handleLogout = (e: React.MouseEvent<HTMLElement>) => {
+  const handleLogout = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     dispatch(logoutUser() as any).then(() => history.replace({ pathname: '/login' }));
   };
@@ -31,8 +31,7 @@ const ProfilePage: FC = () => {
                 exact
                 to={`${url}`}
                 className="text text_type_main-medium text_color_inactive"
-                activeClassName={styles.active}
-              >
+                activeClassName={styles.active}>
                 Профиль
               </NavLink>
             </li>
@@ -41,8 +40,7 @@ const ProfilePage: FC = () => {
                 exact
                 to={`${url}/orders`}
                 className="text text_type_main-medium text_color_inactive"
-                activeClassName={styles.active}
-              >
+                activeClassName={styles.active}>
                 История заказов
               </NavLink>
             </li>
@@ -50,8 +48,7 @@ const ProfilePage: FC = () => {
               <a
                 href="/#"
                 onClick={handleLogout}
-                className="text text_type_main-medium text_color_inactive"
-              >
+                className="text text_type_main-medium text_color_inactive">
                 Выход
               </a>
             </li>

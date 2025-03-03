@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import type { ReduxStore } from '../services/store.types';
@@ -53,7 +53,7 @@ const FeedPage: FC = () => {
   }, [orders]);
 
   return (
-    <div>
+    <>
       <header className={styles.header}>
         <h1 className="text text_type_main-large pt-8 pb-6">Лента заказов</h1>
       </header>
@@ -74,14 +74,13 @@ const FeedPage: FC = () => {
             <section className={styles.statuses}>
               <header className="text text_type_main-medium pb-6">Готовы:</header>
               <div className={styles.statusesColumns}>
-                {doneNumbers.length && doneNumbers[0].length ? (
+                {!!doneNumbers.length && !!doneNumbers[0].length ? (
                   doneNumbers.map((doneNumbersColumn, i) => (
                     <div key={i} className={styles.statusesColumn}>
                       {doneNumbersColumn.map((item) => (
                         <span
                           key={item.number}
-                          className={`${styles.done} text text_type_digits-default`}
-                        >
+                          className={`${styles.done} text text_type_digits-default`}>
                           {item.number}
                         </span>
                       ))}
@@ -120,7 +119,7 @@ const FeedPage: FC = () => {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 };
 

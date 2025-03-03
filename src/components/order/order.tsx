@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -87,7 +87,7 @@ const Order: FC = () => {
         </p>
         <p className="text text_type_main-medium pt-15 pb-4">Состав:</p>
         <div className={`${styles.orderWrapper} pr-2`}>
-          {Boolean(orderIngredients) &&
+          {!!orderIngredients &&
             orderIngredients?.map((ingredient, i) => {
               return (
                 <div key={i} className={`${styles.order} mt-4 pb-2`}>

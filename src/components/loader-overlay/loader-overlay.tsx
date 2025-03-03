@@ -1,5 +1,3 @@
-import React from 'react';
-
 import styles from './loader-overlay.module.css';
 
 const LoaderOverlay = () => {

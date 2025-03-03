@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState, FormEvent, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -20,11 +20,11 @@ const ResetPasswordPage: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleChangeCode = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeCode = (e: ChangeEvent<HTMLInputElement>) => {
     setToken(e.target.value);
   };
 
-  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
@@ -58,7 +58,7 @@ const ResetPasswordPage: FC = () => {
     return isPasswordValid && isTokenValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     clearErrors();
     const isValid = validate();

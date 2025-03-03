@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC, MouseEvent, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -9,9 +9,9 @@ import styles from './modal.module.css';
 const modalRoot = document.getElementById('modals') as HTMLElement;
 
 interface IModalProps {
-  onCloseByClick: (e?: React.MouseEvent) => void;
+  onCloseByClick: (e?: MouseEvent) => void;
   onCloseByKeyDown: (e?: KeyboardEvent) => void;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const Modal: FC<IModalProps> = ({ onCloseByClick, onCloseByKeyDown, children }) => {

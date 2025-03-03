@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent, FormEvent, MouseEvent } from 'react';
 
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDispatch, useSelector } from '../../services/hooks';
@@ -34,15 +34,15 @@ const Profile = () => {
     setPassword(defPassword);
   };
 
-  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
@@ -83,7 +83,7 @@ const Profile = () => {
     setNameError(false);
   };
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = (e: FormEvent) => {
     e.preventDefault();
     clearErrors();
     const isValid = validate();
@@ -97,7 +97,7 @@ const Profile = () => {
     }
   };
 
-  const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
+  const handleCancel = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     clearErrors();
     setPassword(defPassword);

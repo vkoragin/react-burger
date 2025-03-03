@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -18,8 +18,7 @@ const Tabs: FC<TTabsProps> = ({ ingredientsTypes }) => {
           key={i}
           value={ingredientsType}
           active={activeTab === ingredientsType}
-          onClick={() => false}
-        >
+          onClick={() => false}>
           {ingredientsType}
         </Tab>
       ))}
