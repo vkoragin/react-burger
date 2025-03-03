@@ -8,10 +8,7 @@ import {
   SHOW_LOADER,
   ACTIVE_TAB,
 } from './actionTypes';
-import {
-  Actions,
-  TIngredientsResponse,
-} from './burgrer-ingredients.types';
+import { Actions, TIngredientsResponse } from './burgrer-ingredients.types';
 
 export const getIngredients = () => (dispatch: Dispatch<Actions>) => {
   dispatch({ type: GET_INGREDIENTS });

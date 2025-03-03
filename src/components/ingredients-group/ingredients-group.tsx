@@ -12,16 +12,10 @@ interface IIngredientsGroupProps {
   header: string;
 }
 
-const IngredientsGroup: FC<IIngredientsGroupProps> = ({
-  ingredients,
-  anchor,
-  header,
-}) => {
+const IngredientsGroup: FC<IIngredientsGroupProps> = ({ ingredients, anchor, header }) => {
   return (
     <section className={styles.group}>
-      <header className={`text text_type_main-medium ${anchor}`}>
-        {header}
-      </header>
+      <header className={`text text_type_main-medium ${anchor}`}>{header}</header>
       <section className={styles.ingredients}>
         {ingredients.map((ingredient) => (
           <Ingredient key={ingredient._id} ingredient={ingredient} />

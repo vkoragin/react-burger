@@ -22,18 +22,12 @@ const HomePage: FC = () => {
       </p>
     );
   if (ingredientsRequest)
-    return (
-      <p className="text text_type_main-default text_color_inactive">
-        Загрузка данных...
-      </p>
-    );
+    return <p className="text text_type_main-default text_color_inactive">Загрузка данных...</p>;
 
   return (
     <>
       <header className={styles.header}>
-        <h1 className="text text_type_main-large pt-8 pb-6">
-          Соберите бургер
-        </h1>
+        <h1 className="text text_type_main-large pt-8 pb-6">Соберите бургер</h1>
       </header>
       <section className={styles.content}>
         <DndProvider backend={HTML5Backend}>

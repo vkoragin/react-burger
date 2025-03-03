@@ -19,23 +19,13 @@ import styles from './burger-constructor.module.css';
 
 const BurgerConstructor = () => {
   const [bun, setBun] = useState<TIngredient>();
-  const [otherIngredients, setOtherIngredients] = useState<
-    TIngredient[]
-  >([]);
-  const { constructor } = useSelector(
-    (store: ReduxStore) => store.ingredients,
-  );
+  const [otherIngredients, setOtherIngredients] = useState<TIngredient[]>([]);
+  const { constructor } = useSelector((store: ReduxStore) => store.ingredients);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setBun(
-      constructor.filter(
-        (ingredient) => ingredient.type === 'bun',
-      )[0],
-    );
-    setOtherIngredients(
-      constructor.filter((ingredient) => ingredient.type !== 'bun'),
-    );
+    setBun(constructor.filter((ingredient) => ingredient.type === 'bun')[0]);
+    setOtherIngredients(constructor.filter((ingredient) => ingredient.type !== 'bun'));
   }, [constructor]);
 
   const [, dropRef] = useDrop({
@@ -52,19 +42,13 @@ const BurgerConstructor = () => {
     },
   });
 
-  const isBun = constructor.filter(
-    (ingredient) => ingredient.type === 'bun',
-  ).length;
+  const isBun = constructor.filter((ingredient) => ingredient.type === 'bun').length;
 
   const moveElement = useCallback(
     (dragIndex, hoverIndex) => {
       const newElements = [...otherIngredients];
       if (isBun && bun) newElements.push(bun);
-      newElements.splice(
-        hoverIndex,
-        0,
-        newElements.splice(dragIndex, 1)[0],
-      );
+      newElements.splice(hoverIndex, 0, newElements.splice(dragIndex, 1)[0]);
       dispatch({
         type: REORDER_INGREDIENTS,
         newElements,
@@ -74,9 +58,7 @@ const BurgerConstructor = () => {
   );
 
   const renderElement = (ingredient: TIngredient, index: number) => {
-    const uniqueKey = ingredient.uniqueKey
-      ? ingredient.uniqueKey
-      : 0.1;
+    const uniqueKey = ingredient.uniqueKey ? ingredient.uniqueKey : 0.1;
     return (
       <NotBunIngredientsConstructor
         key={uniqueKey}
@@ -106,9 +88,7 @@ const BurgerConstructor = () => {
       </div>
 
       <div className={styles.otherIngredients}>
-        {otherIngredients.map((ingredient, i) =>
-          renderElement(ingredient, i),
-        )}
+        {otherIngredients.map((ingredient, i) => renderElement(ingredient, i))}
       </div>
 
       <div className={styles.bun}>

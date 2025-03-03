@@ -2,10 +2,7 @@ import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
-import {
-  Input,
-  Button,
-} from '@ya.praktikum/react-developer-burger-ui-components';
+import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { emailRegExp } from '../utils';
 
 import { resetPassword } from '../services/actions/forgot-password';
@@ -17,19 +14,15 @@ const ForgotPasswordPage: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleChangeEmail = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
   const validateEmail = () => {
     const validEmail = emailRegExp.test(String(email).toLowerCase());
     const isValid = Boolean(email.length && validEmail);
-    if (email.length && !validEmail)
-      setErrorEmailText('Не валидный email');
-    if (!email.length)
-      setErrorEmailText('Это поле не должно быть пустым');
+    if (email.length && !validEmail) setErrorEmailText('Не валидный email');
+    if (!email.length) setErrorEmailText('Это поле не должно быть пустым');
     setErrorEmail(!isValid);
     return isValid;
   };
@@ -47,9 +40,7 @@ const ForgotPasswordPage: FC = () => {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <p className="text text_type_main-medium mb-6">
-        Восстановление пароля
-      </p>
+      <p className="text text_type_main-medium mb-6">Восстановление пароля</p>
       <div className="mb-6">
         <Input
           onChange={handleChangeEmail}

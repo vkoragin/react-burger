@@ -32,8 +32,8 @@ export type TIngredient = {
   calories: number;
   price: number;
   image: string;
-  image_mobile: string; // eslint-disable-line
-  image_large: string; // eslint-disable-line
+  image_mobile: string;
+  image_large: string;
   __v: number;
   uniqueKey?: number;
   count?: number;

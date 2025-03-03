@@ -1,10 +1,6 @@
 import { TOrder } from '../../types';
 import { OrderStore } from './order.types';
-import {
-  GET_ORDER,
-  GET_ORDER_SUCCESS,
-  CLEAR_ORDER,
-} from '../actions/actionTypes';
+import { GET_ORDER, GET_ORDER_SUCCESS, CLEAR_ORDER } from '../actions/actionTypes';
 
 import orderReducer from './order';
 

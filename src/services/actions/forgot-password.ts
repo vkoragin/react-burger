@@ -12,32 +12,31 @@ export type TForgotPasswordResponse = {
   message: string;
 } & Response;
 
-export const resetPassword =
-  (email: string) => async (dispatch: Dispatch<LoaderAction>) => {
+export const resetPassword = (email: string) => async (dispatch: Dispatch<LoaderAction>) => {
+  dispatch({
+    type: SHOW_LOADER,
+    loader: true,
+  });
+
+  try {
+    const { data } = await axios.post(
+      forgotPasswordUrl,
+      { email },
+      {
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: getCookie('accessToken'),
+        },
+      },
+    );
+    localStorage.setItem('resetPassword', 'true');
+    return data;
+  } catch (error) {
+    return false;
+  } finally {
     dispatch({
       type: SHOW_LOADER,
-      loader: true,
+      loader: false,
     });
-
-    try {
-      const { data } = await axios.post(
-        forgotPasswordUrl,
-        { email },
-        {
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            authorization: getCookie('accessToken'),
-          },
-        },
-      );
-      localStorage.setItem('resetPassword', 'true');
-      return data;
-    } catch (error) {
-      return false;
-    } finally {
-      dispatch({
-        type: SHOW_LOADER,
-        loader: false,
-      });
-    }
-  };
+  }
+};

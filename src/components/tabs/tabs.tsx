@@ -9,15 +9,12 @@ type TTabsProps = {
 };
 
 const Tabs: FC<TTabsProps> = ({ ingredientsTypes }) => {
-  const { activeTab } = useSelector(
-    (store: ReduxStore) => store.activeTab,
-  );
+  const { activeTab } = useSelector((store: ReduxStore) => store.activeTab);
 
   return (
     <div style={{ display: 'flex', paddingBottom: '40px' }}>
       {ingredientsTypes.map((ingredientsType, i) => (
         <Tab
-          // eslint-disable-next-line
           key={i}
           value={ingredientsType}
           active={activeTab === ingredientsType}

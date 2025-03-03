@@ -1,12 +1,6 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  NavLink,
-  useHistory,
-  useRouteMatch,
-  useLocation,
-  Switch,
-} from 'react-router-dom';
+import { NavLink, useHistory, useRouteMatch, useLocation, Switch } from 'react-router-dom';
 
 import { logoutUser } from '../services/actions/auth';
 
@@ -24,9 +18,7 @@ const ProfilePage: FC = () => {
 
   const handleLogout = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    dispatch(logoutUser() as any).then(() =>
-      history.replace({ pathname: '/login' }),
-    );
+    dispatch(logoutUser() as any).then(() => history.replace({ pathname: '/login' }));
   };
 
   return (

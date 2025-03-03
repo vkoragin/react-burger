@@ -1,10 +1,6 @@
 import { UserStore } from './profile.types';
 import { Actions } from '../actions/profile.types';
-import {
-  GET_USER,
-  GET_USER_FAILED,
-  GET_USER_SUCCESS,
-} from '../actions/actionTypes';
+import { GET_USER, GET_USER_FAILED, GET_USER_SUCCESS } from '../actions/actionTypes';
 
 const initialUSerState: UserStore = {
   user: null,

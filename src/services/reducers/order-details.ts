@@ -12,10 +12,7 @@ const initialState: OrderNumberStore = {
   numberFailed: false,
 };
 
-const orderNumberReducer = (
-  state = initialState,
-  action: Actions,
-) => {
+const orderNumberReducer = (state = initialState, action: Actions) => {
   switch (action.type) {
     case GET_ODDER_NUMBER: {
       return {

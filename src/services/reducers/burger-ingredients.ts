@@ -1,11 +1,5 @@
-import {
-  Actions,
-  ActiveTabAction,
-} from '../actions/burgrer-ingredients.types';
-import {
-  ActiveTabStore,
-  BurgerIngredientStore,
-} from './burger-ingredient.types';
+import { Actions, ActiveTabAction } from '../actions/burgrer-ingredients.types';
+import { ActiveTabStore, BurgerIngredientStore } from './burger-ingredient.types';
 import {
   GET_INGREDIENTS,
   GET_INGREDIENTS_FAILED,
@@ -22,12 +16,8 @@ const initialTabState: ActiveTabStore = {
   activeTab: 'Булки',
 };
 
-export const activeTabReducer = (
-  state = initialTabState,
-  action: ActiveTabAction,
-) => {
-  if (action.type === ACTIVE_TAB)
-    return { activeTab: action.activeTab };
+export const activeTabReducer = (state = initialTabState, action: ActiveTabAction) => {
+  if (action.type === ACTIVE_TAB) return { activeTab: action.activeTab };
   return state;
 };
 
@@ -38,10 +28,7 @@ const initialIngredientsState: BurgerIngredientStore = {
   constructor: [],
 };
 
-export const ingredientsReducer = (
-  state = initialIngredientsState,
-  action: Actions,
-) => {
+export const ingredientsReducer = (state = initialIngredientsState, action: Actions) => {
   switch (action.type) {
     case GET_INGREDIENTS: {
       return {
@@ -74,12 +61,7 @@ export const ingredientsReducer = (
         ...state,
         constructor:
           action.el.type === 'bun'
-            ? [
-                ...state.constructor.filter(
-                  (item) => item.type !== 'bun',
-                ),
-                action.el,
-              ]
+            ? [...state.constructor.filter((item) => item.type !== 'bun'), action.el]
             : [...state.constructor, action.el],
       };
     }

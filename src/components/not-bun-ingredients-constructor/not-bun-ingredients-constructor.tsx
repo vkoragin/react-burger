@@ -2,16 +2,12 @@ import React, { FC, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useDrop, useDrag } from 'react-dnd';
 
-import {
-  ConstructorElement,
-  DragIcon,
-} from '@ya.praktikum/react-developer-burger-ui-components';
+import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DEL_FROM_CONSTRUCTOR } from '../../services/actions/actionTypes';
 
 import styles from './not-bun-ingredients-constructor.module.css';
 
 interface INotBunIngredientsConstructorProps {
-  // eslint-disable-next-line
   moveElement: (dragIndex: number, hoverIndex: number) => void;
   thumbnail: string;
   text: string;
@@ -21,9 +17,7 @@ interface INotBunIngredientsConstructorProps {
   uniqueKey: number;
 }
 
-const NotBunIngredientsConstructor: FC<
-  INotBunIngredientsConstructorProps
-> = ({
+const NotBunIngredientsConstructor: FC<INotBunIngredientsConstructorProps> = ({
   thumbnail,
   text,
   id,
@@ -47,18 +41,15 @@ const NotBunIngredientsConstructor: FC<
       if (dragIndex === hoverIndex) return;
 
       const hoverBoundingRect = ref.current?.getBoundingClientRect();
-      const hoverMiddleY =
-        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+      const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
       const clientOffset = monitor.getClientOffset();
 
       if (!clientOffset) return;
 
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY)
-        return;
-      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY)
-        return;
+      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) return;
+      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) return;
 
       moveElement(dragIndex, hoverIndex);
       item.index = hoverIndex;

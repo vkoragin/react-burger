@@ -12,9 +12,7 @@ import Tabs from '../tabs/tabs';
 import styles from './burger-ingredients.module.css';
 
 const BurgerIngredients = () => {
-  const { ingredients } = useSelector(
-    (store: ReduxStore) => store.ingredients,
-  );
+  const { ingredients } = useSelector((store: ReduxStore) => store.ingredients);
 
   const dispatch = useDispatch();
 
@@ -34,27 +32,21 @@ const BurgerIngredients = () => {
       <div className={styles.ingredients}>
         <div ref={bun}>
           <IngredientsGroup
-            ingredients={ingredients.filter(
-              (ingredient) => ingredient.type === 'bun',
-            )}
+            ingredients={ingredients.filter((ingredient) => ingredient.type === 'bun')}
             anchor="bun"
             header="Булки"
           />
         </div>
         <div ref={sauce}>
           <IngredientsGroup
-            ingredients={ingredients.filter(
-              (ingredient) => ingredient.type === 'sauce',
-            )}
+            ingredients={ingredients.filter((ingredient) => ingredient.type === 'sauce')}
             anchor="sauce"
             header="Соусы"
           />
         </div>
         <div ref={main}>
           <IngredientsGroup
-            ingredients={ingredients.filter(
-              (ingredient) => ingredient.type === 'main',
-            )}
+            ingredients={ingredients.filter((ingredient) => ingredient.type === 'main')}
             anchor="main"
             header="Начинки"
           />
