@@ -12,4 +12,11 @@ export default [
   pluginReact.configs.flat.recommended,
   { rules: { 'react/react-in-jsx-scope': 'off' } },
   { extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:prettier/recommended'] },
+  {
+    env: {
+      browser: true,
+      es2021: true,
+      jest: true,
+    },
+  },
 ];

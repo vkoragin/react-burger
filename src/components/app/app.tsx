@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect, MouseEvent } from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation, useHistory } from 'react-router-dom';
 
 import type { ReduxStore } from '../../services/store.types';
@@ -26,7 +26,6 @@ import {
   IngredientsPage,
   NotFound404,
   OrderPage,
-  
 } from '../../pages';
 
 import styles from './app.module.css';
@@ -41,7 +40,7 @@ const ModalSwitch = () => {
     location.state &&
     location.state.background;
 
-  const handleClose = (e?: React.MouseEvent | KeyboardEvent) => {
+  const handleClose = (e?: MouseEvent | KeyboardEvent) => {
     if (e) e.stopPropagation();
     history.goBack();
   };
